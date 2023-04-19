@@ -1,0 +1,18 @@
+[package]
+name = "CetusClmm"
+version = "0.0.1"
+# testnet
+published-at = "0xac2f34fcfaa423c7ca0bb26ca77e74da084e3a8dd902f85eb36524bfadd93adf"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "testnet-0.31.0" }
+MoveSTL = { local = "../move-stl"}
+IntegerMate = { local = "../../integer-mate/sui"}
+
+[addresses]
+
+integer_mate = "0xba60132bb7dcf93dcf1e732b51570e2d69b982fa0352d68cd60385a0cf60a17d"
+move_stl = "0x877115ff36a32e050644e73808be1bd5ea4aa79fc6254f6bcda99dc3ca40ccad"
+
+# testnet
+cetus_clmm = "0xac2f34fcfaa423c7ca0bb26ca77e74da084e3a8dd902f85eb36524bfadd93adf"
