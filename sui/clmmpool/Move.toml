@@ -2,7 +2,7 @@
 name = "CetusClmm"
 version = "0.0.1"
 # testnet
-published-at = "0xac2f34fcfaa423c7ca0bb26ca77e74da084e3a8dd902f85eb36524bfadd93adf"
+published-at = "0xc1f7a372904a2742a8c7cd37f2d67c3d37c376fcb4aaeabe6ee802cc267dd68a"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "testnet-0.32.0" }
