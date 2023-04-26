@@ -187,13 +187,35 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    public fun get_calculated_swap_result_amount_out(calculatedSwapResult: CalculatedSwapResult): u64 {
+    public fun calculated_swap_result_amount_out(calculatedSwapResult: &CalculatedSwapResult): u64 {
         abort 0
     }
 
-    public fun get_calculated_swap_result_is_exceed(calculatedSwapResult: CalculatedSwapResult): bool {
+    public fun calculated_swap_result_is_exceed(calculatedSwapResult: &CalculatedSwapResult): bool {
         abort 0
     }
+
+    public fun calculated_swap_result_amount_in(calculatedSwapResult: &CalculatedSwapResult): u64 {
+        abort 0
+    }
+
+    public fun calculated_swap_result_after_sqrt_price(calculatedSwapResult: &CalculatedSwapResult): u128 {
+        abort 0
+    }
+
+    public fun calculated_swap_result_fee_amount(calculatedSwapResult: &CalculatedSwapResult): u64 {
+        abort 0
+    }
+
+    public fun calculate_swap_result_step_results(calculatedSwapResult: &CalculatedSwapResult): &vector<SwapStepResult> {
+        abort 0
+    }
+
+    public fun calculated_swap_result_steps_length(calculatedSwapResult: &CalculatedSwapResult): u64 {
+        abort 0
+    }
+
+
 
     /// Flash loan resource for swap.
     /// There is no way in Move to pass calldata and make dynamic calls, but a resource can be used for this purpose.
