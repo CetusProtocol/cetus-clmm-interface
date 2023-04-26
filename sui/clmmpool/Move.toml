@@ -7,7 +7,7 @@ published-at = "0xc1f7a372904a2742a8c7cd37f2d67c3d37c376fcb4aaeabe6ee802cc267dd6
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "testnet-0.32.0" }
 MoveSTL = { local = "../move-stl"}
-IntegerMate = { local = "../../integer-mate/sui"}
+IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate", subdir = "sui", rev="sui-testnet"}
 
 [addresses]
 

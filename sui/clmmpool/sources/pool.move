@@ -187,6 +187,14 @@ module cetus_clmm::pool {
         abort 0
     }
 
+    public fun get_calculated_swap_result_amount_out(calculatedSwapResult: CalculatedSwapResult): u64 {
+        abort 0
+    }
+
+    public fun get_calculated_swap_result_is_exceed(calculatedSwapResult: CalculatedSwapResult): bool {
+        abort 0
+    }
+
     /// Flash loan resource for swap.
     /// There is no way in Move to pass calldata and make dynamic calls, but a resource can be used for this purpose.
     /// To make the execution into a single transaction, the flash loan function must return a resource

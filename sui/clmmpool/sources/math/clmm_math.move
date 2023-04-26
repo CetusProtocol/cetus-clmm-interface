@@ -261,7 +261,7 @@ module cetus_clmm::clmm_math {
             let lo64_mask = 0x000000000000000000000000000000000000000000000000ffffffffffffffff;
             let should_round_up = (product & lo64_mask) > 0;
             if (should_round_up) {
-                return (product >> 64) + 1
+                return (product >> 64) + 1  
             };
             product >> 64
         }
