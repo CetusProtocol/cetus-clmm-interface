@@ -3,12 +3,12 @@
 [package]
 name = "CetusClmm"
 version = "0.0.1"
-published-at = "0x5355ed41fcf78c8bd9889429b29ac698590fbd3aba9f60cd7924d4abae1194d4"
+published-at = "0xc1f7a372904a2742a8c7cd37f2d67c3d37c376fcb4aaeabe6ee802cc267dd68a"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "testnet-0.32.0" }
-MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "sui-testnet" }
-IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "sui-testnet" }
+MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "sui-testnet-0.32.0" }
+IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "sui-testnet-0.32.0" }
 
 [addresses]
 
