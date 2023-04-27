@@ -3,16 +3,16 @@
 [package]
 name = "CetusClmm"
 version = "0.0.1"
-published-at = "0xc1f7a372904a2742a8c7cd37f2d67c3d37c376fcb4aaeabe6ee802cc267dd68a"
+published-at = "0xf42bb3557dd14849e869e5668bcad98c6199aa9821a0c8aa12b04b42a3a7ee1e"
 
 [dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "testnet-0.32.0" }
-MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "sui-testnet-0.32.0" }
-IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "sui-testnet-0.32.0" }
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "testnet-0.33.1" }
+MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "sui-testnet-0.33.1" }
+IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "sui-testnet-0.33.1" }
 
 [addresses]
 
 # testnet
-integer_mate = "0xba60132bb7dcf93dcf1e732b51570e2d69b982fa0352d68cd60385a0cf60a17d"
-move_stl = "0x877115ff36a32e050644e73808be1bd5ea4aa79fc6254f6bcda99dc3ca40ccad"
-cetus_clmm = "0xb7e7513751376aed2e21b267ef6edebe806a27c979870d3575658dd443ac4248"
+integer_mate = "0x755fbd1bb3ab86622abe7e1135b2cd9d34068585f7ac3cfa462a3708142d4adf"
+move_stl = "0xaabedac4e8bf60b9f9ca73ffd2ff2bfc0399f27ed9ecba877810490d05f194f9"
+cetus_clmm = "0xf42bb3557dd14849e869e5668bcad98c6199aa9821a0c8aa12b04b42a3a7ee1e"
