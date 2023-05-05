@@ -1,6 +1,18 @@
 # Cetus Swap and Liquidity operations
 This section shows how to construction and execute a trade or liquidity operation on the Cetus protocol.
 
+## Tags corresponding to different networks
+| Tag of Repo | network |
+| --- | --- |
+| mainnet-sui-v1.0.0 | mainnet |
+| testnet-sui-v1.0.0 | testnet |
+
+eg: 
+```
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/clmmpool", rev = "mainnet-sui-v1.0.0" }
+```
+
+
 I'll start by presenting and describing the methods used in the cetus contract, then give application examples to help you integrate our algorithm into your own contract
 
 ## Cetus protocol
