@@ -60,6 +60,9 @@ module cetus_clmm::pool {
         url: String,
     }
 
+    
+
+
     // === Public Functions ===
     public fun open_position<CoinTypeA, CoinTypeB>(
         config: &GlobalConfig,

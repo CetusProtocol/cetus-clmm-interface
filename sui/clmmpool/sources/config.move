@@ -26,4 +26,8 @@ module cetus_clmm::config {
         /// The current package version
         package_version: u64
     }
+
+    public fun checked_package_version(config: &GlobalConfig) {
+        abort 0;
+    }
 }
