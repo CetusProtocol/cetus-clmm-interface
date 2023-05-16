@@ -5,7 +5,7 @@ This section shows how to construction and execute a trade or liquidity operatio
 | Tag of Repo | network |
 | --- | --- |
 | mainnet-sui-v1.0.0 | mainnet |
-| testnet-sui-v1.0.0 | testnet |
+| testnet-sui-v1.1.0 | testnet |
 
 eg: 
 ```
