@@ -6,7 +6,7 @@ version = "1.0.0"
 published-at = "0x0868b71c0cba55bf0faf6c40df8c179c67a4d0ba0e79965b68b3d72d7dfbf666"
 
 [dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "sui-v1.0.0" }
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "testnet-v1.1.0" }
 MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "sui-testnet-v1.1.0" }
 IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "sui-testnet-v1.1.0" }
 
