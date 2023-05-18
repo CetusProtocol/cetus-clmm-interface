@@ -3,7 +3,7 @@ module cetus_clmm::position {
     use std::type_name::TypeName;
 
     use sui::object::{UID, ID};
-    use sui::package::{Self, Publisher};
+    use sui::package::{Publisher};
     use sui::tx_context::{TxContext};
 
     use integer_mate::i32::I32;
@@ -55,111 +55,111 @@ module cetus_clmm::position {
     }
 
     public fun set_display(
-        config: &GlobalConfig,
-        publisher: &Publisher,
-        description: String,
-        link: String,
-        website: String,
-        creator: String,
-        ctx: &mut TxContext
+        _config: &GlobalConfig,
+        _publisher: &Publisher,
+        _description: String,
+        _link: String,
+        _website: String,
+        _creator: String,
+        _ctx: &mut TxContext
     ) {
-        abort 0;
+        abort 0
     }
 
-    public fun inited_rewards_count(manager: &PositionManager, position_id: ID): u64 {
+    public fun inited_rewards_count(_manager: &PositionManager, _position_id: ID): u64 {
         abort 0
     }
 
     public fun fetch_positions(
-        manager: &PositionManager, start: vector<ID>, limit: u64
+        _manager: &PositionManager, _start: vector<ID>, _limit: u64
     ): vector<PositionInfo> {
         abort 0
     }
 
-    public fun pool_id(position_nft: &Position): ID {
+    public fun pool_id(_position_nft: &Position): ID {
         abort 0
     }
 
-    public fun tick_range(position_nft: &Position): (I32, I32) {
+    public fun tick_range(_position_nft: &Position): (I32, I32) {
         abort 0
     }
 
-    public fun index(position_nft: &Position): u64 {
+    public fun index(_position_nft: &Position): u64 {
         abort 0
     }
 
-    public fun name(position_nft: &Position): String {
+    public fun name(_position_nft: &Position): String {
         abort 0
     }
 
-    public fun description(position_nft: &Position): String {
+    public fun description(_position_nft: &Position): String {
         abort 0
     }
 
-    public fun url(position_nft: &Position): String {
+    public fun url(_position_nft: &Position): String {
         abort 0
     }
 
-    public fun liquidity(position_nft: &Position): u128 {
+    public fun liquidity(_position_nft: &Position): u128 {
         abort 0
     }
 
-    public fun info_position_id(info: &PositionInfo): ID {
+    public fun info_position_id(_info: &PositionInfo): ID {
         abort 0
     }
 
-    public fun info_liquidity(info: &PositionInfo): u128 {
+    public fun info_liquidity(_info: &PositionInfo): u128 {
         abort 0
     }
 
-    public fun info_tick_range(info: &PositionInfo): (I32, I32){
+    public fun info_tick_range(_info: &PositionInfo): (I32, I32){
         abort 0
     }
 
-    public fun info_fee_growth_inside(info: &PositionInfo): (u128, u128) {
+    public fun info_fee_growth_inside(_info: &PositionInfo): (u128, u128) {
         abort 0
     }
 
-    public fun info_fee_owned(info: &PositionInfo): (u64, u64){
+    public fun info_fee_owned(_info: &PositionInfo): (u64, u64){
         abort 0
     }
 
-    public fun info_points_owned(info: &PositionInfo): u128 {
+    public fun info_points_owned(_info: &PositionInfo): u128 {
         abort 0
     }
 
-    public fun info_points_growth_inside(info: &PositionInfo): u128 {
+    public fun info_points_growth_inside(_info: &PositionInfo): u128 {
         abort 0
     }
 
-    public fun info_rewards(info: &PositionInfo): &vector<PositionReward>{
+    public fun info_rewards(_info: &PositionInfo): &vector<PositionReward>{
         abort 0
     }
 
-    public fun reward_growth_inside(reward: &PositionReward): u128 {
+    public fun reward_growth_inside(_reward: &PositionReward): u128 {
         abort 0
     }
 
-    public fun reward_amount_owned(reward: &PositionReward): u64 {
+    public fun reward_amount_owned(_reward: &PositionReward): u64 {
         abort 0
     }
 
     public fun borrow_position_info(
-        manager: &PositionManager,
-        position_id: ID,
+        _manager: &PositionManager,
+        _position_id: ID,
     ): &PositionInfo {
         abort 0
     }
 
-    public fun is_empty(position_info: &PositionInfo): bool {
+    public fun is_empty(_position_info: &PositionInfo): bool {
         abort 0
     }
 
-    public fun check_position_tick_range(lower: I32, upper: I32, tick_spacing: u32) {
-        abort 0;
+    public fun check_position_tick_range(_lower: I32, _upper: I32, _tick_spacing: u32) {
+        abort 0
     }
 
-    public fun is_position_exist(manager: &PositionManager, position_id: ID): bool {
+    public fun is_position_exist(_manager: &PositionManager, _position_id: ID): bool {
         abort 0
     }
 }
