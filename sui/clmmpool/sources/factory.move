@@ -1,3 +1,9 @@
+// Copyright (c) Cetus Technology Limited
+
+/// The factory module is provided to create and manage pools.
+/// The `Pools` is a singleton, and the `Pools` is initialized when the contract is deployed.
+/// The pools are organized in a linked list, and the key is generate by hash([coin_type_a + coin_type_b]). The details can be found in `new_pool_key` function.
+/// When create a pool, the `CoinTypeA` and `CoinTypeB` must be different, and the `CoinTypeA` must be the bigger one(string order).
 module cetus_clmm::factory {
     use std::string::String;
     use std::type_name::TypeName;
@@ -7,7 +13,6 @@ module cetus_clmm::factory {
     use sui::coin::{Coin};
 
     use move_stl::linked_table::{LinkedTable};
-
 
     use cetus_clmm::config::{GlobalConfig};
 
@@ -26,6 +31,20 @@ module cetus_clmm::factory {
         id: UID,
         list: LinkedTable<ID, PoolSimpleInfo>,
         index: u64,
+    }
+
+    // === Events ===
+    /// Emit when init factory.
+    struct InitFactoryEvent has copy, drop {
+        pools_id: ID,
+    }
+
+    /// Emit when create pool.
+    struct CreatePoolEvent has copy, drop {
+        pool_id: ID,
+        coin_type_a: String,
+        coin_type_b: String,
+        tick_spacing: u32,
     }
 
     public fun pool_id(_info: &PoolSimpleInfo): ID {
