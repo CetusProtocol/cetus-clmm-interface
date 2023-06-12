@@ -793,7 +793,6 @@ module cetus_clmm::pool {
         abort 0
     }
 
-
     public fun calculated_swap_result_amount_out(_calculatedSwapResult: &CalculatedSwapResult): u64 {
         abort 0
     }
@@ -821,7 +820,6 @@ module cetus_clmm::pool {
     public fun calculated_swap_result_steps_length(_calculatedSwapResult: &CalculatedSwapResult): u64 {
         abort 0
     }
-
 
     public fun calculated_swap_result_step_swap_result(
         calculatedSwapResult: &CalculatedSwapResult,
