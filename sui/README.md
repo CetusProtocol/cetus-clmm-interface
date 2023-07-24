@@ -1,23 +1,28 @@
 # Cetus Swap and Liquidity operations
+
 This section shows how to construction and execute a trade or liquidity operation on the Cetus protocol.
 
 ## Tags corresponding to different networks
-| Tag of Repo | network |
-| --- | --- |
+
+| Tag of Repo        | network |
+| ------------------ | ------- |
 | mainnet-sui-v1.0.0 | mainnet |
 | testnet-sui-v1.1.0 | testnet |
 
-eg: 
+eg:
+
 ```
 CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/clmmpool", rev = "mainnet-sui-v1.0.0" }
 ```
 
-
 I'll start by presenting and describing the methods used in the cetus contract, then give application examples to help you integrate our algorithm into your own contract
 
 ## Cetus protocol
+
 ### Data Structure
+
 1. Position
+
 ```
 /// The Cetus clmmpool's position NFT.
 struct Position has key, store {
@@ -34,7 +39,9 @@ struct Position has key, store {
     liquidity: u128,
 }
 ```
+
 2. Rewarder
+
 ```
 struct Rewarder has copy, drop, store {
     reward_coin: TypeName,
@@ -42,7 +49,9 @@ struct Rewarder has copy, drop, store {
     growth_global: u128,
 }
 ```
+
 3. Pool
+
 ```
 /// The clmmpool
 struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
@@ -93,7 +102,9 @@ struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
     url: String,
 }
 ```
+
 4. AddLiquidityReceipt
+
 ```
 /// Flash loan resource for add_liquidity
 struct AddLiquidityReceipt<phantom CoinTypeA, phantom CoinTypeB> {
@@ -102,7 +113,9 @@ struct AddLiquidityReceipt<phantom CoinTypeA, phantom CoinTypeB> {
     amount_b: u64
 }
 ```
+
 5. FlashSwapReceipt
+
 ```
 /// Flash loan resource for swap.
 /// There is no way in Move to pass calldata and make dynamic calls, but a resource can be used for this purpose.
@@ -118,8 +131,11 @@ struct FlashSwapReceipt<phantom CoinTypeA, phantom CoinTypeB> {
 ```
 
 ### Function
+
 1. Open position
+
 - clmmpool/sources/pool.move
+
 ```
 /// Open a new position within the given tick range in the specified pool.
 ///
@@ -148,7 +164,9 @@ struct FlashSwapReceipt<phantom CoinTypeA, phantom CoinTypeB> {
 ```
 
 2. Add liquidity with fixed coin
+
 - clmmpool/sources/pool.move
+
 ```
 /// Add liquidity to an existing position in the specified pool by fixing one of the coin types.
 ///
@@ -181,7 +199,9 @@ public fun add_liquidity_fix_coin<CoinTypeA, CoinTypeB>(
 ```
 
 3. Repay the receipt about add liquidity
+
 - clmmpool/sources/pool.move
+
 ```
 /// Repay the amount of borrowed liquidity and add liquidity to the pool.
 ///
@@ -207,7 +227,9 @@ pub fun repay_add_liquidity<CoinTypeA, CoinTypeB>(
 ```
 
 5. Get position liquidity
+
 - clmmpool/sources/position.move
+
 ```
 /// Get the amount of liquidity held in a given position.
 ///
@@ -222,7 +244,9 @@ pub fun liquidity(position_nft: &Position): u128 {}
 ```
 
 6. Remove liquidity
+
 - clmmpool/sources/pool.move
+
 ```
 /// Remove liquidity from the pool.
 ///
@@ -252,7 +276,9 @@ pub fun remove_liquidity<CoinTypeA, CoinTypeB>(
 ```
 
 7. Collect fee
+
 - clmmpool/sources/pool.move
+
 ```
 /// Collect the fees earned from a given position.
 ///
@@ -280,7 +306,9 @@ pub fun collect_fee<CoinTypeA, CoinTypeB>(
 ```
 
 8. Collect reward
+
 - clmmpool/sources/pool.move
+
 ```
 /// Collect reward for a given position.
 ///
@@ -314,7 +342,9 @@ public fun collect_reward<CoinTypeA, CoinTypeB, CoinTypeC>(
 ```
 
 10. Close position
+
 - clmmpool/sources/pool.move
+
 ```
 /// Close a position by burning the corresponding NFT.
 ///
@@ -339,23 +369,25 @@ public fun close_position<CoinTypeA, CoinTypeB>(
     position_nft: Position,
 ) {}
 ```
+
 ## Use Case
 
-
-
 ### Position related operations
-**Notes**: 
-    Sui not support pass empty vector, so we do three type package about add liquidity with different coins.
+
+**Notes**:
+Sui not support pass empty vector, so we do three type package about add liquidity with different coins.
+
 - pass coin_a and coin_b (all)
 - only pass coin_a
 - only pass coin_b
 
 1. Open position with liquidity with all.
 
-    If you want to support open_position_with_liquidity_with_all, this method you need to implement by your contract, here the example about it.
-    Firstly, you need to open position and get the position nft `Position`.
-    Secondly, you need to add liquidity with fixed coin. If `fix_amount_a` is true, it means fixed coin a, others means fixed coin b.
-    Finally, you need to repay the receipt when add liquidity.
+   If you want to support open_position_with_liquidity_with_all, this method you need to implement by your contract, here the example about it.
+   Firstly, you need to open position and get the position nft `Position`.
+   Secondly, you need to add liquidity with fixed coin. If `fix_amount_a` is true, it means fixed coin a, others means fixed coin b.
+   Finally, you need to repay the receipt when add liquidity.
+
 ```
 public entry fun open_position_with_liquidity_with_all<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -393,7 +425,8 @@ public entry fun open_position_with_liquidity_with_all<CoinTypeA, CoinTypeB>(
 
 2. Open position with liquidity only a.
 
-    This method is similar to the previous method. The only difference is coin b is zero.
+   This method is similar to the previous method. The only difference is coin b is zero.
+
 ```
 public entry fun open_position_with_liquidity_only_a<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -427,7 +460,8 @@ public entry fun open_position_with_liquidity_only_a<CoinTypeA, CoinTypeB>(
 
 3. Open position with liquidity only b.
 
-    This method is similar to the previous method. The only difference is coin b is zero.
+   This method is similar to the previous method. The only difference is coin b is zero.
+
 ```
 public entry fun open_position_with_liquidity_only_b<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -460,6 +494,7 @@ public entry fun open_position_with_liquidity_only_b<CoinTypeA, CoinTypeB>(
 ```
 
 4. Add liquidity with all.
+
 ```
 public entry fun add_liquidity_with_all<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -485,6 +520,7 @@ public entry fun add_liquidity_with_all<CoinTypeA, CoinTypeB>(
 ```
 
 5. Add liquidity only a.
+
 ```
 public entry fun add_liquidity_only_a<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -508,6 +544,7 @@ public entry fun add_liquidity_only_a<CoinTypeA, CoinTypeB>(
 ```
 
 6. Add liquidity only b.
+
 ```
 public entry fun add_liquidity_only_b<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -531,6 +568,7 @@ public entry fun add_liquidity_only_b<CoinTypeA, CoinTypeB>(
 ```
 
 7. Remove liquidity
+
 ```
 public entry fun remove_liquidity<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -556,7 +594,7 @@ public entry fun remove_liquidity<CoinTypeA, CoinTypeB>(
         position_nft,
         false
     );
-    
+
     // you can implentment these methods by yourself methods.
     // balance::join(&mut balance_a, fee_a);
     // balance::join(&mut balance_b, fee_b);
@@ -566,6 +604,7 @@ public entry fun remove_liquidity<CoinTypeA, CoinTypeB>(
 ```
 
 8. Close position
+
 ```
 public entry fun close_position<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -594,6 +633,7 @@ public entry fun close_position<CoinTypeA, CoinTypeB>(
 ```
 
 9. Collect fee
+
 ```
 public entry fun collect_fee<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -608,6 +648,7 @@ public entry fun collect_fee<CoinTypeA, CoinTypeB>(
 ```
 
 10. Collect reward
+
 ```
 public entry fun collect_reward<CoinTypeA, CoinTypeB, CoinTypeC>(
     config: &GlobalConfig,
@@ -630,7 +671,9 @@ public entry fun collect_reward<CoinTypeA, CoinTypeB, CoinTypeC>(
 ```
 
 ### Pool related operations
+
 this swap and swap with partner, you need to implement by yourself, here is the example.
+
 ```
 // Swap
 fun swap<CoinTypeA, CoinTypeB>(
@@ -738,6 +781,7 @@ fun swap_with_partner<CoinTypeA, CoinTypeB>(
 ```
 
 1. Swap a to b
+
 ```
 public entry fun swap_a2b<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -765,7 +809,9 @@ public entry fun swap_a2b<CoinTypeA, CoinTypeB>(
     );
 }
 ```
+
 2. Swap b to a
+
 ```
 public entry fun swap_b2a<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -795,6 +841,7 @@ public entry fun swap_b2a<CoinTypeA, CoinTypeB>(
 ```
 
 3. Swap a to b with partner
+
 ```
 public entry fun swap_a2b_with_partner<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -826,6 +873,7 @@ public entry fun swap_a2b_with_partner<CoinTypeA, CoinTypeB>(
 ```
 
 4. Swap b to a with partner
+
 ```
 public entry fun swap_b2a_with_partner<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -857,6 +905,7 @@ public entry fun swap_b2a_with_partner<CoinTypeA, CoinTypeB>(
 ```
 
 5. Repay add liquidity
+
 ```
 fun repay_add_liquidity<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
@@ -869,7 +918,7 @@ fun repay_add_liquidity<CoinTypeA, CoinTypeB>(
     ctx: &mut TxContext
 ) {
     let (amount_need_a, amount_need_b) = pool::add_liquidity_pay_amount(&receipt);
-    
+
     // let (balance_a, balance_b) = (
     //     coin::into_balance(coin::split(&mut coin_a, amount_need_a, ctx)),
     //     coin::into_balance(coin::split(&mut coin_b, amount_need_b, ctx)),
@@ -880,8 +929,10 @@ fun repay_add_liquidity<CoinTypeA, CoinTypeB>(
     // ...
 }
 ```
+
 6. Pre swap
-clmmpool/sources/pool
+   clmmpool/sources/pool
+
 ```
 /// The step swap result
 struct SwapStepResult has copy, drop, store {
