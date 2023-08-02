@@ -3,7 +3,7 @@
 [package]
 name = "CetusClmm"
 version = "1.0.0"
-published-at = "0xfa36bcb799278bddaf295991b2d3ce039013b1dd60dfd7183dee135fdadbc4be"
+published-at = "0xcfffc9eef305baa854565a229c719c07d1e6b8b67ce444995e21580fc1866919"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "sui-v1.0.0" }

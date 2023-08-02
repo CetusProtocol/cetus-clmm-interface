@@ -219,6 +219,19 @@ module cetus_clmm::pool {
     }
 
 
+    /// Calculate the position's amount_a/amount_b
+    /// Params
+    ///     - `pool` The clmm pool object.
+    ///     - `position_id` The object id of position's NFT.
+    /// Returns
+    ///     - `amount_a` The amount of `CoinTypeA`
+    ///     - `amount_b` The amount of `CoinTypeB`
+    public fun get_position_amounts<CoinTypeA, CoinTypeB>(
+        _pool: &mut Pool<CoinTypeA, CoinTypeB>,
+        _position_id: ID,
+    ): (u64, u64) {
+        abort 0
+    }
 
     /// Flash loan resource for swap.
     /// There is no way in Move to pass calldata and make dynamic calls, but a resource can be used for this purpose.
