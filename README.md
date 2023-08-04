@@ -21,8 +21,8 @@ This section shows how to construction and execute a trade or liquidity operatio
 
 | Tag of Repo        | Network | Latest published at address                                        |
 | ------------------ | ------- | ------------------------------------------------------------------ |
-| mainnet-sui-v1.0.0 | mainnet | 0xcfffc9eef305baa854565a229c719c07d1e6b8b67ce444995e21580fc1866919 |
-| testnet-sui-v1.1.0 | testnet | 0x9360a43ed6f359c3ca028f659e18ef2530e8cd61a259286da9a033270aa28e29 |
+| mainnet-sui-v1.0.0 | mainnet | 0xc33c3e937e5aa2009cc0c3fdb3f345a0c3193d4ee663ffc601fe8b894fbc4ba6 |
+| testnet-sui-v1.1.0 | testnet | 0x1c29d658882c40eeb39a8bb8fe58f71a216a918acb3e3eb3b47d24efd07257f2 |
 
 eg:
 
