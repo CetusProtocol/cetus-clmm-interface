@@ -1,4 +1,29 @@
-# cetus-clmm-interface
+# Cetus clmm interface
+
+<a name="readme-top"></a>
+![GitHub Repo stars](https://img.shields.io/github/stars/CetusProtocol/cetus-clmm-interface?logo=github)
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="https://archive.cetus.zone/assets/image/logo.png" alt="Logo" width="100" height="100">
+  </a>
+
+  <h3 align="center">Cetus-CLMM-INTERFACE</h3>
+
+  <p align="center">
+    Integrating Cetus-CLMMPOOL: A Comprehensive Guide
+    <br />
+    <a href="https://cetus-1.gitbook.io/cetus-docs/"><strong>Explore the docs »</strong></a>
+<br />
+    <br />
+    ·
+    <a href="https://github.com/CetusProtocol/cetus-clmm-interface/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/CetusProtocol/cetus-clmm-interface/issues">Request Feature</a>
+  </p>
+</div>
 
 This is an endpoint to help everyone integrate with the Cetus CLMM contract.
 
