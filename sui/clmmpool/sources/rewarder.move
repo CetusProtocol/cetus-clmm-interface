@@ -1,5 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
+#[allow(unused_type_parameter, unused_field)]
 /// `Rewarder` is the liquidity incentive module of `clmmpool`, which is commonly known as `farming`. In `clmmpool`,
 /// liquidity is stored in a price range, so `clmmpool` uses a reward allocation method based on effective liquidity.
 /// The allocation rules are roughly as follows:
@@ -21,7 +22,7 @@ module cetus_clmm::rewarder {
 
     use cetus_clmm::config::{GlobalConfig, AdminCap};
 
-    #[allow(unused_field)]
+    
     /// Manager the Rewards and Points.
     struct RewarderManager has store {
         rewarders: vector<Rewarder>,
@@ -30,7 +31,7 @@ module cetus_clmm::rewarder {
         last_updated_time: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Rewarder store the information of a rewarder.
     /// `reward_coin` is the type of reward coin.
     /// `emissions_per_second` is the amount of reward coin emit per second.
@@ -41,20 +42,20 @@ module cetus_clmm::rewarder {
         growth_global: u128,
     }
 
-    #[allow(unused_field)]
+    
     /// RewarderGlobalVault store the rewarder `Balance` in Bag globally.
     struct RewarderGlobalVault has key, store {
         id: UID,
         balances: Bag
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when `RewarderManager` is initialized.
     struct RewarderInitEvent has copy, drop {
         global_vault_id: ID,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when deposit reward.
     struct DepositEvent has copy, drop, store {
         reward_type: TypeName,
@@ -62,7 +63,7 @@ module cetus_clmm::rewarder {
         after_amount: u64
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when withdraw reward.
     struct EmergentWithdrawEvent has copy, drop, store {
         reward_type: TypeName,
@@ -110,13 +111,11 @@ module cetus_clmm::rewarder {
         abort 0
     }
 
-    #[allow(unused_type_parameter)]
     /// Get index of CoinType in `RewarderManager`, if not exists, return `None`
     public fun rewarder_index<CoinType>(_manager: &RewarderManager): Option<u64> {
         abort 0
     }
 
-    #[allow(unused_type_parameter)]
     /// Borrow `Rewarder` from `RewarderManager`
     public fun borrow_rewarder<CoinType>(_manager: &RewarderManager): &Rewarder {
         abort 0
@@ -157,7 +156,6 @@ module cetus_clmm::rewarder {
         abort 0
     }
 
-    #[allow(unused_type_parameter)]
     /// Get the balance value of CoinType in vault.
     public fun balance_of<CoinType>(
         _vault: &RewarderGlobalVault

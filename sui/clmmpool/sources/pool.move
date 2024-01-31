@@ -1,5 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
+#[allow(unused_type_parameter, unused_field)]
 /// Concentrated Liquidity Market Maker (CLMM) is a new generation of automated market maker (AMM) aiming to improve
 /// decentralized exchanges' capital efficiency and provide attractive yield opportunities for liquidity providers.
 /// Different from the constant product market maker that only allows liquidity to be distributed uniformly across the
@@ -28,11 +29,11 @@ module cetus_clmm::pool {
 
     // === Struct ===
 
-    #[allow(unused_field)]
+    
     /// One-Time-Witness for the module.
     struct POOL has drop {}
 
-    #[allow(unused_field)]
+    
     /// The clmmpool
     struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
         id: UID,
@@ -82,7 +83,7 @@ module cetus_clmm::pool {
         url: String,
     }
 
-    #[allow(unused_field)]
+    
     /// The swap result
     struct SwapResult has copy, drop {
         amount_in: u64,
@@ -92,7 +93,7 @@ module cetus_clmm::pool {
         steps: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Flash loan resource for swap.
     /// There is no way in Move to pass calldata and make dynamic calls, but a resource can be used for this purpose.
     /// To make the execution into a single transaction, the flash loan function must return a resource
@@ -105,7 +106,7 @@ module cetus_clmm::pool {
         ref_fee_amount: u64
     }
 
-    #[allow(unused_field)]
+    
     /// Flash loan resource for add_liquidity
     struct AddLiquidityReceipt<phantom CoinTypeA, phantom CoinTypeB> {
         pool_id: ID,
@@ -113,7 +114,7 @@ module cetus_clmm::pool {
         amount_b: u64
     }
 
-    #[allow(unused_field)]
+    
     /// The calculated swap result
     struct CalculatedSwapResult has copy, drop, store {
         amount_in: u64,
@@ -125,7 +126,7 @@ module cetus_clmm::pool {
         step_results: vector<SwapStepResult>
     }
 
-    #[allow(unused_field)]
+    
     /// The step swap result
     struct SwapStepResult has copy, drop, store {
         current_sqrt_price: u128,
@@ -139,7 +140,7 @@ module cetus_clmm::pool {
 
     // === Events ===
 
-    #[allow(unused_field)]
+    
     /// Emited when a position was opened.
     struct OpenPositionEvent has copy, drop, store {
         pool: ID,
@@ -148,14 +149,14 @@ module cetus_clmm::pool {
         position: ID,
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when a position was closed.
     struct ClosePositionEvent has copy, drop, store {
         pool: ID,
         position: ID,
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when add liquidity for a position.
     struct AddLiquidityEvent has copy, drop, store {
         pool: ID,
@@ -168,7 +169,7 @@ module cetus_clmm::pool {
         amount_b: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when remove liquidity from a position.
     struct RemoveLiquidityEvent has copy, drop, store {
         pool: ID,
@@ -181,7 +182,7 @@ module cetus_clmm::pool {
         amount_b: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when swap in a clmmpool.
     struct SwapEvent has copy, drop, store {
         atob: bool,
@@ -198,7 +199,7 @@ module cetus_clmm::pool {
         steps: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when the porotocol manager collect protocol fee from clmmpool.
     struct CollectProtocolFeeEvent has copy, drop, store {
         pool: ID,
@@ -206,7 +207,7 @@ module cetus_clmm::pool {
         amount_b: u64
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when user collect liquidity fee from a position.
     struct CollectFeeEvent has copy, drop, store {
         position: ID,
@@ -215,7 +216,7 @@ module cetus_clmm::pool {
         amount_b: u64
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when the clmmpool's liqudity fee rate had updated.
     struct UpdateFeeRateEvent has copy, drop, store {
         pool: ID,
@@ -223,7 +224,7 @@ module cetus_clmm::pool {
         new_fee_rate: u64
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when the rewarder's emission per second had updated.
     struct UpdateEmissionEvent has copy, drop, store {
         pool: ID,
@@ -231,14 +232,14 @@ module cetus_clmm::pool {
         emissions_per_second: u128,
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when a rewarder append to clmmpool.
     struct AddRewarderEvent has copy, drop, store {
         pool: ID,
         rewarder_type: TypeName,
     }
 
-    #[allow(unused_field)]
+    
     /// Emited when collect reward from clmmpool's rewarder.
     struct CollectRewardEvent has copy, drop, store {
         position: ID,
@@ -246,7 +247,6 @@ module cetus_clmm::pool {
         amount: u64,
     }
 
-    #[allow(unused_type_parameter)]
     /// Set display for pool.
     public fun set_display<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,
@@ -461,7 +461,6 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    #[allow(unused_type_parameter)]
     /// Calculate and update the position's rewards and return one of which reward type is `CoinTypeC`.
     /// Params
     ///     - `config` The global config of clmm package.
@@ -614,7 +613,6 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    #[allow(unused_type_parameter)]
     /// Initialize a `Rewarder` to `Pool` with a reward type of `CoinTypeC`.
     /// Only one `Rewarder` per `CoinType` can exist in `Pool`.
     /// Params
@@ -631,7 +629,6 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    #[allow(unused_type_parameter)]
     /// Update the rewarder emission speed to start the rewarder to generate.
     /// Params
     ///     - `config` The global config of clmm package
@@ -914,7 +911,6 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    #[allow(unused_type_parameter)]
     public fun get_position_reward<CoinTypeA, CoinTypeB, CoinTypeC>(
         _pool: &Pool<CoinTypeA, CoinTypeB>,
         _position_id: ID

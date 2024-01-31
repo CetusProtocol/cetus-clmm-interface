@@ -1,3 +1,10 @@
+// Copyright (c) Cetus Technology Limited
+
+#[allow(unused_field)]
+// The factory module is provided to create and manage pools.
+// The `Pools` is a singleton, and the `Pools` is initialized when the contract is deployed.
+// The pools are organized in a linked list, and the key is generate by hash([coin_type_a + coin_type_b]). The details can be found in `new_pool_key` function.
+// When create a pool, the `CoinTypeA` and `CoinTypeB` must be different, and the `CoinTypeA` must be the bigger one(string order).
 module cetus_clmm::factory {
     use std::string::String;
     use std::type_name::TypeName;
@@ -13,7 +20,7 @@ module cetus_clmm::factory {
     use cetus_clmm::position::Position;
     
     // === Structs ===
-    #[allow(unused_field)]
+    
     struct PoolSimpleInfo has store, copy, drop {
         pool_id: ID,
         pool_key: ID,
@@ -22,7 +29,7 @@ module cetus_clmm::factory {
         tick_spacing: u32,
     }
 
-    #[allow(unused_field)]
+    
     /// hold the pool list, and the pool list is organized in a linked list.
     /// index is the max index used by pools.
     struct Pools has key, store {
@@ -33,13 +40,13 @@ module cetus_clmm::factory {
 
     // === Events ===
 
-    #[allow(unused_field)]
+    
     /// Emit when init factory.
     struct InitFactoryEvent has copy, drop {
         pools_id: ID,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when create pool.
     struct CreatePoolEvent has copy, drop {
         pool_id: ID,

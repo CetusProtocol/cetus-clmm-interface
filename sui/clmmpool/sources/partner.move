@@ -1,3 +1,8 @@
+// Copyright (c) Cetus Technology Limited
+
+#[allow(unused_type_parameter, unused_field)]
+/// "Partner" is a module of "clmmpool" that defines a "Partner" object. When a partner participates in a swap
+/// transaction, they pass this object and will receive a share of the swap fee that belongs to them.
 module cetus_clmm::partner {
     use sui::object::{UID, ID};
     use sui::vec_map::VecMap;
@@ -11,20 +16,20 @@ module cetus_clmm::partner {
 
     // =============== Structs =================
 
-    #[allow(unused_field)] 
+     
     struct Partners has key {
         id: UID,
         partners: VecMap<String, ID>
     }
 
-    #[allow(unused_field)]
+    
     struct PartnerCap has key, store {
         id: UID,
         name: String,
         partner_id: ID,
     }
 
-    #[allow(unused_field)]
+    
     struct Partner has key, store {
         id: UID,
         name: String,
@@ -37,13 +42,13 @@ module cetus_clmm::partner {
 
     // ============= Events =================
     
-    #[allow(unused_field)]
+    
     /// Emit when publish the module.
     struct InitPartnerEvent has copy, drop {
         partners_id: ID,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when create partner.
     struct CreatePartnerEvent has copy, drop {
         recipient: address,
@@ -55,7 +60,7 @@ module cetus_clmm::partner {
         end_time: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when update partner ref fee rate.
     struct UpdateRefFeeRateEvent has copy, drop {
         partner_id: ID,
@@ -63,7 +68,7 @@ module cetus_clmm::partner {
         new_fee_rate: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when update partner time range.
     struct UpdateTimeRangeEvent has copy, drop {
         partner_id: ID,
@@ -71,7 +76,7 @@ module cetus_clmm::partner {
         end_time: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when receive ref fee.
     struct ReceiveRefFeeEvent has copy, drop {
         partner_id: ID,
@@ -79,7 +84,7 @@ module cetus_clmm::partner {
         type_name: String,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when claim ref fee.
     struct ClaimRefFeeEvent has copy, drop {
         partner_id: ID,
@@ -172,7 +177,6 @@ module cetus_clmm::partner {
         abort 0
     }
 
-    #[allow(unused_type_parameter)]
     /// The `PartnerCap` owner claim the parter fee by CoinType.
     public fun claim_ref_fee<T>(
         _config: &GlobalConfig,

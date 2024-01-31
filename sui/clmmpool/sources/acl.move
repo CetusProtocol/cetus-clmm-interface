@@ -1,14 +1,19 @@
+// Copyright (c) Cetus Technology Limited
+
+#[allow(unused_field)]
+/// Fork @https://github.com/pentagonxyz/movemate.git
+///
+/// `acl` is a simple access control module, where `member` represents a member and `role` represents a type
+/// of permission. A member can have multiple permissions.
 module cetus_clmm::acl {
     use sui::tx_context::TxContext;
     
     use move_stl::linked_table::LinkedTable;
-
-    #[allow(unused_field)]
+    
     struct ACL has store {
         permissions: LinkedTable<address, u128>
     }
 
-    #[allow(unused_field)]
     struct Member has store, drop, copy {
         address: address,
         permission: u128

@@ -1,5 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
+#[allow(unused_type_parameter, unused_field)]
 /// The `position` module is designed for the convenience of the `Pool`'s position and all `position` related
 /// operations are completed by this module. Regarding the `position` of `clmmpool`,
 /// there are several points that need to be explained:
@@ -26,7 +27,7 @@ module cetus_clmm::position {
 
     use cetus_clmm::config::{GlobalConfig};
 
-    #[allow(unused_field)]
+    
     /// The Cetus clmmpool's position manager, which has only store ability.
     /// The `PositionInfo` is organized into a linked table.
     struct PositionManager has store {
@@ -37,7 +38,7 @@ module cetus_clmm::position {
 
     struct POSITION has drop {}
 
-    #[allow(unused_field)]
+    
     /// The Cetus clmmpool's position NFT.
     struct Position has key, store {
         id: UID,
@@ -53,7 +54,7 @@ module cetus_clmm::position {
         liquidity: u128,
     }
 
-    #[allow(unused_field)]
+    
     /// The Cetus clmmpool's position information.
     struct PositionInfo has store, drop, copy {
         position_id: ID,
@@ -69,7 +70,7 @@ module cetus_clmm::position {
         rewards: vector<PositionReward>,
     }
 
-    #[allow(unused_field)]
+    
     /// The Position's rewarder
     struct PositionReward has drop, copy, store {
         growth_inside: u128,

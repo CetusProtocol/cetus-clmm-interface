@@ -1,5 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
+#[allow(unused_field)]
 /// The `tick` module is a module that is designed to facilitate the management of `tick` owned by `Pool`.
 /// All `tick` related operations of `Pool` are handled by this module.
 module cetus_clmm::tick {
@@ -11,14 +12,14 @@ module cetus_clmm::tick {
     use move_stl::skip_list::SkipList;
     use move_stl::option_u64::OptionU64;
 
-    #[allow(unused_field)]
+    
     /// Manager ticks of a pool, ticks is organized into SkipList.
     struct TickManager has store {
         tick_spacing: u32,
         ticks: SkipList<Tick>
     }
 
-    #[allow(unused_field)]
+    
     /// Tick infos.
     struct Tick has copy, drop, store {
         index: I32,

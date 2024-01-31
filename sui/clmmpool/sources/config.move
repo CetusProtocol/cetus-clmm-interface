@@ -1,5 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
+#[allow(unused_field)]
 /// The global config module is used for manage the `protocol_fee`, acl roles, fee_tiers and package version of the cetus clmmpool protocol.
 /// The `protocol_fee` is the protocol fee rate, it will be charged when user swap token.
 /// The `fee_tiers` is a map, the key is the tick spacing, the value is the fee rate. the fee_rate can be same for
@@ -26,18 +27,18 @@ module cetus_clmm::config {
 
     use cetus_clmm::acl;
 
-    #[allow(unused_field)]
+    
     // === Structs ===
     struct AdminCap has key, store {
         id: UID,
     }
 
-    #[allow(unused_field)]
+    
     struct ProtocolFeeClaimCap has key, store {
         id: UID,
     }
 
-    #[allow(unused_field)]
+    
     /// The clmmpools fee tier data
     struct FeeTier has store, copy, drop {
         /// The tick spacing
@@ -47,7 +48,7 @@ module cetus_clmm::config {
         fee_rate: u64,
     }
 
-    #[allow(unused_field)]
+    
     struct GlobalConfig has key, store {
         id: UID,
         /// `protocol_fee_rate` The protocol fee rate
@@ -64,28 +65,28 @@ module cetus_clmm::config {
 
     // === Events ===
 
-    #[allow(unused_field)]
+    
     /// Emit when init the `GlobalConfig` and `AdminCap`
     struct InitConfigEvent has copy, drop {
         admin_cap_id: ID,
         global_config_id: ID,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when update the protocol fee rate
     struct UpdateFeeRateEvent has copy, drop {
         old_fee_rate: u64,
         new_fee_rate: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when add fee_tier
     struct AddFeeTierEvent has copy, drop {
         tick_spacing: u32,
         fee_rate: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when update fee_tier
     struct UpdateFeeTierEvent has copy, drop {
         tick_spacing: u32,
@@ -93,41 +94,41 @@ module cetus_clmm::config {
         new_fee_rate: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when delete fee_tier
     struct DeleteFeeTierEvent has copy, drop {
         tick_spacing: u32,
         fee_rate: u64,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when set roles
     struct SetRolesEvent has copy, drop {
         member: address,
         roles: u128,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when add member a role
     struct AddRoleEvent has copy, drop {
         member: address,
         role: u8,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when remove member a role
     struct RemoveRoleEvent has copy, drop {
         member: address,
         role: u8
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when add member
     struct RemoveMemberEvent has copy, drop {
         member: address,
     }
 
-    #[allow(unused_field)]
+    
     /// Emit when update package version.
     struct SetPackageVersion has copy, drop {
         new_version: u64,
