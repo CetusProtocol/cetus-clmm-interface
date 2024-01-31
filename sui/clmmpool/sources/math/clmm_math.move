@@ -9,7 +9,6 @@ module cetus_clmm::clmm_math {
     const ETOKEN_AMOUNT_MAX_EXCEEDED: u64 = 0;
     const ETOKEN_AMOUNT_MIN_SUBCEEDED: u64 = 1;
     const EMULTIPLICATION_OVERFLOW: u64 = 2;
-    const EINTEGER_DOWNCAST_OVERFLOW: u64 = 3;
     const EINVALID_SQRT_PRICE_INPUT: u64 = 4;
     const EINVALID_FIXED_TOKEN_TYPE: u64 = 3018;
 
@@ -261,7 +260,7 @@ module cetus_clmm::clmm_math {
             let lo64_mask = 0x000000000000000000000000000000000000000000000000ffffffffffffffff;
             let should_round_up = (product & lo64_mask) > 0;
             if (should_round_up) {
-                return (product >> 64) + 1  
+                return (product >> 64) + 1
             };
             product >> 64
         }

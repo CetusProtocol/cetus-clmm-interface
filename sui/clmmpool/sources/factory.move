@@ -1,6 +1,7 @@
 module cetus_clmm::factory {
     use std::string::String;
     use std::type_name::TypeName;
+
     use sui::clock::Clock;
     use sui::tx_context::TxContext;
     use sui::object::{ID, UID};
@@ -8,12 +9,11 @@ module cetus_clmm::factory {
 
     use move_stl::linked_table::{LinkedTable};
 
-
     use cetus_clmm::config::{GlobalConfig};
-
     use cetus_clmm::position::Position;
     
     // === Structs ===
+    #[allow(unused_field)]
     struct PoolSimpleInfo has store, copy, drop {
         pool_id: ID,
         pool_key: ID,
@@ -22,10 +22,30 @@ module cetus_clmm::factory {
         tick_spacing: u32,
     }
 
+    #[allow(unused_field)]
+    /// hold the pool list, and the pool list is organized in a linked list.
+    /// index is the max index used by pools.
     struct Pools has key, store {
         id: UID,
         list: LinkedTable<ID, PoolSimpleInfo>,
         index: u64,
+    }
+
+    // === Events ===
+
+    #[allow(unused_field)]
+    /// Emit when init factory.
+    struct InitFactoryEvent has copy, drop {
+        pools_id: ID,
+    }
+
+    #[allow(unused_field)]
+    /// Emit when create pool.
+    struct CreatePoolEvent has copy, drop {
+        pool_id: ID,
+        coin_type_a: String,
+        coin_type_b: String,
+        tick_spacing: u32,
     }
 
     public fun pool_id(_info: &PoolSimpleInfo): ID {
@@ -52,6 +72,7 @@ module cetus_clmm::factory {
         abort 0
     }
 
+    #[allow(unused_type_parameter)]
     public fun create_pool<CoinTypeA, CoinTypeB>(
         _pools: &mut Pools,
         _config: &GlobalConfig,
@@ -91,6 +112,7 @@ module cetus_clmm::factory {
         abort 0
     }
 
+    #[allow(unused_type_parameter)]
     public fun new_pool_key<CoinTypeA, CoinTypeB>(_tick_spacing: u32): ID {
         abort 0
     }
