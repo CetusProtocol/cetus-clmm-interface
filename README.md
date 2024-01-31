@@ -6,10 +6,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://archive.cetus.zone/assets/image/logo.png" alt="Logo" width="100" height="100">
-  </a>
-
   <h3 align="center">Cetus-CLMM-INTERFACE</h3>
 
   <p align="center">
