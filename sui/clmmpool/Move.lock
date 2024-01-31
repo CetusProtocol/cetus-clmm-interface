@@ -2,7 +2,7 @@
 
 [move]
 version = 0
-manifest_digest = "E6EB56CB01AE3204B6778F6E6F18B6D31D1B7ECF2FF3338AA389172A325509D1"
+manifest_digest = "5189D4FD2A110B9A651151EA9D3F19AB58AE229CFB4EE5652D763F174E6C1FCB"
 deps_digest = "060AD7E57DFB13104F21BE5F5C3759D03F0553FC3229247D9A7A6B45F50D03A3"
 
 dependencies = [
@@ -13,7 +13,7 @@ dependencies = [
 
 [[move.package]]
 name = "IntegerMate"
-source = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "sui-v1.1.0", subdir = "sui" }
+source = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "sui-testnet", subdir = "sui" }
 
 dependencies = [
   { name = "Sui" },
@@ -21,7 +21,7 @@ dependencies = [
 
 [[move.package]]
 name = "MoveSTL"
-source = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "sui-v1.1.0", subdir = "sui" }
+source = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "sui-testnet", subdir = "sui" }
 
 dependencies = [
   { name = "Sui" },
