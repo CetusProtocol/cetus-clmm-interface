@@ -11,10 +11,10 @@ module cetus_clmm::factory {
 
     use sui::clock::Clock;
     use sui::tx_context::TxContext;
-    use sui::object::{ID, UID};
+    use sui::object::{Self, ID, UID};
     use sui::coin::{Coin};
 
-    use move_stl::linked_table::{LinkedTable};
+    use move_stl::linked_table::{Self, LinkedTable};
 
     use cetus_clmm::config::{GlobalConfig};
     use cetus_clmm::position::Position;

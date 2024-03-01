@@ -186,4 +186,26 @@ module cetus_clmm::partner {
     ) {
         abort 0
     }
+
+    #[test_only]
+    public fun create_partner_for_test(
+        _name: String,
+        _ref_fee_rate: u64,
+        _start_time: u64,
+        _end_time: u64,
+        _clock: &Clock,
+        _ctx: &mut TxContext
+    ): (PartnerCap, Partner) {
+        abort 0
+    }
+
+    #[test_only]
+    public fun create_partners_for_test(_ctx: &mut TxContext): Partners {
+        abort 0
+    }
+
+    #[test_only]
+    public fun return_partners(_partners: Partners) {
+        abort 0
+    }    
 }

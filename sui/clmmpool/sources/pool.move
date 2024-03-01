@@ -12,14 +12,14 @@
 /// All operations related to trading and liquidity are completed by this module.
 module cetus_clmm::pool {
     use sui::object::{UID, ID};
-    use sui::balance::Balance;
-    use std::string::String;
+    use sui::balance::{Balance};
+    use std::string::{String};
     use std::type_name::TypeName;
     use sui::tx_context::TxContext;
-    use sui::clock::Clock;
+    use sui::clock::{Clock};
     use sui::package::Publisher;
 
-    use integer_mate::i32::I32;
+    use integer_mate::i32::{I32};
 
     use cetus_clmm::config::GlobalConfig;
     use cetus_clmm::partner::Partner;
@@ -245,6 +245,35 @@ module cetus_clmm::pool {
         position: ID,
         pool: ID,
         amount: u64,
+    }
+
+    // === public friend Functions ===
+    fun init(_otw: POOL, _ctx: &mut TxContext) {
+        abort 0
+    }
+
+    /// Create a new pool, it only allow call by factory module.
+    /// params
+    ///     - `tick_spacing` We use tick to represent a discrete set of prices, and tick_spacing controls
+    /// the density of the discrete price points.
+    ///     - `init_sqrt_price` The clmmpool's initialize sqrt price. To facilitate calculation,
+    /// clmmpool stores the square root of prices. Can I assist you with anything else?
+    ///     - `fee_rate` The clmmpool's fee rate. Actually, the numerator of the fee rate is expressed in units,
+    /// while the denominator is always 1,000,000. For example, 1000 represents 0.1% or 1000/1000000.
+    ///     - `index` The "index" only affects the position names within the `clmmpool`, and these names are for
+    /// display purposes only.
+    ///     - `clock` The CLOCK of sui framework, we use it to set rand seed of skip list.
+    ///     - `ctx` The TxContext
+    public(friend) fun new<CoinTypeA, CoinTypeB>(
+        _tick_spacing: u32,
+        _init_sqrt_price: u128,
+        _fee_rate: u64,
+        _url: String,
+        _index: u64,
+        _clock: &Clock,
+        _ctx: &mut TxContext
+    ): Pool<CoinTypeA, CoinTypeB> {
+        abort 0
     }
 
     /// Set display for pool.
@@ -990,6 +1019,17 @@ module cetus_clmm::pool {
         abort 0
     }
 
+    // === Test only ===
+    #[test_only]
+    struct CoinA {}
+
+    #[test_only]
+    struct CoinB {}
+
+    #[test_only]
+    struct CoinC {}
+
+
     #[test_only]
     public fun new_for_test<CoinTypeA, CoinTypeB>(
         tick_spacing: u32,
@@ -1009,87 +1049,5 @@ module cetus_clmm::pool {
             clock,
             ctx
         )
-    }
-
-        #[test_only]
-    fun new_pool_with_ticks(clk: &Clock, ctx: &mut TxContext): Pool<CoinA, CoinB> {
-        let pool = Pool<CoinA, CoinB> {
-            id: object::new(ctx),
-            coin_a: balance::create_for_testing<CoinA>(533921553807),
-            coin_b: balance::create_for_testing<CoinB>(4701968956),
-            tick_spacing: 60,
-            fee_rate: 2500,
-            liquidity: 50214615874,
-            current_sqrt_price: 1715006487636306234,
-            current_tick_index: tick_math::get_tick_at_sqrt_price(1715006487636306234),
-            fee_growth_global_a: 0,
-            fee_growth_global_b: 0,
-            fee_protocol_coin_a: 110257286,
-            fee_protocol_coin_b: 791874,
-            tick_manager: tick::new(60, clock::timestamp_ms(clk), ctx),
-            rewarder_manager: rewarder::new(),
-            position_manager: position::new(60, ctx),
-            is_pause: false,
-            index: 0,
-            url: string::utf8(b""),
-        };
-
-        let tick_manager = &mut pool.tick_manager;
-        tick::insert_tick(
-            tick_manager,
-            i32::neg_from(56340),
-            1102994465472052299,
-            i128::from(50000000001),
-            50000000001,
-            0,
-            0,
-            0,
-            vector[]
-        );
-        tick::insert_tick(
-            tick_manager,
-            i32::neg_from(55140),
-            1171196320715478783,
-            i128::from(27300932),
-            27300932,
-            143267228134630813,
-            1027858884105033,
-            445998234215864138263,
-            vector[]
-        );
-        tick::insert_tick(
-            tick_manager,
-            i32::neg_from(54540),
-            1206862748656139047,
-            i128::from(187314941),
-            187314941,
-            52224278677715496,
-            219224795916387,
-            137418651039469457519,
-            vector[]
-        );
-        tick::insert_tick(
-            tick_manager,
-            i32::neg_from(41880),
-            2272754597651468243,
-            i128::neg_from(214615873),
-            214615873,
-            0,
-            0,
-            0,
-            vector[]
-        );
-        tick::insert_tick(
-            tick_manager,
-            i32::from(56340),
-            308507773677093347289,
-            i128::neg_from(50000000001),
-            50000000001,
-            0,
-            0,
-            0,
-            vector[]
-        );
-        pool
     }
 }
