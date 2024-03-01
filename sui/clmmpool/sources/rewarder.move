@@ -162,4 +162,25 @@ module cetus_clmm::rewarder {
     ): u64 {
         abort 0
     }
+
+    #[test_only]
+    public fun new_vault_for_test(ctx: &mut TxContext): RewarderGlobalVault {
+        RewarderGlobalVault {
+            id: object::new(ctx),
+            balances: bag::new(ctx)
+        }
+    }
+
+    #[test_only]
+    public fun new_rewarder_for_test<CoinType>(
+        emissions_per_second: u128,
+        growth_global: u128,
+    ): Rewarder {
+        Rewarder {
+            reward_coin: type_name::get<CoinType>(),
+            emissions_per_second,
+            growth_global
+        }
+    }
+
 }

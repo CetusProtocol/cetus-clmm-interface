@@ -319,4 +319,31 @@ module cetus_clmm::config {
     public fun package_version() : u64 {
         abort 0
     }
+
+    // === Functions only for test ===
+    #[test_only]
+    public fun new_global_config_for_test(ctx: &mut TxContext, protocol_fee_rate: u64): (AdminCap, GlobalConfig) {
+        let (global_config, admin_cap) = (
+            GlobalConfig {
+                id: object::new(ctx),
+                protocol_fee_rate,
+                fee_tiers: vec_map::empty(),
+                acl: acl::new(ctx),
+                package_version: 1,
+            },
+            AdminCap {
+                id: object::new(ctx)
+            }
+        );
+
+        let sender = tx_context::sender(ctx);
+        let roles = 0u128 |
+            (1 << ACL_POOL_MANAGER) |
+            (1 << ACL_FEE_TIER_MANAGER) |
+            (1 << ACL_REWARDER_MANAGER) |
+            (1 << ACL_CLAIM_PROTOCOL_FEE) |
+            (1 << ACL_PARTNER_MANAGER);
+        set_roles(&admin_cap, &mut global_config, sender, roles);
+        (admin_cap, global_config)
+    }
 }
