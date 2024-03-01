@@ -21,12 +21,11 @@ module cetus_clmm::position {
     use sui::object::{UID, ID};
     use sui::tx_context::TxContext;
 
-    use integer_mate::i32::I32;
+    use integer_mate::i32::{I32};
 
     use move_stl::linked_table;
 
     use cetus_clmm::config::{GlobalConfig};
-
     
     /// The Cetus clmmpool's position manager, which has only store ability.
     /// The `PositionInfo` is organized into a linked table.
@@ -77,6 +76,10 @@ module cetus_clmm::position {
         amount_owned: u64,
     }
 
+    fun init(_otw: POSITION, _ctx: &mut TxContext) {
+        abort 0
+    }
+
     /// Set `Display` for the position NFT.
     public fun set_display(
         _config: &GlobalConfig,
@@ -87,6 +90,14 @@ module cetus_clmm::position {
         _creator: String,
         _ctx: &mut TxContext
     ) {
+        abort 0
+    }
+
+    /// New `PositionManager`
+    public(friend) fun new(
+        _tick_spacing: u32,
+        _ctx: &mut TxContext
+    ): PositionManager {
         abort 0
     }
 
@@ -227,23 +238,5 @@ module cetus_clmm::position {
     /// check if the position exists in `PositionManager` by position_id.
     public fun is_position_exist(_manager: &PositionManager, _position_id: ID): bool {
         abort 0
-    }
-
-    #[test_only]
-    fun new_position_info_for_test(): PositionInfo {
-        let position_info = PositionInfo {
-            position_id: object::id_from_address(@1234),
-            liquidity: 1000000000,
-            tick_lower_index: i32::from_u32(0),
-            tick_upper_index: i32::from_u32(1000),
-            fee_growth_inside_a: 0,
-            fee_owned_a: 0,
-            fee_growth_inside_b: 0,
-            fee_owned_b: 0,
-            rewards: vector::empty<PositionReward>(),
-            points_owned: 0,
-            points_growth_inside: 0,
-        };
-        position_info
     }
 }

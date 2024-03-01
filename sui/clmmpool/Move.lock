@@ -38,3 +38,8 @@ source = { git = "https://github.com/MystenLabs/sui.git", rev = "mainnet-v1.6.3"
 dependencies = [
   { name = "MoveStdlib" },
 ]
+
+[move.toolchain-version]
+compiler-version = "1.19.1"
+edition = "legacy"
+flavor = "sui"

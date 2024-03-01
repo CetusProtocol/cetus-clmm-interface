@@ -4,14 +4,20 @@
 /// The `tick` module is a module that is designed to facilitate the management of `tick` owned by `Pool`.
 /// All `tick` related operations of `Pool` are handled by this module.
 module cetus_clmm::tick {
+    use std::vector;
     use std::option::Option;
+
+    use sui::tx_context::TxContext;
 
     use integer_mate::i32::I32;
     use integer_mate::i128::I128;
 
-    use move_stl::skip_list::SkipList;
+    use move_stl::skip_list::{Self, SkipList};
     use move_stl::option_u64::OptionU64;
 
+    use cetus_clmm::tick_math;
+
+    friend cetus_clmm::pool;
     
     /// Manager ticks of a pool, ticks is organized into SkipList.
     struct TickManager has store {
@@ -30,6 +36,11 @@ module cetus_clmm::tick {
         fee_growth_outside_b: u128,
         points_growth_outside: u128,
         rewards_growth_outside: vector<u128>,
+    }
+
+    /// init the TickManager.
+    public(friend) fun new(_tick_spacing: u32, _seed: u64, _ctx: &mut TxContext): TickManager {
+        abort 0
     }
 
     /// return the next tick index for swap.
@@ -140,6 +151,12 @@ module cetus_clmm::tick {
         abort 0
     }
 
+    /// For store Ticks in LinkedTable, convert the tick index of I32 to u64
+    /// Convert tick range[-4423636, 443636] to [0, 443636*2].
+    fun tick_score(_tick: I32): u64 {
+        abort 0
+    }
+
     #[test_only]
     public fun new_tick_for_test(
         index: I32,
@@ -160,5 +177,59 @@ module cetus_clmm::tick {
             points_growth_outside,
             rewards_growth_outside,
         }
+    }
+
+    #[test_only]
+    public fun add_ticks_for_test(
+        manager: &mut TickManager,
+        ticks: vector<Tick>
+    ) {
+        let idx = 0;
+        while (idx < vector::length(&ticks)) {
+            let tick = *vector::borrow(&mut ticks, idx);
+            let score = tick_score(tick.index);
+            if (skip_list::contains(&manager.ticks, score)) {
+                skip_list::remove(&mut manager.ticks, score);
+            };
+            skip_list::insert(&mut manager.ticks, score, tick);
+            idx = idx + 1;
+        }
+    }
+
+    #[test_only]
+    public fun copy_tick_with_default(
+        _manager: &TickManager,
+        _tick_idx: I32
+    ): Tick {
+        abort 0
+    }
+
+    #[test_only]
+    public fun insert_tick(
+        manager: &mut TickManager,
+        index: I32,
+        sqrt_price: u128,
+        liquidity_net: I128,
+        liquidity_gross: u128,
+        fee_growth_outside_a: u128,
+        fee_growth_outside_b: u128,
+        points_growth_outside: u128,
+        rewards_growth_outside: vector<u128>
+    ) {
+        let tick = Tick {
+            index,
+            sqrt_price,
+            liquidity_net,
+            liquidity_gross,
+            fee_growth_outside_a,
+            fee_growth_outside_b,
+            points_growth_outside,
+            rewards_growth_outside,
+        };
+        let score = tick_score(tick.index);
+        if (skip_list::contains(&manager.ticks, score)) {
+            skip_list::remove(&mut manager.ticks, score);
+        };
+        skip_list::insert(&mut manager.ticks, score, tick);
     }
 }

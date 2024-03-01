@@ -21,12 +21,18 @@
 /// 5. RewarderManager: The rewarder manager can add/remove rewarder, update rewarder fee rate.
 /// The package version is used for upgrade the package, when upgrade the package, we need increase the package version.
 module cetus_clmm::config {
-    use sui::object::{UID, ID};
-    use sui::tx_context::TxContext;
-    use sui::vec_map::VecMap;
+    use sui::object::{Self, UID, ID};
+    use sui::tx_context::{Self, TxContext};
+    use sui::vec_map::{Self, VecMap};
 
     use cetus_clmm::acl;
 
+    /// Clmmpools acl roles
+    const ACL_POOL_MANAGER: u8 = 0;
+    const ACL_FEE_TIER_MANAGER: u8 = 1;
+    const ACL_CLAIM_PROTOCOL_FEE: u8 = 2;
+    const ACL_PARTNER_MANAGER: u8 = 3;
+    const ACL_REWARDER_MANAGER: u8 = 4;
     
     // === Structs ===
     struct AdminCap has key, store {
