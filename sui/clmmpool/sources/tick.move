@@ -139,4 +139,26 @@ module cetus_clmm::tick {
     ): vector<Tick> {
         abort 0
     }
+
+    #[test_only]
+    public fun new_tick_for_test(
+        index: I32,
+        liquidity_net: I128,
+        liquidity_gross: u128,
+        fee_growth_outside_a: u128,
+        fee_growth_outside_b: u128,
+        points_growth_outside: u128,
+        rewards_growth_outside: vector<u128>
+    ): Tick {
+        Tick {
+            index,
+            sqrt_price: tick_math::get_sqrt_price_at_tick(index),
+            liquidity_net,
+            liquidity_gross,
+            fee_growth_outside_a,
+            fee_growth_outside_b,
+            points_growth_outside,
+            rewards_growth_outside,
+        }
+    }
 }

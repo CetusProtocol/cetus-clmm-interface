@@ -228,4 +228,22 @@ module cetus_clmm::position {
     public fun is_position_exist(_manager: &PositionManager, _position_id: ID): bool {
         abort 0
     }
+
+    #[test_only]
+    fun new_position_info_for_test(): PositionInfo {
+        let position_info = PositionInfo {
+            position_id: object::id_from_address(@1234),
+            liquidity: 1000000000,
+            tick_lower_index: i32::from_u32(0),
+            tick_upper_index: i32::from_u32(1000),
+            fee_growth_inside_a: 0,
+            fee_owned_a: 0,
+            fee_growth_inside_b: 0,
+            fee_owned_b: 0,
+            rewards: vector::empty<PositionReward>(),
+            points_owned: 0,
+            points_growth_inside: 0,
+        };
+        position_info
+    }
 }

@@ -123,4 +123,13 @@ module cetus_clmm::factory {
     public fun new_pool_key<CoinTypeA, CoinTypeB>(_tick_spacing: u32): ID {
         abort 0
     }
+
+    #[test_only]
+    public fun new_pools_for_test(ctx: &mut TxContext): Pools {
+        Pools {
+            id: object::new(ctx),
+            list: linked_table::new(ctx),
+            index: 0
+        }
+    }
 }
