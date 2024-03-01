@@ -15,13 +15,15 @@
 /// calculation of transaction fees.
 module cetus_clmm::rewarder {
     use std::option::Option;
-    use std::type_name::TypeName;
-    use sui::bag::Bag;
+    use std::type_name::{Self, TypeName};
+    use sui::bag::{Self, Bag};
     use sui::balance::Balance;
-    use sui::object::{UID, ID};
+    use sui::object::{Self, UID, ID};
+    use sui::tx_context::TxContext;
 
     use cetus_clmm::config::{GlobalConfig, AdminCap};
 
+    friend cetus_clmm::pool;
     
     /// Manager the Rewards and Points.
     struct RewarderManager has store {
@@ -69,6 +71,16 @@ module cetus_clmm::rewarder {
         reward_type: TypeName,
         withdraw_amount: u64,
         after_amount: u64
+    }
+
+    /// init the `RewarderGlobalVault
+    fun init(_ctx: &mut TxContext) {
+        abort 0
+    }
+
+    /// initialize the `RewarderManager`.
+    public(friend) fun new(): RewarderManager {
+        abort 0
     }
 
     /// get the rewarders
@@ -183,4 +195,18 @@ module cetus_clmm::rewarder {
         }
     }
 
+
+    #[test_only]
+    public fun update_for_swap_test(
+        manager: &mut RewarderManager,
+        rewarders: vector<Rewarder>,
+        points_released: u128,
+        points_growth_global: u128,
+        last_updated_time: u64,
+    ) {
+        manager.rewarders = rewarders;
+        manager.points_released = points_released;
+        manager.points_growth_global = points_growth_global;
+        manager.last_updated_time = last_updated_time;
+    }
 }
