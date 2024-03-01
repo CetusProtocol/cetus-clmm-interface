@@ -989,4 +989,107 @@ module cetus_clmm::pool {
     public fun step_swap_result_remainder_amount(_stepSwapResult: &SwapStepResult): u64 {
         abort 0
     }
+
+    #[test_only]
+    public fun new_for_test<CoinTypeA, CoinTypeB>(
+        tick_spacing: u32,
+        init_sqrt_price: u128,
+        fee_rate: u64,
+        uri: String,
+        index: u64,
+        clock: &Clock,
+        ctx: &mut TxContext
+    ): Pool<CoinTypeA, CoinTypeB> {
+        new<CoinTypeA, CoinTypeB>(
+            tick_spacing,
+            init_sqrt_price,
+            fee_rate,
+            uri,
+            index,
+            clock,
+            ctx
+        )
+    }
+
+        #[test_only]
+    fun new_pool_with_ticks(clk: &Clock, ctx: &mut TxContext): Pool<CoinA, CoinB> {
+        let pool = Pool<CoinA, CoinB> {
+            id: object::new(ctx),
+            coin_a: balance::create_for_testing<CoinA>(533921553807),
+            coin_b: balance::create_for_testing<CoinB>(4701968956),
+            tick_spacing: 60,
+            fee_rate: 2500,
+            liquidity: 50214615874,
+            current_sqrt_price: 1715006487636306234,
+            current_tick_index: tick_math::get_tick_at_sqrt_price(1715006487636306234),
+            fee_growth_global_a: 0,
+            fee_growth_global_b: 0,
+            fee_protocol_coin_a: 110257286,
+            fee_protocol_coin_b: 791874,
+            tick_manager: tick::new(60, clock::timestamp_ms(clk), ctx),
+            rewarder_manager: rewarder::new(),
+            position_manager: position::new(60, ctx),
+            is_pause: false,
+            index: 0,
+            url: string::utf8(b""),
+        };
+
+        let tick_manager = &mut pool.tick_manager;
+        tick::insert_tick(
+            tick_manager,
+            i32::neg_from(56340),
+            1102994465472052299,
+            i128::from(50000000001),
+            50000000001,
+            0,
+            0,
+            0,
+            vector[]
+        );
+        tick::insert_tick(
+            tick_manager,
+            i32::neg_from(55140),
+            1171196320715478783,
+            i128::from(27300932),
+            27300932,
+            143267228134630813,
+            1027858884105033,
+            445998234215864138263,
+            vector[]
+        );
+        tick::insert_tick(
+            tick_manager,
+            i32::neg_from(54540),
+            1206862748656139047,
+            i128::from(187314941),
+            187314941,
+            52224278677715496,
+            219224795916387,
+            137418651039469457519,
+            vector[]
+        );
+        tick::insert_tick(
+            tick_manager,
+            i32::neg_from(41880),
+            2272754597651468243,
+            i128::neg_from(214615873),
+            214615873,
+            0,
+            0,
+            0,
+            vector[]
+        );
+        tick::insert_tick(
+            tick_manager,
+            i32::from(56340),
+            308507773677093347289,
+            i128::neg_from(50000000001),
+            50000000001,
+            0,
+            0,
+            0,
+            vector[]
+        );
+        pool
+    }
 }
