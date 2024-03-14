@@ -62,7 +62,7 @@ CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git",
 Cetus clmm interface is not complete(just have function defination), so it will fails when sui clien check the code version. However, this does not affect its actual functionality. Therefore, we need to add a `----skip-dependency-verification` during the build.
 
 ```bash
-sui move build --skip-dependency-verification && sui client publish --skip-dependency-verification
+sui move build --dependencies-are-root && sui client publish --skip-dependency-verification
 ```
 
 ## Cetus protocol
