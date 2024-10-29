@@ -1,6 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
-#[allow(unused_field)]
+#[allow(unused_type_parameter, unused_field)]
 /// The global config module is used for manage the `protocol_fee`, acl roles, fee_tiers and package version of the cetus clmmpool protocol.
 /// The `protocol_fee` is the protocol fee rate, it will be charged when user swap token.
 /// The `fee_tiers` is a map, the key is the tick spacing, the value is the fee rate. the fee_rate can be same for
@@ -21,17 +21,22 @@
 /// 5. RewarderManager: The rewarder manager can add/remove rewarder, update rewarder fee rate.
 /// The package version is used for upgrade the package, when upgrade the package, we need increase the package version.
 module cetus_clmm::config {
-    use sui::object::{Self, UID, ID};
-    use sui::tx_context::{Self, TxContext};
-    use sui::vec_map::{Self, VecMap};
+    use sui::object::{UID, ID};
+    use sui::tx_context::TxContext;
+    use sui::vec_map::VecMap;
 
     use cetus_clmm::acl;
 
     /// Clmmpools acl roles
+    #[allow(unused_const)]
     const ACL_POOL_MANAGER: u8 = 0;
+    #[allow(unused_const)]
     const ACL_FEE_TIER_MANAGER: u8 = 1;
+    #[allow(unused_const)]
     const ACL_CLAIM_PROTOCOL_FEE: u8 = 2;
+    #[allow(unused_const)]
     const ACL_PARTNER_MANAGER: u8 = 3;
+    #[allow(unused_const)]
     const ACL_REWARDER_MANAGER: u8 = 4;
     
     // === Structs ===
