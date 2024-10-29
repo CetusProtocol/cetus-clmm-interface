@@ -58,7 +58,7 @@ module cetus_clmm::factory {
         tick_spacing: u32,
     }
 
-        struct DenyCoinlist has key, store {
+    struct DenyCoinlist has key, store {
         id: UID,
         denied_list: Table<TypeName, bool>,
         allowed_list: Table<TypeName, bool>,
