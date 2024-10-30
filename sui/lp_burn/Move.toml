@@ -5,7 +5,8 @@ published-at = "0xa30fd3413b56173930bc1c66defb0f9a0a6af407ac31dc6f27afae800d9a7c
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/clmmpool", rev = "b464e2eea98fbb33559f0a3312052a3b61d4b86b" }
+#CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/clmmpool", rev = "b464e2eea98fbb33559f0a3312052a3b61d4b86b" }
+CetusClmm = {local = "../clmmpool/"}
 
 [addresses]
 lp_burn = "0xa30fd3413b56173930bc1c66defb0f9a0a6af407ac31dc6f27afae800d9a7cf9"
