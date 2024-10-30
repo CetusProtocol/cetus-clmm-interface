@@ -155,6 +155,14 @@ module cetus_clmm::tick {
     fun tick_score(_tick: I32): u64 {
         abort 0
     }
+    
+
+    #[test_only]
+    use cetus_clmm::tick_math;
+    #[test_only]
+    use move_stl::skip_list;
+    #[test_only]
+    use std::vector;
 
     #[test_only]
     public fun new_tick_for_test(
@@ -185,7 +193,7 @@ module cetus_clmm::tick {
     ) {
         let idx = 0;
         while (idx < vector::length(&ticks)) {
-            let tick = *vector::borrow(&mut ticks, idx);
+            let tick = *vector::borrow(&ticks, idx);
             let score = tick_score(tick.index);
             if (skip_list::contains(&manager.ticks, score)) {
                 skip_list::remove(&mut manager.ticks, score);

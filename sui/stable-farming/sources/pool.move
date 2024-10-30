@@ -1,19 +1,15 @@
+#[allow(unused_type_parameter, unused_field, unused_function, unused_use, unused_const, unused_variable)]
 module stable_farming::pool {
     use std::option::{Self, Option};
     use std::type_name::{Self, TypeName};
     use std::string::{String, utf8};
-    use std::vector;
 
     use sui::balance::{Self, Balance};
-    use sui::display;
-    use sui::event;
     use sui::vec_map;
     use sui::object::{Self, UID, ID};
     use sui::linked_table::{Self, LinkedTable};
     use sui::coin::{Self, Coin};
     use sui::tx_context::{TxContext, sender};
-    use sui::package::Self;
-    use sui::transfer::Self;
     use sui::clock::Clock;
 
     use integer_mate::i32::{Self, I32};
@@ -49,7 +45,7 @@ module stable_farming::pool {
     struct POOL has drop {}
 
     struct WrappedPositionNFT has key, store {
-        _id: UID,
+        id: UID,
         _pool_id: ID,
         _clmm_postion: CLMMPosition,
         _url: String
@@ -77,7 +73,7 @@ module stable_farming::pool {
     }
 
     struct Pool has key, store {
-        _id: UID,
+        id: UID,
         _clmm_pool_id: ID,
         _effective_tick_lower: I32,
         _effective_tick_upper: I32,
@@ -259,10 +255,9 @@ module stable_farming::pool {
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
         _pool: &mut Pool,
-        _clmm_pool: &CLMMPool<CoinA, CoinB>,
-        _clmm_pos: clmm_position::Position<CoinA, CoinB>,
+        clmm_position: CLMMPosition,
         _ctx: &mut TxContext
-    ) {
+    ): WrappedPositionNFT {
         abort 0
     }
 
@@ -270,21 +265,19 @@ module stable_farming::pool {
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
         _pool: &mut Pool,
-        _clmm_pool: &CLMMPool<CoinA, CoinB>,
-        _clmm_pos: clmm_position::Position<CoinA, CoinB>,
+        wrapped_position: WrappedPositionNFT,
         _ctx: &mut TxContext
-    ) {
+    ): CLMMPosition {
         abort 0
     }
 
-    public fun harvest(
+    public fun harvest<T>(
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
         _pool: &mut Pool,
-        _clmm_pool: &CLMMPool<CoinA, CoinB>,
-        _clmm_pos: clmm_position::Position<CoinA, CoinB>,
+        wrapped_position: &WrappedPositionNFT,
         _ctx: &mut TxContext
-    ) {
+    ): Balance<T> {
         abort 0
     }
 

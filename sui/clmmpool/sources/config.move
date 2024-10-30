@@ -331,6 +331,12 @@ module cetus_clmm::config {
         abort 0
     }
 
+    #[test_only]
+    use sui::object;
+    #[test_only]
+    use sui::vec_map;
+    #[test_only]
+    use sui::tx_context;
     // === Functions only for test ===
     #[test_only]
     public fun new_global_config_for_test(ctx: &mut TxContext, protocol_fee_rate: u64): (AdminCap, GlobalConfig) {

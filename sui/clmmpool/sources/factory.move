@@ -250,6 +250,11 @@ module cetus_clmm::factory {
     }
 
     #[test_only]
+    use move_stl::linked_table;
+    #[test_only]
+    use sui::object;
+
+    #[test_only]
     public fun new_pools_for_test(ctx: &mut TxContext): Pools {
         Pools {
             id: object::new(ctx),

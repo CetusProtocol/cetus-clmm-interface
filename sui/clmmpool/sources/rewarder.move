@@ -176,6 +176,13 @@ module cetus_clmm::rewarder {
     }
 
     #[test_only]
+    use sui::object;
+    #[test_only]
+    use std::type_name;
+    #[test_only]
+    use sui::bag;
+
+    #[test_only]
     public fun new_vault_for_test(ctx: &mut TxContext): RewarderGlobalVault {
         RewarderGlobalVault {
             id: object::new(ctx),

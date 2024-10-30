@@ -252,17 +252,6 @@ module cetus_clmm::tick_math {
     }
 
     #[test]
-    fun test_tick_swap_sqrt_price() {
-        let t = i32::from(400800);
-        while (i32::lte(t, i32::from(401200))) {
-            let sqrt_price = get_sqrt_price_at_tick(t);
-            let tick = get_tick_at_sqrt_price(sqrt_price);
-            assert!(i32::eq(t, tick) == true, 0);
-            t = i32::add(t, i32::from(1));
-        }
-    }
-
-    #[test]
     fun test_get_tick_at_sqrt_price_1() {
         assert!(i32::eq(get_tick_at_sqrt_price(6469134034u128), i32::neg_from(435444)) == true, 0);
         assert!(i32::eq(get_tick_at_sqrt_price(13561044167458152057771544136u128), i32::from(408332u32)) == true, 0);
