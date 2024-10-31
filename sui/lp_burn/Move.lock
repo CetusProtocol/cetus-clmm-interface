@@ -2,7 +2,7 @@
 
 [move]
 version = 2
-manifest_digest = "1AFE40C9CECE10C96151507CB44A602AB374DA2DE64E7C8015B7A5D034A307CF"
+manifest_digest = "730BEB2C974F6F9531A97BDAB909D97DF3B8E6D942576C79332EE0E85FEBA39A"
 deps_digest = "3C4103934B1E040BB6B23F1D610B4EF9F2F1166A50A104EADCF77467C004C600"
 dependencies = [
   { name = "CetusClmm" },
@@ -11,7 +11,7 @@ dependencies = [
 
 [[move.package]]
 name = "CetusClmm"
-source = { local = "../clmmpool" }
+source = { local = "../cetus_clmm" }
 
 dependencies = [
   { name = "IntegerMate" },
@@ -51,17 +51,3 @@ dependencies = [
 compiler-version = "1.32.2"
 edition = "2024.beta"
 flavor = "sui"
-
-[env]
-
-[env.mainnet]
-chain-id = "35834a8a"
-original-published-id = "0x0000000000000000000000000000000000000000000000000000000000000000"
-latest-published-id = "0x5fe556cc4bbac0df7ea0dbada4922ae36455c2d229fcb64f543069d7bddd9374"
-published-version = "1"
-
-[env.testnet]
-chain-id = "4c78adac"
-original-published-id = "0xa30fd3413b56173930bc1c66defb0f9a0a6af407ac31dc6f27afae800d9a7cf9"
-latest-published-id = "0xa30fd3413b56173930bc1c66defb0f9a0a6af407ac31dc6f27afae800d9a7cf9"
-published-version = "1"
