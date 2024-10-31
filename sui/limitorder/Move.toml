@@ -1,0 +1,13 @@
+[package]
+name = "LimitOrder"
+version = "0.1.1"
+published-at = "0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.23.1", override = true }
+MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.23.1", override = true }
+IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "mainnet-v1.23.1", override = true }
+
+
+[addresses]
+limit_order = "0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9"
