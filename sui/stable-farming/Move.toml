@@ -5,7 +5,7 @@ published-at = "0xc4c250fa155fb27668650fd96aeaade6a3e7c669395f147b05747a5d9eb357
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.23.1", override = true }
-CetusClmm = { local = "../clmmpool" }
+CetusClmm = { local = "../cetus_clmm/" }
 
 [addresses]
 stable_farming = "0xfa0d98e99c1dbdbea1b0fe089fa93ebab40a7719ae4160c42cc78ebfe029fda0"

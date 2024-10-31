@@ -4,9 +4,8 @@
 ///
 /// `acl` is a simple access control module, where `member` represents a member and `role` represents a type
 /// of permission. A member can have multiple permissions.
+#[allow(unused_type_parameter, unused_field, unused_function, unused_const)]
 module stable_farming::acl {
-    use std::vector;
-    use std::option::{Self, is_some};
     use sui::tx_context::TxContext;
 
     use move_stl::linked_table::{Self, LinkedTable};

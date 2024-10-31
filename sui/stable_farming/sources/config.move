@@ -1,9 +1,7 @@
+#[allow(unused_type_parameter, unused_field, unused_const)]
 module stable_farming::config {
-    use sui::object::{Self, ID, UID};
-    use sui::tx_context::{Self, TxContext};
-    use sui::transfer;
-    use sui::event::{emit};
-    use sui::table;
+    use sui::object::{ID, UID};
+    use sui::tx_context::TxContext;
     use sui::table::Table;
 
     use stable_farming::acl;
@@ -23,17 +21,17 @@ module stable_farming::config {
     // ========================= Structs =========================
     /// The admin cap of stable farming module
     struct AdminCap has key, store {
-        _id: UID
+        id: UID
     }
 
     /// The operator cap of stable farming module
     struct OperatorCap has key {
-        _id: UID
+        id: UID
     }
 
     /// The global config of stable farming module 
     struct GlobalConfig has key, store {
-        _id: UID,
+        id: UID,
         _acl: acl::ACL,
         _acceleration_factor: Table<ID, u8>,
         _package_version: u64

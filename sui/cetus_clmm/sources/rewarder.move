@@ -15,10 +15,10 @@
 /// calculation of transaction fees.
 module cetus_clmm::rewarder {
     use std::option::Option;
-    use std::type_name::{Self, TypeName};
-    use sui::bag::{Self, Bag};
+    use std::type_name::TypeName;
+    use sui::bag::Bag;
     use sui::balance::Balance;
-    use sui::object::{Self, UID, ID};
+    use sui::object::{UID, ID};
     use sui::tx_context::TxContext;
 
     use cetus_clmm::config::{GlobalConfig, AdminCap};
@@ -174,6 +174,13 @@ module cetus_clmm::rewarder {
     ): u64 {
         abort 0
     }
+
+    #[test_only]
+    use sui::object;
+    #[test_only]
+    use std::type_name;
+    #[test_only]
+    use sui::bag;
 
     #[test_only]
     public fun new_vault_for_test(ctx: &mut TxContext): RewarderGlobalVault {
