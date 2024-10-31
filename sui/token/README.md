@@ -34,7 +34,7 @@ xcetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
 testnet:
 
 ```
-xcetus = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/token/xcetus", rev = "testnet" }
+xcetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "testnet" }
 ```
 
 2. Dividend
