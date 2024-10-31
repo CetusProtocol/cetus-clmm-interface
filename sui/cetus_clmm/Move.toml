@@ -1,5 +1,3 @@
-# mainnet
-# --------------------------
 [package]
 name = "CetusClmm"
 version = "testnet-v1.35.1"

@@ -1,0 +1,11 @@
+[package]
+name = "Cetus"
+version = "1.0.0"
+published-at = "0x1a69aee6be709054750949959a67aedbb4200583b39586d5e3eabe57f40012c7"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.23.1" }
+
+[addresses]
+cetus = "0x1a69aee6be709054750949959a67aedbb4200583b39586d5e3eabe57f40012c7"
+sui = "0000000000000000000000000000000000000000000000000000000000000002"

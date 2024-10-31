@@ -1,0 +1,13 @@
+[package]
+name = "Dividends"
+version = "1.0.3"
+published-at = "0x20d948d640edd0c749f533d41efc5f843f212d441220324ad7959c6e1d281828"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.23.1" }
+MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "testnet-v1.23.1" }
+xcetus = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "xcetus", rev = "testnet" }
+
+
+[addresses]
+dividends = "0x20d948d640edd0c749f533d41efc5f843f212d441220324ad7959c6e1d281828"

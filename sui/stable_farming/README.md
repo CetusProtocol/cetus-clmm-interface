@@ -1,4 +1,4 @@
-# Farms Docs
+# Cetus StableFarming Docs
 
 Farms supports the release of multiple rewarders; each rewarder has an emission speed represented by `emission_per_second` and distributes rewards among multiple clmmpools based on the pool's `pool_allocate_point`.
 The allocation of a single pool rewarder to staked clmm positions is determined by the position share, which is calculated at the time of staking into the pool.
