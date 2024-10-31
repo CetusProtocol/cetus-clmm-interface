@@ -1,11 +1,11 @@
 [package]
 name = "Cetus"
 version = "1.0.0"
-published-at = "0x06864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b"
+published-at = "0x1a69aee6be709054750949959a67aedbb4200583b39586d5e3eabe57f40012c7"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.23.1" }
 
 [addresses]
-cetus = "0x06864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b"
+cetus = "0x1a69aee6be709054750949959a67aedbb4200583b39586d5e3eabe57f40012c7"
 sui = "0000000000000000000000000000000000000000000000000000000000000002"
