@@ -177,23 +177,23 @@ Users can quickly find orders created by a specific owner through the order inde
 
 1. expected target amount calculation formula:
 
-   $$
-   \text{expect target amount} = \text{pay amount} \times \text{rate}
-   $$
+   ```
+   expect target amount = pay amount * rate
+   ```
 
 2. rate calculation formula
 
-   $$
-   \text{percision} = 10 ^ {18} \\
-   $$
+   ```
+   percision = 10 ^ 18
+   ```
 
-   $$
-   \text{rate} = \frac{\text{pay amount} \times \text{percision}}{\text{target amount}}
-   $$
+   ```
+   rate = (pay amount * percision) / target amount
+   ```
 
 3. explanation of the formula:
 
-   - $\text{pay amount}$ is the amount of coin paid by the user.
-   - $\text{rate}$ is the exchange rate for the currency conversion.
-   - $\text{expect target amount}$ is the anticipated amount to be received, calculated based on the pay amount and the exchange rate.
-   - $\text{target amount}$ is the amount of coin received by the user.
+   - **pay amount** is the amount of coin paid by the user.
+   - **rate** is the exchange rate for the currency conversion.
+   - **expect target amount** is the anticipated amount to be received, calculated based on the pay amount and the exchange rate.
+   - **target amount** is the amount of coin received by the user.
