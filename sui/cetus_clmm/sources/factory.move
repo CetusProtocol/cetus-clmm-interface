@@ -58,7 +58,7 @@ module cetus_clmm::factory {
         tick_spacing: u32,
     }
 
-    struct DenyCoinlist has key, store {
+    struct DenyCoinList has key, store {
         id: UID,
         denied_list: Table<TypeName, bool>,
         allowed_list: Table<TypeName, bool>,
@@ -70,7 +70,7 @@ module cetus_clmm::factory {
         tick_spacing: u32,
     }
 
-    struct PermissionedPairManager has key, store {
+    struct PermissionPairManager has key, store {
         id: UID,
         allowed_pair_config: Table<TypeName, VecSet<u32>>,
         pool_key_to_cap: Table<ID, ID>,
@@ -121,11 +121,11 @@ module cetus_clmm::factory {
         abort 0
     }
 
-    public fun is_permissioned_pair<CoinTypeA, CoinTypeB>(_pools: &Pools, _tick_spacing: u32): bool {
+    public fun is_permission_pair<CoinTypeA, CoinTypeB>(_pools: &Pools, _tick_spacing: u32): bool {
         abort 0
     }
 
-    public fun permissioned_pair_cap<CoinTypeA, CoinTypeB>(_pools: &Pools, _tick_spacing: u32): ID {
+    public fun permission_pair_cap<CoinTypeA, CoinTypeB>(_pools: &Pools, _tick_spacing: u32): ID {
         abort 0
     }
 
@@ -184,7 +184,7 @@ module cetus_clmm::factory {
         abort 0
     }
 
-    public fun register_permissioned_pair<CoinTypeA, CoinTypeB>(
+    public fun register_permission_pair<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,
         _pools: &mut Pools,
         _tick_spacing: u32,
@@ -194,7 +194,7 @@ module cetus_clmm::factory {
         abort 0
     }
 
-    public fun unregister_permissioned_pair<CoinTypeA, CoinTypeB>(
+    public fun unregister_permission_pair<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,
         _pools: &mut Pools,
         _tick_spacing: u32,

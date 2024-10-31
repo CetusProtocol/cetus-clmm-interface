@@ -4,17 +4,14 @@ module cetus_clmm::pool_creator {
     use sui::clock::Clock;
     use sui::tx_context::TxContext;
 
-
     use cetus_clmm::factory::Pools;
     use cetus_clmm::config:: GlobalConfig;
     use cetus_clmm::position::Position;
     use cetus_clmm::factory::PoolCreationCap;
 
-
-
-    public fun create_permissioned_pool_with_full_range<CoinTypeA, CoinTypeB>(
-        _pools: &mut Pools,
+    public fun create_pool_v2_by_creation_cap<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,
+        _pools: &mut Pools,
         _cap: &PoolCreationCap,
         _tick_spacing: u32,
         _initialize_price: u128,
@@ -23,8 +20,6 @@ module cetus_clmm::pool_creator {
         _coin_b: Coin<CoinTypeB>,
         _metadata_a: &CoinMetadata<CoinTypeA>,
         _metadata_b: &CoinMetadata<CoinTypeB>,
-        _amount_a: u64,
-        _amount_b: u64,
         _fix_amount_a: bool,
         _clock: &Clock,
         _ctx: &mut TxContext
@@ -32,28 +27,9 @@ module cetus_clmm::pool_creator {
         abort 0
     }
 
-    public fun create_pool_with_full_range<CoinTypeA, CoinTypeB>(
-        _pools: &mut Pools,
+    public fun create_pool_v2<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,
-        _tick_spacing: u32,
-        _initialize_price: u128,
-        _url: String,
-        _coin_a: Coin<CoinTypeA>,
-        _coin_b: Coin<CoinTypeB>,
-        _metadata_a: &CoinMetadata<CoinTypeA>,
-        _metadata_b: &CoinMetadata<CoinTypeB>,
-        _amount_a: u64,
-        _amount_b: u64,
-        _fix_amount_a: bool,
-        _clock: &Clock,
-        _ctx: &mut TxContext
-    ): Position {
-        abort 0
-    }
-
-    public fun create_and_fund_pool_by_admin<CoinTypeA, CoinTypeB>(
         _pools: &mut Pools,
-        _config: &GlobalConfig,
         _tick_spacing: u32,
         _initialize_price: u128,
         _url: String,
@@ -63,8 +39,6 @@ module cetus_clmm::pool_creator {
         _coin_b: Coin<CoinTypeB>,
         _metadata_a: &CoinMetadata<CoinTypeA>,
         _metadata_b: &CoinMetadata<CoinTypeB>,
-        _amount_a: u64,
-        _amount_b: u64,
         _fix_amount_a: bool,
         _clock: &Clock,
         _ctx: &mut TxContext

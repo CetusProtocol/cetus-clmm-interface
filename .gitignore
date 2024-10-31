@@ -1,4 +1,5 @@
-sui/clmmpool/build
-sui/clmmpool/.idea/
+sui/cetus_clmm/build
+sui/cetus_clmm/.idea/
 sui/lp_burn/build
-sui/stable-farming/build
+sui/stable_farming/build
+sui/.idea/

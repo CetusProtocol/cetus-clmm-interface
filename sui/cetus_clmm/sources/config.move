@@ -38,18 +38,18 @@ module cetus_clmm::config {
     const ACL_PARTNER_MANAGER: u8 = 3;
     #[allow(unused_const)]
     const ACL_REWARDER_MANAGER: u8 = 4;
-    
+
     // === Structs ===
     struct AdminCap has key, store {
         id: UID,
     }
 
-    
+
     struct ProtocolFeeClaimCap has key, store {
         id: UID,
     }
 
-    
+
     /// The clmmpools fee tier data
     struct FeeTier has store, copy, drop {
         /// The tick spacing
@@ -59,7 +59,7 @@ module cetus_clmm::config {
         fee_rate: u64,
     }
 
-    
+
     struct GlobalConfig has key, store {
         id: UID,
         /// `protocol_fee_rate` The protocol fee rate
@@ -76,28 +76,28 @@ module cetus_clmm::config {
 
     // === Events ===
 
-    
+
     /// Emit when init the `GlobalConfig` and `AdminCap`
     struct InitConfigEvent has copy, drop {
         admin_cap_id: ID,
         global_config_id: ID,
     }
 
-    
+
     /// Emit when update the protocol fee rate
     struct UpdateFeeRateEvent has copy, drop {
         old_fee_rate: u64,
         new_fee_rate: u64,
     }
 
-    
+
     /// Emit when add fee_tier
     struct AddFeeTierEvent has copy, drop {
         tick_spacing: u32,
         fee_rate: u64,
     }
 
-    
+
     /// Emit when update fee_tier
     struct UpdateFeeTierEvent has copy, drop {
         tick_spacing: u32,
@@ -105,41 +105,41 @@ module cetus_clmm::config {
         new_fee_rate: u64,
     }
 
-    
+
     /// Emit when delete fee_tier
     struct DeleteFeeTierEvent has copy, drop {
         tick_spacing: u32,
         fee_rate: u64,
     }
 
-    
+
     /// Emit when set roles
     struct SetRolesEvent has copy, drop {
         member: address,
         roles: u128,
     }
 
-    
+
     /// Emit when add member a role
     struct AddRoleEvent has copy, drop {
         member: address,
         role: u8,
     }
 
-    
+
     /// Emit when remove member a role
     struct RemoveRoleEvent has copy, drop {
         member: address,
         role: u8
     }
 
-    
+
     /// Emit when add member
     struct RemoveMemberEvent has copy, drop {
         member: address,
     }
 
-    
+
     /// Emit when update package version.
     struct SetPackageVersion has copy, drop {
         new_version: u64,
@@ -216,7 +216,7 @@ module cetus_clmm::config {
     ///  - config: The global config
     /// - _member: The member address
     /// - role: The role
-    public fun add_role(_: &AdminCap, _config: &mut GlobalConfig, _member: address,  _role: u8) {
+    public fun add_role(_: &AdminCap, _config: &mut GlobalConfig, _member: address, _role: u8) {
         abort 0
     }
 
@@ -236,6 +236,10 @@ module cetus_clmm::config {
     /// - config: The global config
     /// - _member: The member address
     public fun remove_member(_: &AdminCap, _config: &mut GlobalConfig, _member: address) {
+        abort 0
+    }
+
+    public fun is_pool_manager(_config: &GlobalConfig, _member: address): bool {
         abort 0
     }
 
@@ -327,7 +331,7 @@ module cetus_clmm::config {
         abort 0
     }
 
-    public fun package_version() : u64 {
+    public fun package_version(): u64 {
         abort 0
     }
 
@@ -337,6 +341,7 @@ module cetus_clmm::config {
     use sui::vec_map;
     #[test_only]
     use sui::tx_context;
+
     // === Functions only for test ===
     #[test_only]
     public fun new_global_config_for_test(ctx: &mut TxContext, protocol_fee_rate: u64): (AdminCap, GlobalConfig) {
