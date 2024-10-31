@@ -28,13 +28,13 @@ eg:
 mainnet:
 
 ```
-xcetus = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "xcetus", rev = "mainnet" }
+xcetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "mainnet" }
 ```
 
 testnet:
 
 ```
-xcetus = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "xcetus", rev = "testnet" }
+xcetus = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/token/xcetus", rev = "testnet" }
 ```
 
 2. Dividend
@@ -49,11 +49,11 @@ eg:
 mainnet:
 
 ```
-dividend = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "dividend", rev = "mainnet" }
+dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "mainnet" }
 ```
 
 testnet:
 
 ```
-dividend = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "dividend", rev = "testnet" }
+dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "testnet" }
 ```
