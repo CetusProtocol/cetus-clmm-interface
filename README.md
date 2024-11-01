@@ -39,6 +39,10 @@ The Cetus Token Interface integrates cetus, xcetus, dividends. For more detailed
 
 The Cetus Limit Order seamlessly integrates all core functionalities of the Limit Order interface. For more detailed information, please refer to the Limit Order README document. [Limit Order README Document](./sui/limitorder/README.md)
 
+### DCA
+
+The Cetus DCA integrates all core functionalities of the DCA interface. For more detailed information, please refer to the DCA README document. [DCA README Document](./sui/dca/README.md)
+
 # More About Cetus
 
 Use the following links to learn more about Cetus:
