@@ -1,14 +1,5 @@
 [package]
 name = "CetusClmm"
-<<<<<<< HEAD:sui/clmmpool/Move.toml
-version = "testnet-v1.23.1"
-published-at = "0x084dbc14f8f6b50e4e1d6828ebf1f93fd1b1d2502b121bc787937893793417b0"
-
-[dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.23.1" }
-MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "testnet-v1.23.1" }
-IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "testnet-v1.23.1" }
-=======
 version = "testnet-v1.35.1"
 published-at = "0x8776b71aeda6283e3131b208ca23113cf341d266a35c39e0170218a3d8df4f23"
 
@@ -16,7 +7,6 @@ published-at = "0x8776b71aeda6283e3131b208ca23113cf341d266a35c39e0170218a3d8df4f
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
 MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "testnet-v1.23.1", override = true }
 IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "testnet-v1.23.1", override = true }
->>>>>>> permissioned-pool-creation:sui/cetus_clmm/Move.toml
 
 [addresses]
 cetus_clmm = "0x0868b71c0cba55bf0faf6c40df8c179c67a4d0ba0e79965b68b3d72d7dfbf666"
