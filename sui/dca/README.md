@@ -10,7 +10,7 @@ The Cetus DCA Contract is used to record all user dca order information on our p
 
 The Cetus DCA Interface is designed to facilitate developers who wish to integrate dca orders at the contract level. With just one line of code, you can integrate Cetus DCA into your smart contracts.
 
-## How to Use the Cetus LimitOrder Interface ?
+## How to Use the Cetus DCA Interface ?
 
 ### Tags corresponding to different networks
 
@@ -72,9 +72,7 @@ First, the specified in coin type and out coin type uniquely determine the type 
 - **fee_rate**: Transaction fee rate (denominator is 1,000,000).
 - **timestamp**: Current timestamp when order created.
 - **signature**: Create by cetus quote service, it will check the `in_amount_per_cycle`,`fee_rate`, `timestamp`.
-- ***
-
-- indexer: the indexer about dca order orders
+- **indexer**: the indexer about dca order orders
 
   | Network | orders indexer                                                     |
   | ------- | ------------------------------------------------------------------ |
