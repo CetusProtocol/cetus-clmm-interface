@@ -1,11 +1,11 @@
 [package]
 name = "StableFarming"
-version = "testnet-v1.35.1"
-published-at = "0xa5bd8702f00d600b35c09e4741a41326d7aa313710056994158fce29e766b704"
+version = "mainnet-v1.35.1"
+published-at = "0xf2b840f464d6910034f7110086609e9d3c09e5d539cd45444866f95b9af46e65"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
 CetusClmm = { local = "../cetus_clmm/" }
 
 [addresses]
-stable_farming = "0xfa0d98e99c1dbdbea1b0fe089fa93ebab40a7719ae4160c42cc78ebfe029fda0"
+stable_farming = "0xf2b840f464d6910034f7110086609e9d3c09e5d539cd45444866f95b9af46e65"
