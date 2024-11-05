@@ -1,7 +1,7 @@
 [package]
 name = "CetusClmm"
 version = "testnet-v1.35.1"
-published-at = "0x2772937a63da90afd05528700ee9dd2dd296eba972bf9c68c0c9e45fd911fbb4"
+published-at = "0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
@@ -9,4 +9,4 @@ MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui
 IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "testnet-v1.23.1", override = true }
 
 [addresses]
-cetus_clmm = "0x2772937a63da90afd05528700ee9dd2dd296eba972bf9c68c0c9e45fd911fbb4"
+cetus_clmm = "0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12"

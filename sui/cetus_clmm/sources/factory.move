@@ -129,10 +129,6 @@ module cetus_clmm::factory {
         abort 0
     }
 
-    public entry fun init_manager_and_whitelist(_config: &GlobalConfig, _pools: &mut Pools, _ctx: &mut TxContext) {
-        abort 0
-    }
-
     public fun add_allowed_list<Coin>(_config: &GlobalConfig, _pools: &mut Pools, _ctx: &TxContext) {
         abort 0
     }
@@ -169,8 +165,8 @@ module cetus_clmm::factory {
 
     public fun mint_pool_creation_cap<Coin>(
         _config: &GlobalConfig,
-        _pools: &Pools,
-        _treasury_cap: &TreasuryCap<Coin>,
+        _pools: &mut Pools,
+        _treasury_cap: &mut TreasuryCap<Coin>,
         _ctx: &mut TxContext
     ): PoolCreationCap {
         abort 0
@@ -178,7 +174,7 @@ module cetus_clmm::factory {
 
     public fun mint_pool_creation_cap_by_admin<Coin>(
         _config: &GlobalConfig,
-        _pools: &Pools,
+        _pools: &mut Pools,
         _ctx: &mut TxContext
     ): PoolCreationCap {
         abort 0
@@ -198,7 +194,7 @@ module cetus_clmm::factory {
         _config: &GlobalConfig,
         _pools: &mut Pools,
         _tick_spacing: u32,
-        _cap: &mut PoolCreationCap,
+        _cap: &PoolCreationCap,
     ) {
         abort 0
     }

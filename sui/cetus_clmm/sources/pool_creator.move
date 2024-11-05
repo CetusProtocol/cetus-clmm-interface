@@ -23,7 +23,7 @@ module cetus_clmm::pool_creator {
         _fix_amount_a: bool,
         _clock: &Clock,
         _ctx: &mut TxContext
-    ): Position {
+    ): (Position, Coin<CoinTypeA>, Coin<CoinTypeB>) {
         abort 0
     }
 
@@ -42,7 +42,7 @@ module cetus_clmm::pool_creator {
         _fix_amount_a: bool,
         _clock: &Clock,
         _ctx: &mut TxContext
-    ): Position {
+    ):  (Position, Coin<CoinTypeA>, Coin<CoinTypeB>) {
         abort 0
     }
 

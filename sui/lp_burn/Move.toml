@@ -1,7 +1,8 @@
 [package]
 name = "LpBurn"
+version = "mainnet-v1.35.1"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
-published-at = "0x500538626e40f0b8a934b9102572dc2f51164b930556cfa72638a1db82225bc6"
+published-at = "0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
@@ -9,4 +10,4 @@ Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-fram
 CetusClmm = {local = "../cetus_clmm/"}
 
 [addresses]
-lp_burn = "0xa30fd3413b56173930bc1c66defb0f9a0a6af407ac31dc6f27afae800d9a7cf9"
+lp_burn = "0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a"
