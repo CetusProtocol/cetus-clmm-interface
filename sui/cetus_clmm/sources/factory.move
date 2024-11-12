@@ -1,6 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
-#[allow(unused_field)]
+#[allow(unused_type_parameter, unused_field, unused_use)]
 // The factory module is provided to create and manage pools.
 // The `Pools` is a singleton, and the `Pools` is initialized when the contract is deployed.
 // The pools are organized in a linked list, and the key is generate by hash([coin_type_a + coin_type_b]). The details can be found in `new_pool_key` function.

@@ -1,6 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
-#[allow(unused_field)]
+#[allow(unused_type_parameter, unused_field, unused_use)]
 /// The global config module is used for manage the `protocol_fee`, acl roles, fee_tiers and package version of the cetus clmmpool protocol.
 /// The `protocol_fee` is the protocol fee rate, it will be charged when user swap token.
 /// The `fee_tiers` is a map, the key is the tick spacing, the value is the fee rate. the fee_rate can be same for
@@ -28,23 +28,28 @@ module cetus_clmm::config {
     use cetus_clmm::acl;
 
     /// Clmmpools acl roles
+    #[allow(unused_const)]
     const ACL_POOL_MANAGER: u8 = 0;
+    #[allow(unused_const)]
     const ACL_FEE_TIER_MANAGER: u8 = 1;
+    #[allow(unused_const)]
     const ACL_CLAIM_PROTOCOL_FEE: u8 = 2;
+    #[allow(unused_const)]
     const ACL_PARTNER_MANAGER: u8 = 3;
+    #[allow(unused_const)]
     const ACL_REWARDER_MANAGER: u8 = 4;
-    
+
     // === Structs ===
     struct AdminCap has key, store {
         id: UID,
     }
 
-    
+
     struct ProtocolFeeClaimCap has key, store {
         id: UID,
     }
 
-    
+
     /// The clmmpools fee tier data
     struct FeeTier has store, copy, drop {
         /// The tick spacing
@@ -54,7 +59,7 @@ module cetus_clmm::config {
         fee_rate: u64,
     }
 
-    
+
     struct GlobalConfig has key, store {
         id: UID,
         /// `protocol_fee_rate` The protocol fee rate
@@ -71,28 +76,28 @@ module cetus_clmm::config {
 
     // === Events ===
 
-    
+
     /// Emit when init the `GlobalConfig` and `AdminCap`
     struct InitConfigEvent has copy, drop {
         admin_cap_id: ID,
         global_config_id: ID,
     }
 
-    
+
     /// Emit when update the protocol fee rate
     struct UpdateFeeRateEvent has copy, drop {
         old_fee_rate: u64,
         new_fee_rate: u64,
     }
 
-    
+
     /// Emit when add fee_tier
     struct AddFeeTierEvent has copy, drop {
         tick_spacing: u32,
         fee_rate: u64,
     }
 
-    
+
     /// Emit when update fee_tier
     struct UpdateFeeTierEvent has copy, drop {
         tick_spacing: u32,
@@ -100,41 +105,41 @@ module cetus_clmm::config {
         new_fee_rate: u64,
     }
 
-    
+
     /// Emit when delete fee_tier
     struct DeleteFeeTierEvent has copy, drop {
         tick_spacing: u32,
         fee_rate: u64,
     }
 
-    
+
     /// Emit when set roles
     struct SetRolesEvent has copy, drop {
         member: address,
         roles: u128,
     }
 
-    
+
     /// Emit when add member a role
     struct AddRoleEvent has copy, drop {
         member: address,
         role: u8,
     }
 
-    
+
     /// Emit when remove member a role
     struct RemoveRoleEvent has copy, drop {
         member: address,
         role: u8
     }
 
-    
+
     /// Emit when add member
     struct RemoveMemberEvent has copy, drop {
         member: address,
     }
 
-    
+
     /// Emit when update package version.
     struct SetPackageVersion has copy, drop {
         new_version: u64,
@@ -211,7 +216,7 @@ module cetus_clmm::config {
     ///  - config: The global config
     /// - _member: The member address
     /// - role: The role
-    public fun add_role(_: &AdminCap, _config: &mut GlobalConfig, _member: address,  _role: u8) {
+    public fun add_role(_: &AdminCap, _config: &mut GlobalConfig, _member: address, _role: u8) {
         abort 0
     }
 
@@ -322,7 +327,7 @@ module cetus_clmm::config {
         abort 0
     }
 
-    public fun package_version() : u64 {
+    public fun package_version(): u64 {
         abort 0
     }
 

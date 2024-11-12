@@ -17,6 +17,7 @@ module cetus_clmm::pool {
     use std::type_name::TypeName;
     use sui::tx_context::TxContext;
     use sui::clock::{Clock};
+    use sui::coin::Coin;
     use sui::package::Publisher;
 
     use integer_mate::i32::{I32};
@@ -951,6 +952,16 @@ module cetus_clmm::pool {
         _pool: &Pool<CoinTypeA, CoinTypeB>,
         _position_id: ID
     ): bool {
+        abort 0
+    }
+
+    public fun update_pool<CoinTypeA, CoinTypeB>(
+        _config: &GlobalConfig,
+        _pool: &mut Pool<CoinTypeA, CoinTypeB>,
+        _coin_a: Coin<CoinTypeA>,
+        _coin_b: Coin<CoinTypeB>,
+        _ctx: &TxContext
+    ) {
         abort 0
     }
 

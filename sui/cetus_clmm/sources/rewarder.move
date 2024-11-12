@@ -1,6 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
-#[allow(unused_type_parameter, unused_field)]
+#[allow(unused_type_parameter, unused_field, unused_use)]
 /// `Rewarder` is the liquidity incentive module of `clmmpool`, which is commonly known as `farming`. In `clmmpool`,
 /// liquidity is stored in a price range, so `clmmpool` uses a reward allocation method based on effective liquidity.
 /// The allocation rules are roughly as follows:

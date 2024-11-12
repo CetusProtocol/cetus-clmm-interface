@@ -1,6 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
-#[allow(unused_field)]
+#[allow(unused_type_parameter, unused_field, unused_use, unused_function)]
 /// The `tick` module is a module that is designed to facilitate the management of `tick` owned by `Pool`.
 /// All `tick` related operations of `Pool` are handled by this module.
 module cetus_clmm::tick {
@@ -18,14 +18,14 @@ module cetus_clmm::tick {
     use cetus_clmm::tick_math;
 
     friend cetus_clmm::pool;
-    
+
     /// Manager ticks of a pool, ticks is organized into SkipList.
     struct TickManager has store {
         tick_spacing: u32,
         ticks: SkipList<Tick>
     }
 
-    
+
     /// Tick infos.
     struct Tick has copy, drop, store {
         index: I32,
@@ -149,6 +149,11 @@ module cetus_clmm::tick {
         _limit: u64
     ): vector<Tick> {
         abort 0
+    }
+
+    /// Get the number of ticks in the TickManager.
+    public fun tick_count(manager: &TickManager) : u64 {
+        skip_list::length(&manager.ticks)
     }
 
     /// For store Ticks in LinkedTable, convert the tick index of I32 to u64

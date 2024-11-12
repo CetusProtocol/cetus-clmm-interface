@@ -1,6 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
-#[allow(unused_type_parameter, unused_field)]
+#[allow(unused_type_parameter, unused_field, unused_use)]
 /// The `position` module is designed for the convenience of the `Pool`'s position and all `position` related
 /// operations are completed by this module. Regarding the `position` of `clmmpool`,
 /// there are several points that need to be explained:

@@ -1,6 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
-#[allow(unused_field)]
+#[allow(unused_type_parameter, unused_field, unused_use)]
 /// Fork @https://github.com/pentagonxyz/movemate.git
 ///
 /// `acl` is a simple access control module, where `member` represents a member and `role` represents a type
