@@ -4,12 +4,13 @@ module cetus::cetus {
 
     struct CETUS has drop {}
 
+    #[allow(unused_field)]
     struct InitEvent has copy, drop {
         cap_id: ID,
         metadata_id: ID,
     }
 
-    fun init(witness: CETUS, ctx: &mut TxContext) {
+    fun init(_witness: CETUS, _ctx: &mut TxContext) {
         abort 0
     }
 }
