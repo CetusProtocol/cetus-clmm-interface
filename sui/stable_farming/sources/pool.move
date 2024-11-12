@@ -209,24 +209,8 @@ module stable_farming::pool {
         _effective_tick_upper: I32,
         _sqrt_price: u128,
         _ctx: &mut TxContext
-    ) {
-        abort 0
-    }
-
-    public fun update_effective_tick_range<CoinA, CoinB>(
-        _cap: &OperatorCap,
-        _global_config: &GlobalConfig,
-        _rewarder_manager: &mut RewarderManager,
-        _pool: &mut Pool,
-        _clmm_pool: &CLMMPool<CoinA, CoinB>,
-        _effective_tick_lower: I32,
-        _effective_tick_upper: I32,
-        _sqrt_price: u128,
-        _start: vector<ID>,
-        _limit: u64,
-        _clk: &Clock
-    ): option::Option<ID> {
-        abort 0
+    ){
+        abort 1
     }
 
     public fun add_rewarder<RewarderCoin>(
@@ -239,6 +223,7 @@ module stable_farming::pool {
     ) {
         abort 0
     }
+
 
     public fun update_pool_allocate_point<RewardCoin>(
         _cap: &OperatorCap,
@@ -255,30 +240,21 @@ module stable_farming::pool {
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
         _pool: &mut Pool,
-        clmm_position: CLMMPosition,
+        _clmm_position: CLMMPosition,
+        _clk: &Clock,
         _ctx: &mut TxContext
-    ): WrappedPositionNFT {
-        abort 0
+    ): WrappedPositionNFT{
+        abort 1
     }
 
     public fun withdraw(
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
         _pool: &mut Pool,
-        wrapped_position: WrappedPositionNFT,
-        _ctx: &mut TxContext
-    ): CLMMPosition {
-        abort 0
-    }
-
-    public fun harvest<T>(
-        _global_config: &GlobalConfig,
-        _rewarder_manager: &mut RewarderManager,
-        _pool: &mut Pool,
-        wrapped_position: &WrappedPositionNFT,
-        _ctx: &mut TxContext
-    ): Balance<T> {
-        abort 0
+        _wrapped_position: WrappedPositionNFT,
+        _clk: &Clock,
+    ): CLMMPosition{
+        abort 1
     }
 
     public fun calculate_position_share(
@@ -332,30 +308,103 @@ module stable_farming::pool {
         abort 0
     }
 
-    fun add_liquidity_fix_coin_to_clmm<CoinA, CoinB>(
-        _clmm_config: &CLMMGlobalConfig,
-        _clmm_pool: &mut CLMMPool<CoinA, CoinB>,
-        _clmm_position_nft: &mut CLMMPosition,
-        _coin_a: Coin<CoinA>,
-        _coin_b: Coin<CoinB>,
-        _amount_a: u64,
-        _amount_b: u64,
-        _fix_amount_a: bool,
-        _clock: &Clock,
-        _ctx: &mut TxContext
-    ): (Balance<CoinA>, Balance<CoinB>) {
-        abort 0
+    public fun add_liquidity_fix_coin<CoinA, CoinB>(
+        global_config: &GlobalConfig,
+        clmm_global_config: &CLMMGlobalConfig,
+        rewarder_manager: &mut RewarderManager,
+        pool: &mut Pool,
+        clmm_pool: &mut CLMMPool<CoinA, CoinB>,
+        wrapped_position: &mut WrappedPositionNFT,
+        coin_a: Coin<CoinA>,
+        coin_b: Coin<CoinB>,
+        amount_a: u64,
+        amount_b: u64,
+        fix_amount_a: bool,
+        clk: &Clock,
+        ctx: &mut TxContext
+    ): (Balance<CoinA>, Balance<CoinB>){
+        abort 1
     }
 
-    fun remove_liquidity_from_clmm<CoinA, CoinB>(
-        _config: &CLMMGlobalConfig,
-        _pool: &mut CLMMPool<CoinA, CoinB>,
-        _position_nft: &mut CLMMPosition,
+    public fun collect_fee<CoinA, CoinB>(
+        _global_config: &GlobalConfig,
+        _clmm_global_config: &CLMMGlobalConfig,
+        _clmm_pool: &mut CLMMPool<CoinA, CoinB>,
+        _wrapped_position: &WrappedPositionNFT,
+        _recalculate: bool,
+    ): (Balance<CoinA>, Balance<CoinB>) {
+      abort 1
+    }
+
+    public fun close_position<CoinA, CoinB>(
+        _global_config: &GlobalConfig,
+        _rewarder_manager: &mut RewarderManager,
+        _pool: &mut Pool,
+        _clmm_global_config: &CLMMGlobalConfig,
+        _clmm_pool: &mut CLMMPool<CoinA, CoinB>,
+        _wrapped_position: WrappedPositionNFT,
+        _min_amount_a: u64,
+        _min_amount_b: u64,
+        _clk: &Clock,
+    ): (Balance<CoinA>, Balance<CoinB>){
+        abort 1
+    }
+
+    public fun remove_liquidity<CoinA, CoinB>(
+        _global_config: &GlobalConfig,
+        _clmm_global_config: &CLMMGlobalConfig,
+        _rewarder_manager: &mut RewarderManager,
+        _pool: &mut Pool,
+        _clmm_pool: &mut CLMMPool<CoinA, CoinB>,
+        _wrapped_position: &mut WrappedPositionNFT,
         _delta_liquidity: u128,
         _min_amount_a: u64,
         _min_amount_b: u64,
+        _clk: &Clock,
+    ): (Balance<CoinA>, Balance<CoinB>){
+        abort 1
+    }
+
+    public fun collect_clmm_reward<RewardCoin, CoinA, CoinB>(
+        _global_config: &GlobalConfig,
+        _clmm_global_config: &CLMMGlobalConfig,
+        _clmm_pool: &mut CLMMPool<CoinA, CoinB>,
+        _warped_position: &WrappedPositionNFT,
+        _vault: &mut RewarderGlobalVault,
+        _reward_coin: Coin<RewardCoin>,
+        _recalculate: bool,
         _clock: &Clock,
-    ): (Balance<CoinA>, Balance<CoinB>) {
+        _ctx: &mut TxContext
+    ): Balance<RewardCoin> {
         abort 0
+    }
+
+    public fun harvest<RewardCoin>(
+        _global_config: &GlobalConfig,
+        _rewarder_manager: &mut RewarderManager,
+        _pool: &mut Pool,
+        _wrapped_position: &WrappedPositionNFT,
+        _clk: &Clock,
+    ): Balance<RewardCoin> {
+        abort 0
+    }
+
+    public fun borrow_clmm_position(_: &WrappedPositionNFT): &CLMMPosition {
+        abort 0
+    }
+
+    public fun borrow_wrapped_position_info(pool: &Pool, id: ID): &WrappedPositionInfo {
+        abort 1
+    }
+
+    public fun borrow_rewarders(info: &WrappedPositionInfo): &vec_map::VecMap<TypeName, PositionRewardInfo> {
+        abort 1
+    }
+
+    public fun position_rewarder_info(
+        wrapped_position_rewarder_info: &WrappedPositionInfo,
+        rewarder_type: &TypeName
+    ): PositionRewardInfo{
+        abort 1
     }
 }
