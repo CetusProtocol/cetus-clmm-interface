@@ -1,3 +1,4 @@
+#[allow(unused_type_parameter, unused_field, unused_const, unused_use)]
 // This module is designed to dividend the bonus to venfts who hold the xCETUS.
 module dividends::dividend {
     use std::option;
@@ -20,7 +21,7 @@ module dividends::dividend {
     use sui::balance::Balance;
     use sui::balance;
     use sui::vec_map;
-    use xcetus::xcetus::{ XcetusManager, nfts, VeNftInfo, totol_amount, xcetus_amount, VeNFT, total_holder, XCETUS};
+    use xcetus::xcetus::{ XcetusManager, nfts, VeNftInfo, totol_amount, xcetus_amount, VeNFT, total_holder };
     use xcetus::locking;
     use xcetus::locking::LockUpManager;
 
@@ -201,19 +202,6 @@ module dividends::dividend {
         abort 0
     }
 
-
-    /// Every phase ends, the settle is needed do distribute the bonus to Venfts.
-    public fun settle(
-        _: &SettleCap,
-        _m: &mut DividendManager,
-        _xcetus_manager: & XcetusManager,
-        _phase: u64,
-        _start: vector<ID>,
-        _limit: u64
-    ): option::Option<ID> {
-        abort 0
-    }
-
     public fun redeem_v2<CoinA>(
         _m: &mut DividendManager,
         _venft: &mut VeNFT,
@@ -239,51 +227,7 @@ module dividends::dividend {
         abort 0
     }
 
-    /// Redeem CoinA from DividendManager by the admin.
-    public entry fun redeem_extra<CoinA>(
-        _: &AdminCap,
-        _m: &mut DividendManager,
-        _receiver: address,
-        _amount: u64,
-        _ctx: &mut TxContext
-    ) {
-        abort 0
-    }
-
-    /// Stop the dividend
-    public entry fun close(_: &AdminCap, _m: &mut DividendManager) {
-        abort 0
-    }
-
     public fun fetch_dividend_info(_m: &DividendManager, _venft_id: ID) {
-        abort 0
-    }
-
-    fun redeem_token<CoinA>(
-        _m: &mut DividendManager,
-        _venft: &mut VeNFT,
-        _clk: &Clock,
-    ): u64 {
-        abort 0
-    }
-
-    /// Add bonus to venft.
-    fun add_dividend(_manager: &mut DividendManager, _venft_id: ID, _phase: u64, _key: TypeName, _amount: u64): bool {
-        abort 0
-    }
-
-    /// Update the redeemed_num in global DividendInfo.
-    fun increase_redeem(_m: &mut DividendManager, _redeem_nums: vec_map::VecMap<u64, u64>, _key: TypeName) {
-        abort 0
-    }
-
-    /// Take CoinA from `Dividend`.
-    fun take<CoinA>(_m: &mut DividendManager, _amount: u64): Balance<CoinA> {
-        abort 0
-    }
-
-    /// Type generate key.
-    fun key<CoinA>(): TypeName {
         abort 0
     }
 }

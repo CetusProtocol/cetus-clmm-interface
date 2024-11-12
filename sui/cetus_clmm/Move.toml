@@ -1,6 +1,6 @@
 [package]
 name = "CetusClmm"
-version = "mainnet-v1.24.0"
+version = "0.0.1"
 published-at = "0x157468379cfe5616c063ae39a889dd184ad48350d3e08f8d9b4ade22b8e3fb61"
 
 [dependencies]

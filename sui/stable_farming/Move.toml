@@ -1,6 +1,6 @@
 [package]
 name = "StableFarming"
-version = "mainnet-v1.0.2"
+version = "mainnet-v1.35.1"
 published-at = "0x585381670c3d7c1f78caeb6c803f449442659743f4047a01b942da08bbfa19f6"
 
 [dependencies]

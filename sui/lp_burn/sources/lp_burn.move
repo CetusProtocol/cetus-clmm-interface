@@ -52,18 +52,6 @@ module lp_burn::lp_burn {
         cap_id: ID,
     }
 
-    /// Emit when update package version.
-    public struct SetPackageVersion has copy, drop {
-        new_version: u64,
-        old_version: u64
-    }
-
-   
-
-    public entry fun update_must_range(_: &AdminCap, _manager: &mut BurnManager, _must: bool) {
-        abort 0
-    }
-
     public fun burn_lp<A,B>(
         _manager: &mut BurnManager,
         _pool: &Pool<A,B>,
@@ -96,14 +84,6 @@ module lp_burn::lp_burn {
         _clock: &Clock,
         _ctx: &mut TxContext,
     ): Coin<CoinTypeC> {
-        abort 0
-    }
-
-    public fun checked_package_version(_config: &BurnManager) {
-        abort 0
-    }
-
-    public fun update_package_version(_: &AdminCap, _config: &mut BurnManager, _version: u64) {
         abort 0
     }
 
