@@ -1,32 +1,18 @@
 #[allow(unused_type_parameter, unused_field, unused_const, unused_use)]
 // This module is designed to dividend the bonus to venfts who hold the xCETUS.
 module dividends::dividend {
-    use std::option;
-    use std::type_name;
     use std::type_name::TypeName;
-    use std::vector;
-    use cetus::cetus::CETUS;
     use move_stl::linked_table;
     use sui::object::{UID, ID};
-    use sui::clock::{Self, Clock};
+    use sui::clock::Clock;
     use sui::tx_context::TxContext;
     use sui::bag::Bag;
     use sui::vec_map::VecMap;
-    use sui::transfer;
-    use sui::object;
-    use sui::tx_context;
-    use sui::bag;
-    use sui::coin::Coin;
-    use sui::coin;
-    use sui::balance::Balance;
-    use sui::balance;
+    use sui::table::Table;
     use sui::vec_map;
-    use xcetus::xcetus::{ XcetusManager, nfts, VeNftInfo, totol_amount, xcetus_amount, VeNFT, total_holder };
-    use xcetus::locking;
-    use xcetus::locking::LockUpManager;
+    use xcetus::xcetus::VeNFT;
 
 
-    const PACKAGE_VERSION: u64 = 3;
     const ONE_DAY_SECONDS: u64 = 24 * 3600;
 
     const EBONUS_TYPE_NOT_EXISTS: u64 = 0;
@@ -37,14 +23,17 @@ module dividends::dividend {
     const EPHASE_NOT_REGISTERED: u64 = 5;
     const ESTART_ERROR: u64 = 6;
     const EPACKAGE_VERSION_DEPRECATE: u64 = 7;
+    #[allow(unused_const)]
     const EVENFT_HAS_NO_DIVIDEND: u64 = 8;
     const EBALANCE_NOT_ENOUGH: u64 = 9;
+    #[allow(unused_const)]
     const ESTART_TIME_ERROR: u64 = 10;
     const EBONUS_TYPE_EXISTS: u64 = 11;
     const EAMOUNT_NOT_CHANGE: u64 = 12;
     const EAMOUNT_NOT_ENOUGH: u64 = 13;
     const EMETHOD_DEPRECATED: u64 = 14;
     const EBONUS_IS_ZERO: u64 = 15;
+    const EREGISTER_ALREADY: u64 = 16;
 
     ///
     struct AdminCap has key, store {
@@ -76,6 +65,16 @@ module dividends::dividend {
         package_version: u64
     }
 
+    struct VeNFTDividends has key {
+        id: UID,
+        venft_dividends: linked_table::LinkedTable<ID, VeNFTDividendInfoV2>
+    }
+
+    struct VeNFTDividendInfoV2 has store {
+        /// bonus of every type of every phase. When the bonus is claimed, the record will remove from the vec_map.
+        dividends: Table<u64, vec_map::VecMap<TypeName, u64>>
+    }
+
     /// Record the dividend infos of a VeNFT
     struct VeNFTDividendInfo has store, drop {
         /// bonus of every type of every phase. When the bonus is claimed, the record will remove from the vec_map.
@@ -100,39 +99,6 @@ module dividends::dividend {
     }
 
     /// Events
-    struct InitEvent has copy, store, drop {
-        admin_id: ID,
-        settle_id: ID,
-        manager_id: ID,
-    }
-
-    struct AddBonusEvent has copy, store, drop {
-        type: TypeName
-    }
-
-    struct RemoveBonusEvent has copy, store, drop {
-        type: TypeName
-    }
-
-    struct RegisterEvent has copy, store, drop {
-        phase: u64,
-        amount: u64
-    }
-
-    struct UpdateDividendInfoEvent has copy, store, drop {
-        phase: u64,
-        amount_before: u64,
-        amount: u64
-    }
-
-    struct SettleEvent has copy, drop, store {
-        phase: u64,
-        start: vector<ID>,
-        limit: u64,
-        next_id: option::Option<ID>,
-        count: u64,
-    }
-
     struct RedeemEvent has copy, drop, store {
         venft_id: ID,
         phases: vector<u64>,
@@ -146,7 +112,9 @@ module dividends::dividend {
         amount: u64
     }
 
-    struct ReceiveEvent has copy, drop, store {
+    struct RedeemV3Event has copy, drop, store {
+        venft_id: ID,
+        type: TypeName,
         amount: u64
     }
 
@@ -159,75 +127,31 @@ module dividends::dividend {
         info: vec_map::VecMap<u64, vec_map::VecMap<TypeName, u64>>
     }
 
-    struct SetPackageVersion has copy, drop {
-        new_version: u64,
-        old_version: u64
-    }
-
-
-    /// Init the AdminCap.
-    fun init(_ctx: &mut TxContext) {
-        abort 0
-    }
-
-    public fun checked_package_version(_m: &DividendManager) {
-        abort 0
-    }
-
-    public entry fun update_package_version<CoinA>(_: &AdminCap, _manager: &mut DividendManager, _version: u64) {
-        abort 0
-    }
-
-    public entry fun update_start_time(_: &AdminCap, _manager: &mut DividendManager, _start_time: u64, _clk: &Clock) {
-        abort 0
-    }
-
-    /// Add bonus type.
-    public fun push_bonus<CoinA>(_: &AdminCap, _manager: &mut DividendManager) {
-        abort 0
-    }
-
-    /// Remove bonus type.
-    public fun remove_bonus<CoinA>(_: &AdminCap, _manager: &mut DividendManager) {
-        abort 0
-    }
-
-    /// Register bonus type at phase
-    public fun register_bonus<CoinA>(_: &AdminCap, _m: &mut DividendManager, _phase: u64, _amount: u64, _clk: &Clock) {
-        abort 0
-    }
-
-    /// Update bonus amount at special phase.
-    public entry fun update_bonus<CoinA>(_: &AdminCap, _m: &mut DividendManager, _phase: u64, _amount: u64) {
-        abort 0
-    }
-
     public fun redeem_v2<CoinA>(
-        _m: &mut DividendManager,
-        _venft: &mut VeNFT,
-        _clk: &Clock,
-        _ctx: &mut TxContext
+        _: &mut DividendManager,
+        _: &mut VeNFT,
+        _: &Clock,
+        _: &mut TxContext
     ) {
         abort 0
     }
 
-    public fun redeem_xtoken(
-        _manager: &mut LockUpManager,
-        _xcetus_m: &mut XcetusManager,
-        _m: &mut DividendManager,
-        _venft: &mut VeNFT,
-        _clk: &Clock,
-        _ctx: &mut TxContext
+    public fun redeem_v3<CoinA>(
+        _: &mut DividendManager,
+        _: &mut VeNFTDividends,
+        _: vector<u64>,
+        _: &mut VeNFT,
+        _: &Clock,
+        _: &mut TxContext
     ) {
         abort 0
     }
 
-    /// Transfer CoinA to `DividendManager`.
-    public fun deposit<CoinA>(_m: &mut DividendManager, _coin: &mut Coin<CoinA>, _amount: u64, _ctx: &mut TxContext) {
+    public fun fetch_dividend_info(_: &DividendManager, _: ID) {
         abort 0
     }
 
-    public fun fetch_dividend_info(_m: &DividendManager, _venft_id: ID) {
+    public fun fetch_dividend_info_v2(_: &DividendManager, _: &VeNFTDividends, _: ID) {
         abort 0
     }
 }

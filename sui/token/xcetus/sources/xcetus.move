@@ -1,4 +1,4 @@
-#[allow(unused_type_parameter, unused_field)]
+#[allow(unused_type_parameter, unused_field, unused_const)]
 // This module is about:
 // create the xcetus coin,
 // provide the management of `VeNFT`,
@@ -15,7 +15,13 @@ module xcetus::xcetus {
     use move_stl::linked_table;
 
     friend xcetus::locking;
-  
+
+    const EBALANCE_NOT_ZERO: u64 = 1;
+    const EBALANCE_NOT_MATCH: u64 = 2;
+    const EBALANCE_AMOUNT_ERROR: u64 = 3;
+    const EAVAILABLE_BALANCE_NOT_ENOUGH: u64 = 4;
+    const EHAS_VENFT_ALREADY: u64 = 5;
+
     /// The witness of XCETUS Coin.
     struct XCETUS has drop {}
 
@@ -49,12 +55,6 @@ module xcetus::xcetus {
     }
 
     // ============= Events =================
-    struct InitEvent has copy, drop, store {
-        xcetus_manager: ID,
-        metadata: ID,
-        admin_id: ID,
-    }
-
     struct MintVeNFTEvent has copy, drop, store {
         nft_id: ID,
         index: u64,
@@ -81,52 +81,52 @@ module xcetus::xcetus {
     }
 
     /// Mint Venft.
-    public fun mint_venft(_manager: &mut XcetusManager, _ctx: &mut TxContext): ID {
+    public fun mint_venft(_: &mut XcetusManager, _: &mut TxContext): ID {
         abort 0
     }
 
     /// Burn Venft when the xcetus balance owned is zero.
-    public fun burn_venft(_manager: &mut XcetusManager, _venft: VeNFT, _ctx: &mut TxContext) {
+    public fun burn_venft(_: &mut XcetusManager, _: VeNFT, _: &mut TxContext) {
         abort 0
     }
 
     /// Getter `xcetus_amount` of VenftInfo.
-    public fun xcetus_amount(_info: &VeNftInfo): u64 {
+    public fun xcetus_amount(_: &VeNftInfo): u64 {
         abort 0
     }
 
     /// Getter `lock_amount` of VenftInfo.
-    public fun lock_amount(_info: &VeNftInfo): u64 {
+    public fun lock_amount(_: &VeNftInfo): u64 {
         abort 0
     }
 
     /// Getter the xCETUS amount of Venft.
-    public fun value(_m: &XcetusManager, _venft: &VeNFT): u64 {
+    public fun value(_: &XcetusManager, _: &VeNFT): u64 {
         abort 0
     }
 
     /// Getter the unlocked xcetus amount of venft.
-    public fun available_value(_m: &XcetusManager, _venft: &VeNFT): u64 {
+    public fun available_value(_: &XcetusManager, _: &VeNFT): u64 {
         abort 0
     }
 
     /// Getter total amount of xCETUS.
-    public fun totol_amount(_m: &XcetusManager): u64 {
+    public fun totol_amount(_: &XcetusManager): u64 {
         abort 0
     }
 
     /// Getter total locked xCETUS amount.
-    public fun total_locked(_m: &XcetusManager): u64 {
+    public fun total_locked(_: &XcetusManager): u64 {
         abort 0
     }
 
     /// Getter total venfts
-    public fun total_holder(_m: &XcetusManager): u64 {
+    public fun total_holder(_: &XcetusManager): u64 {
         abort 0
     }
 
     /// Getter all VenftInfo.
-    public fun nfts(_m: &XcetusManager): &linked_table::LinkedTable<ID, VeNftInfo> {
+    public fun nfts(_: &XcetusManager): &linked_table::LinkedTable<ID, VeNftInfo> {
         abort 0
     }
 }
