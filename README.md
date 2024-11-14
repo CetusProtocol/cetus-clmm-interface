@@ -51,7 +51,7 @@
   | dividends      | 0xcec352932edc6663a118e8d64ed54da6b8107e8719603bf728f80717592cd9e8 |
   | vaults         | 0x1ed1fef522ccea98a4fbd954543d5019238ec89282fbdea9a753e0a17e96fc28 |
 
-### CLMM Interface
+### Cetus CLMM
 
 The Cetus CLMM Interface provider all core features function interface of CLMM, allowing users to easily connect with CLMM by contract. For more detailed information, please refer to the CLMM README document. [CLMM README Document](./sui/cetus_clmm/README.md)
 
