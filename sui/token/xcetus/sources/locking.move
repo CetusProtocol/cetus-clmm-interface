@@ -1,4 +1,4 @@
-#[allow(unused_use, unused_field)]
+#[allow(unused_use, unused_field, unused_const)]
 // This module works with xcetus module to provide lock of xCETUS.
 // If you want to convert XCETUS back to CETUS, you have to lock it for some times.
 // If the lock time ends, you can redeem CETUS to your address, and the xCETUS will be burned.
@@ -12,11 +12,25 @@ module xcetus::locking {
     use sui::coin::Coin;
     use sui::clock::Clock;
     use move_stl::linked_table;
-    use xcetus::lock_coin;
-    use xcetus::xcetus::{VeNFT, XcetusManager, available_value};
-    use xcetus::lock_coin::{LockedCoin, unlock_coin, lock_time, destory_lock};
-    use xcetus::utils::{now_timestamp, merge_coins};
+    use xcetus::xcetus::{VeNFT, XcetusManager};
+    use xcetus::lock_coin::LockedCoin;
     use cetus::cetus::CETUS;
+
+    const ONE_DAY_SECONDS: u64 = 24 * 3600;
+    const EXCHANGE_RATE_MULTIPER: u128 = 1000;
+    const REDEEM_NUM_MULTIPER: u128 = 100000000000;
+    const PACKAGE_VERSION: u64 = 1;
+
+    // Errors
+    const EINIT_CONFIG_ERROR: u64 = 0;
+    const EBALANCE_NOT_ENOUGH: u64 = 1;
+    const ELOCK_DAY_ERROR: u64 = 2;
+    const EREDEMM_AMOUNT_ERROR: u64 = 3;
+    const EVENFT_NOT_MATCH_WITH_LOCK: u64 = 4;
+    const EALREADY_UNLOCK: u64 = 5;
+    const EADMIN_REDEEM_ERROR: u64 = 6;
+    const ETREASURY_MANAGER_ERROR: u64 = 7;
+    const EPACKAGE_VERSION_DEPRECATE: u64 = 8;
 
     struct AdminCap has key, store {
         id: UID
@@ -48,21 +62,6 @@ module xcetus::locking {
     }
 
     /// Events
-    struct InitEvent has copy, store, drop {
-        admin_id: ID,
-        publisher_id: ID,
-        display_id: ID,
-    }
-
-    struct InitializeEvent has copy, drop, store {
-        min_lock_day: u64,
-        max_lock_day: u64,
-        min_percent_numerator: u64,
-        max_percent_numerator: u64,
-        lock_manager: ID,
-        cetus_type: TypeName,
-    }
-
     struct ConvertEvent has copy, store, drop {
         venft_id: ID,
         amount: u64,
@@ -97,11 +96,6 @@ module xcetus::locking {
         amount: u64,
     }
 
-    struct SetPackageVersion has copy, drop {
-        new_version: u64,
-        old_version: u64
-    }
-
     struct LOCKING has drop {}
 
     public fun checked_package_version(_m: &LockUpManager) {
@@ -111,12 +105,12 @@ module xcetus::locking {
     /// Convert from CETUS to xCETUS.
     /// The mint of xCETUS needs to save same amount of CETUS in LockManager.
     public fun convert(
-        _manager: &mut LockUpManager,
-        _xcetus_m: &mut XcetusManager,
-        _coins: vector<Coin<CETUS>>,
-        _amount: u64,
-        _venft: &mut VeNFT,
-        _ctx: &mut TxContext
+        _: &mut LockUpManager,
+        _: &mut XcetusManager,
+        _: vector<Coin<CETUS>>,
+        _: u64,
+        _: &mut VeNFT,
+        _: &mut TxContext
     ) {
         abort 0
     }
@@ -125,13 +119,13 @@ module xcetus::locking {
     /// The calculated amount of CETUS will wrap in LockedCoin object and give to user.
     /// the state of venftinfo will be updated.
     public fun redeem_lock(
-        _manager: &mut LockUpManager,
-        _xcetus_m: &mut XcetusManager,
-        _venft: &mut VeNFT,
-        _amount: u64,
-        _lock_day: u64,
-        _clk: &Clock,
-        _ctx: &mut TxContext
+        _: &mut LockUpManager,
+        _: &mut XcetusManager,
+        _: &mut VeNFT,
+        _: u64,
+        _: u64,
+        _: &Clock,
+        _: &mut TxContext
     ) {
         abort 0
     }
@@ -140,34 +134,34 @@ module xcetus::locking {
     /// Cancel the redeem lock.
     /// The CETUS will be send back to LockManger, LockedCoin will be destoryed. the state related to xCETUS will be updated.
     public fun cancel_redeem_lock(
-        _manager: &mut LockUpManager,
-        _xcetus_m: &mut XcetusManager,
-        _venft: &mut VeNFT,
-        _lock: LockedCoin<CETUS>,
-        _clk: &Clock,
+        _: &mut LockUpManager,
+        _: &mut XcetusManager,
+        _: &mut VeNFT,
+        _: LockedCoin<CETUS>,
+        _: &Clock,
     ) {
         abort 0
     }
 
     /// When the lock time is ends, the CETUS can be redeemed.
     public fun redeem(
-        _manager: &mut LockUpManager,
-        _xcetus_m: &mut XcetusManager,
-        _venft: &mut VeNFT,
-        _lock: LockedCoin<CETUS>,
-        _clock: &Clock,
-        _ctx: &mut TxContext
+        _: &mut LockUpManager,
+        _: &mut XcetusManager,
+        _: &mut VeNFT,
+        _: LockedCoin<CETUS>,
+        _: &Clock,
+        _: &mut TxContext
     ) {
         abort 0
     }
 
     /// Mint VeNFT and convert.
     public fun mint_and_convert(
-        _manager: &mut LockUpManager,
-        _xcetus_m: &mut XcetusManager,
-        _coins: vector<Coin<CETUS>>,
-        _amount: u64,
-        _ctx: &mut TxContext
+        _: &mut LockUpManager,
+        _: &mut XcetusManager,
+        _: vector<Coin<CETUS>>,
+        _: u64,
+        _: &mut TxContext
     ) {
         abort 0
     }

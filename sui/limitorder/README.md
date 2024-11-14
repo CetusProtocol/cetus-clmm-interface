@@ -16,21 +16,21 @@ The Cetus LimitOrder Interface is designed to facilitate developers who wish to 
 
 | Tag of Repo     | Network | Latest published at address                                        |
 | --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.23.1 | mainnet | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
-| testnet-v1.23.1 | testnet | 0xc65bc51d2bc2fdbce8c701f8d812da80fb37dba9cdf97ce38f60ab18c5202b17 |
+| mainnet-v1.24.0 | mainnet | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
+| testnet-v1.24.0 | testnet | 0xc65bc51d2bc2fdbce8c701f8d812da80fb37dba9cdf97ce38f60ab18c5202b17 |
 
 eg:
 
 mainnet:
 
 ```
-LimitOrder = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/limitorder", rev = "mainnet-v1.23.1" }
+LimitOrder = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/limitorder", rev = "mainnet-v1.24.0", override = true }
 ```
 
 testnet:
 
 ```
-LimitOrder = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/limitorder", rev = "testnet-v1.23.1" }
+LimitOrder = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/limitorder", rev = "testnet-v1.24.0", override = true }
 ```
 
 ## Usage

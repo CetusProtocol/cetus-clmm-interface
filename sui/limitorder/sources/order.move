@@ -1,6 +1,6 @@
 // Copyright (c) Cetus Technology Limited
 
-#[allow(lint(share_owned, self_transfer), unused_variable, unused_type_parameter, unused_field, unused_const, unused_use)]
+#[allow(unused_type_parameter, unused_field, unused_const, unused_use)]
 /// This module implements a Limit Order System, which is a financial trading mechanism that
 /// allows users to specify the highest rate they are willing to buy or sell a particular asset on the Sui blockchain.
 /// A limit order is a conditional request to buy or sell assets, with execution restricted to a specific rate level or
@@ -33,7 +33,7 @@ module limit_order::limit_order {
 
     use move_stl::skip_list_u128::{Self, SkipList};
 
-    use limit_order::config::{Self, GlobalConfig, get_config_deletion_grace_period, get_config_require_flash_loan_auth};
+    use limit_order::config::{Self, GlobalConfig};
 
     // === error ===
     const EOrderPoolAlreadyExisted: u64 = 0;
@@ -67,10 +67,8 @@ module limit_order::limit_order {
     const U64_MAX_U64: u64 = 18446744073709551615;
 
     // === struct ===
-    /// OneTimeWitness for the module.
-    struct LIMIT_ORDER has drop {}
 
-    /// The limit order.
+    /// Represents a limit order.
     struct LimitOrder<phantom PayCoin, phantom TargetCoin> has key, store {
         id: UID,
         owner: address,
@@ -94,6 +92,7 @@ module limit_order::limit_order {
         size: u64,
     }
 
+    /// Simplified information about an order pool.
     struct RateOrdersIndexerSimpleInfo has store, copy, drop {
         indexer_id: ID,
         indexer_key: ID,
@@ -101,6 +100,7 @@ module limit_order::limit_order {
         target_coin: TypeName,
     }
 
+    /// Indexes order pools by the combination of pay and target coin types.
     struct RateOrdersIndexers has key, store {
         id: UID,
         /// key: pool_key, value: OrderPoolSimpleInfo
@@ -110,7 +110,7 @@ module limit_order::limit_order {
         size: u64,
     }
 
-    /// It will index orders at different owner address.
+    /// Indexes orders by different owner addresses.
     struct UserOrdersIndexer has key, store {
         id: UID,
         indexer: Table<address, Table<ID, bool>>,
@@ -124,11 +124,6 @@ module limit_order::limit_order {
     }
 
     // === event ===
-    /// Emit when init this module.
-    struct InitEvent has copy, drop {
-        rate_orders_indexer_id: ID,
-        user_orders_indexer_id: ID,
-    }
 
     /// Emit when created a order pool.
     struct RateOrdersIndexerCreatedEvent has copy, store, drop {
@@ -200,89 +195,152 @@ module limit_order::limit_order {
 
     // === public Functions ===
 
+    /// Creates a new rate orders indexer.
+    /// When a new order pool is created, it will be indexed by the combination of pay and target coin types.
+    /// Parameters:
+    /// - `_config`: Reference to the global configuration.
+    /// - `_rate_orders_indexers`: Reference to the rate orders indexers.
+    /// - `_clock`: Reference to the clock.
+    /// - `_ctx`: Reference to the transaction context.
     public entry fun create_rate_orders_indexer<PayCoin, TargetCoin>(
-        config: &GlobalConfig,
-        rate_orders_indexers: &mut RateOrdersIndexers,
-        clock: &Clock,
-        ctx: &mut TxContext,
+        _config: &GlobalConfig,
+        _rate_orders_indexers: &mut RateOrdersIndexers,
+        _clock: &Clock,
+        _ctx: &mut TxContext,
     ) {
         abort 0
     }
 
+    /// Places a new limit order.
+    /// Parameters:
+    /// - `_config`: Reference to the global configuration.
+    /// - `_rate_orders_indexer`: Reference to the rate orders indexer.
+    /// - `_user_orders_indexer`: Reference to the user orders indexer.
+    /// - `_pay_coin`: Reference to the pay coin.
+    /// - `_rate`: The rate at which the order is placed. rate = (pay amount * 10 ** 18) / target amount
+    /// - `_expire_ts`: The expiration timestamp of the order.
+    /// - `_clock`: Reference to the clock.
+    /// - `_ctx`: Reference to the transaction context.
     public entry fun place_limit_order<PayCoin, TargetCoin>(
-        config: &GlobalConfig,
-        rate_orders_indexer: &mut RateOrdersIndexer<PayCoin, TargetCoin>,
-        user_orders_indexer: &mut UserOrdersIndexer,
-        pay_coin: Coin<PayCoin>,
-        rate: u128,
-        expire_ts: u64,
-        clock: &Clock,
-        ctx: &mut TxContext,
+        _config: &GlobalConfig,
+        _rate_orders_indexer: &mut RateOrdersIndexer<PayCoin, TargetCoin>,
+        _user_orders_indexer: &mut UserOrdersIndexer,
+        _pay_coin: Coin<PayCoin>,
+        _rate: u128,
+        _expire_ts: u64,
+        _clock: &Clock,
+        _ctx: &mut TxContext,
     ) {
         abort 0
     }
 
+    /// Creates a new rate orders indexer and places a limit order.
+    /// Parameters:
+    /// - `_config`: Reference to the global configuration.
+    /// - `_rate_orders_indexers`: Reference to the rate orders indexers.
+    /// - `_user_orders_indexer`: Reference to the user orders indexer.
+    /// - `_pay_coin`: Reference to the pay coin.
+    /// - `_rate`: The rate at which the order is placed. rate = (pay amount * 10 ** 18) / target amount
+    /// - `_expire_ts`: The expiration timestamp of the order.
+    /// - `_clock`: Reference to the clock.
+    /// - `_ctx`: Reference to the transaction context.
     public entry fun create_indexer_and_place_limit_order<PayCoin, TargetCoin>(
-        config: &GlobalConfig,
-        rate_orders_indexers: &mut RateOrdersIndexers,
-        user_orders_indexer: &mut UserOrdersIndexer,
-        pay_coin: Coin<PayCoin>,
-        rate: u128,
-        expire_ts: u64,
-        clock: &Clock,
-        ctx: &mut TxContext,
+        _config: &GlobalConfig,
+        _rate_orders_indexers: &mut RateOrdersIndexers,
+        _user_orders_indexer: &mut UserOrdersIndexer,
+        _pay_coin: Coin<PayCoin>,
+        _rate: u128,
+        _expire_ts: u64,
+        _clock: &Clock,
+        _ctx: &mut TxContext,
     ) {
         abort 0
     }
 
+    /// Flash loan pay coin from one limit order.
+    /// Parameters:
+    /// - `_config`: Reference to the global configuration.
+    /// - `_limit_order`: Reference to the limit order.
+    /// - `_amount`: The amount of the flash loan.
+    /// - `_clock`: Reference to the clock.
+    /// - `_ctx`: Reference to the transaction context.
+    /// Returns:
+    /// - A tuple containing the pay coin and the flash loan receipt.
     public fun flash_loan<PayCoin, TargetCoin>(
-        config: &GlobalConfig,
-        limit_order: &mut LimitOrder<PayCoin, TargetCoin>,
-        amount: u64,
-        clock: &Clock,
-        ctx: &mut TxContext,
+        _config: &GlobalConfig,
+        _limit_order: &mut LimitOrder<PayCoin, TargetCoin>,
+        _amount: u64,
+        _clock: &Clock,
+        _ctx: &mut TxContext,
     ): (Coin<PayCoin>, FlashLoanReceipt<TargetCoin>) {
         abort 0
     }
 
+    /// Repay flash loan.
+    /// Parameters:
+    /// - `_config`: Reference to the global configuration.
+    /// - `_coin`: Reference to the target coin. The coin amount is the same as the one returned by the flash loan.
+    /// - `_limit_order`: Reference to the limit order.
+    /// - `_receipt`: The flash loan receipt.
+    /// - `_ctx`: Reference to the transaction context.
     public fun repay_flash_loan<PayCoin, TargetCoin>(
-        config: &GlobalConfig,
-        coin: &mut Coin<TargetCoin>,
-        limit_order: &mut LimitOrder<PayCoin, TargetCoin>,
-        receipt: FlashLoanReceipt<TargetCoin>,
-        ctx: &mut TxContext
+        _config: &GlobalConfig,
+        _coin: &mut Coin<TargetCoin>,
+        _limit_order: &mut LimitOrder<PayCoin, TargetCoin>,
+        _receipt: FlashLoanReceipt<TargetCoin>,
+        _ctx: &mut TxContext
     ) {
         abort 0
     }
 
+    /// Claim target coin.
+    /// Parameters:
+    /// - `_config`: Reference to the global configuration.
+    /// - `_limit_order`: Reference to the limit order.
+    /// - `_ctx`: Reference to the transaction context.
     public fun claim_target_coin<PayCoin, TargetCoin>(
-        config: &GlobalConfig,
-        limit_order: &mut LimitOrder<PayCoin, TargetCoin>,
-        ctx: &mut TxContext,
+        _config: &GlobalConfig,
+        _limit_order: &mut LimitOrder<PayCoin, TargetCoin>,
+        _ctx: &mut TxContext,
     ) {
         abort 0
     }
 
+    /// Cancel one order by the owner.
+    /// Parameters:
+    /// - `_config`: Reference to the global configuration.
+    /// - `_rate_orders_indexer`: Reference to the rate orders indexer.
+    /// - `_limit_order`: Reference to the limit order.
+    /// - `_clock`: Reference to the clock.
+    /// - `_ctx`: Reference to the transaction context.
     public fun cancel_order_by_owner<PayCoin, TargetCoin>(
-        config: &GlobalConfig,
-        rate_orders_indexer: &mut RateOrdersIndexer<PayCoin, TargetCoin>,
-        limit_order: &mut LimitOrder<PayCoin, TargetCoin>,
-        clock: &Clock,
-        ctx: &mut TxContext,
+        _config: &GlobalConfig,
+        _rate_orders_indexer: &mut RateOrdersIndexer<PayCoin, TargetCoin>,
+        _limit_order: &mut LimitOrder<PayCoin, TargetCoin>,
+        _clock: &Clock,
+        _ctx: &mut TxContext,
     ) {
         abort 0
     }
 
+    /// Get the orders indexer by the owner.
+    /// Parameters:
+    /// - `_owner`: The owner address.
+    /// - `_user_orders_indexer`: Reference to the user orders indexer.
     public entry fun get_orders_indexer_by_owner(
-        owner: address,
-        user_orders_indexer: &UserOrdersIndexer
+        _owner: address,
+        _user_orders_indexer: &UserOrdersIndexer
     ) {
         abort 0
     }
 
+    /// Helper function to get the orders indexer by the rate. This method will emit the QueryRateIndexerEvent event.
+    /// Parameters:
+    /// - `_rate`: The rate at which the order is placed.
+    /// - `_rate_orders_indexer`: Reference to the rate orders indexer.
     public entry fun get_orders_indexer_by_rate<PayCoin, TargetCoin>(
-        rate: u128,
-        rate_orders_indexer: &RateOrdersIndexer<PayCoin, TargetCoin>
+        _rate: u128,
+        _rate_orders_indexer: &RateOrdersIndexer<PayCoin, TargetCoin>
     ) {
         abort 0
     }

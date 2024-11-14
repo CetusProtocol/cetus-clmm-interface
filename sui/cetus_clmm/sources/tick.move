@@ -4,7 +4,6 @@
 /// The `tick` module is a module that is designed to facilitate the management of `tick` owned by `Pool`.
 /// All `tick` related operations of `Pool` are handled by this module.
 module cetus_clmm::tick {
-    use std::vector;
     use std::option::Option;
 
     use sui::tx_context::TxContext;
@@ -12,10 +11,9 @@ module cetus_clmm::tick {
     use integer_mate::i32::I32;
     use integer_mate::i128::I128;
 
-    use move_stl::skip_list::{Self, SkipList};
+    use move_stl::skip_list::SkipList;
     use move_stl::option_u64::OptionU64;
 
-    use cetus_clmm::tick_math;
 
     friend cetus_clmm::pool;
     
@@ -153,9 +151,18 @@ module cetus_clmm::tick {
 
     /// For store Ticks in LinkedTable, convert the tick index of I32 to u64
     /// Convert tick range[-4423636, 443636] to [0, 443636*2].
+    #[allow(unused_function)]
     fun tick_score(_tick: I32): u64 {
         abort 0
     }
+    
+
+    #[test_only]
+    use cetus_clmm::tick_math;
+    #[test_only]
+    use move_stl::skip_list;
+    #[test_only]
+    use std::vector;
 
     #[test_only]
     public fun new_tick_for_test(
@@ -186,7 +193,7 @@ module cetus_clmm::tick {
     ) {
         let idx = 0;
         while (idx < vector::length(&ticks)) {
-            let tick = *vector::borrow(&mut ticks, idx);
+            let tick = *vector::borrow(&ticks, idx);
             let score = tick_score(tick.index);
             if (skip_list::contains(&manager.ticks, score)) {
                 skip_list::remove(&mut manager.ticks, score);

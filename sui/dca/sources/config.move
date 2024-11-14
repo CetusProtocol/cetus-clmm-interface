@@ -1,3 +1,5 @@
+// Copyright (c) Cetus Technology Limited
+
 #[allow(unused_type_parameter, unused_field, unused_const, unused_use)]
 module cetus_dca::config {
     use std::type_name;
@@ -25,9 +27,6 @@ module cetus_dca::config {
     const ENoOraclePermission: u64 = 3;
 
     // === Structs ===
-    public struct AdminCap has key, store {
-        id: UID
-    }
 
     public struct GlobalConfig has key, store {
         id: UID,
@@ -126,118 +125,16 @@ module cetus_dca::config {
     // === Functions ===
 
     /// Check package version of the package_version in `GlobalConfig` and VERSION in current package.
-    public fun checked_package_version(config: &GlobalConfig) {
-        abort 0
-    }
-
-    /// Update the package version.
-    public fun update_package_version(config: &mut GlobalConfig, _: &AdminCap, version: u64) {
-        abort 0
-    }
-
-    public fun package_version(): u64 {
-        abort 0
-    }
-
-    /// Set role for member.
-    public fun set_roles(config: &mut GlobalConfig, _: &AdminCap, member: address, roles: u128) {
-        abort 0
-    }
-
-    /// Remove a member from ACL.
-    public fun remove_member(config: &mut GlobalConfig, _: &AdminCap, member: address) {
-        abort 0
-    }
-
-    /// Get all members in ACL.
-    public fun get_members(config: &GlobalConfig): vector<acl::Member> {
-        abort 0
-    }
-
-    /// Set whitelist mode
-    public fun set_whitelist_mode(config: &mut GlobalConfig, whitelist_mode: u8, ctx: &TxContext) {
-        abort 0
-    }
-
-    /// Set min cycle frequency
-    public fun set_min_cycle_frequency(config: &mut GlobalConfig, min_cycle_frequency: u64, ctx: &TxContext) {
-        abort 0
-    }
-
-    public fun set_oracle_valid_duration(config: &mut GlobalConfig, oracle_valid_duration: u64, ctx: &TxContext) {
-        abort 0
-    }
-
-    /// Add in coin type to in coin whitelist
-    public fun add_in_coin_type<InCoin>(config: &mut GlobalConfig, ctx: &TxContext) {
-        abort 0
-    }
-
-    /// Remove in coin type from in coin whitelist
-    public fun remove_in_coin_type<InCoin>(config: &mut GlobalConfig, ctx: &TxContext) {
-        abort 0
-    }
-
-    /// Add in coin type to in coin whitelist
-    public fun add_out_coin_type<OutCoin>(config: &mut GlobalConfig, ctx: &TxContext) {
-        abort 0
-    }
-
-    /// Remove in coin type from in coin whitelist
-    public fun remove_out_coin_type<OutCoin>(config: &mut GlobalConfig, ctx: &TxContext) {
-        abort 0
-    }
-
-    /// Set keeper threshold
-    public fun set_keeper_threshold(config: &mut GlobalConfig, keeper_threshold: u64, ctx: &TxContext) {
-        abort 0
-    }
-
-    /// Receive protocol fee
-    public fun receive_fee<CoinType>(vault: &mut ProtocolFeeVault, fee: Balance<CoinType>) {
+    public fun checked_package_version(_config: &GlobalConfig) {
         abort 0
     }
 
     /// Claim the protocol fee
     public fun claim_fee<CoinType>(
-        config: &GlobalConfig,
-        vault: &mut ProtocolFeeVault,
-        ctx: &mut TxContext
+        _config: &GlobalConfig,
+        _vault: &mut ProtocolFeeVault,
+        _ctx: &mut TxContext
     ) {
-        abort 0
-    }
-
-    // === View Functions ===
-
-    public fun whitelist_mode(config: &GlobalConfig) : u8 {
-        abort 0
-    }
-
-    public fun min_cycle_frequency(config: &GlobalConfig): u64 {
-        abort 0
-    }
-
-    public fun min_cycle_count(config: &GlobalConfig) : u64 {
-        abort 0
-    }
-
-    public fun is_coin_allow<InCoin, OutCoin>(config: &GlobalConfig) : bool {
-        abort 0
-    }
-
-    public fun checked_keeper(config: &GlobalConfig, addr: address) {
-        abort 0
-    }
-
-    public fun checked_oracle(config: &GlobalConfig, addr: address) {
-        abort 0
-    }
-
-    public fun oracle_valid_duration(config: &GlobalConfig): u64 {
-        abort 0
-    }
-
-    public fun keeper_threshold(config: &GlobalConfig): u64 {
         abort 0
     }
 }

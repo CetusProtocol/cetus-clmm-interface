@@ -1,3 +1,4 @@
+#[allow(unused_type_parameter, unused_field, unused_function, unused_const, unused_use)]
 module stable_farming::rewarder {
     use std::type_name::{Self, TypeName};
     use std::option;
@@ -38,7 +39,7 @@ module stable_farming::rewarder {
     }
 
     struct RewarderManager has key, store {
-        _id: UID,
+        id: UID,
         _vault: Bag,
         _pool_shares: LinkedTable<ID, u128>,
         _rewarders: LinkedTable<TypeName, Rewarder>
@@ -324,11 +325,6 @@ module stable_farming::rewarder {
         _allocate_point: u64,
         _clk: &Clock
     ) {
-        abort 0
-    }
-
-    #[test]
-    public fun test_accumulated_pool_reward() {
         abort 0
     }
 }

@@ -374,7 +374,7 @@ module cetus_clmm::pool {
     }
 
     /// The cost of increasing liquidity for the position.
-    /// Parans
+    /// Params
     ///     - `config` The global config of clmm package.
     ///     - `pool`  The clmm pool object.
     ///     - `balance_a` The balance of which type is CoinTypeA, if no need pay this coin pass `balance<CoinTypeA>Zero()`

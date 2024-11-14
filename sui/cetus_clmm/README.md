@@ -15,32 +15,32 @@ This is an endpoint to help everyone integrate with the Cetus CLMM contract.
 
 ## Cetus Swap and Liquidity operations
 
-This section shows how to construction and execute a trade or liquidity operation on the Cetus protocol.
+This section shows how to construct and execute a trade or liquidity operation on the Cetus protocol.
 
 ## Tags corresponding to different networks
 
 | Tag of Repo     | Network | Latest published at address                                        |
 | --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.23.1 | mainnet | 0x70968826ad1b4ba895753f634b0aea68d0672908ca1075a2abdf0fc9e0b2fc6a |
-| testnet-v1.23.1 | testnet | 0x084dbc14f8f6b50e4e1d6828ebf1f93fd1b1d2502b121bc787937893793417b0 |
+| mainnet-v1.24.0 | mainnet | 0x157468379cfe5616c063ae39a889dd184ad48350d3e08f8d9b4ade22b8e3fb61 |
+| testnet-v1.24.0 | testnet | 0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12 |
 
 eg:
 
 mainnet:
 
 ```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/clmmpool", rev = "mainnet-v1.23.1" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.24.0" }
 ```
 
 testnet:
 
 ```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/clmmpool", rev = "testnet-v1.23.1" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "testnet-v1.24.0" }
 ```
 
 ## Usage
 
-Cetus clmm interface is not complete(just have function defination), so it will fails when sui clien check the code version. However, this does not affect its actual functionality. Therefore, we need to add a `--dependencies-are-root` during the build.
+Cetus clmm interface is not complete(just have function definition), so it will fails when sui client check the code version. However, this does not affect its actual functionality. Therefore, we need to add a `--dependencies-are-root` during the build.
 
 ```bash
 sui move build --dependencies-are-root && sui client publish --dependencies-are-root
@@ -176,7 +176,7 @@ struct FlashSwapReceipt<phantom CoinTypeA, phantom CoinTypeB> {
 
 1. Open position
 
-- clmmpool/sources/pool.move
+- cetus_clmm/sources/pool.move
 
 ```rust
 
@@ -209,7 +209,7 @@ public fun open_position<CoinTypeA, CoinTypeB>(
 
 2. Add liquidity with fixed coin
 
-- clmmpool/sources/pool.move
+- cetus_clmm/sources/pool.move
 
 ```rust
 
@@ -246,7 +246,7 @@ public fun add_liquidity_fix_coin<CoinTypeA, CoinTypeB>(
 
 3. Repay the receipt about add liquidity
 
-- clmmpool/sources/pool.move
+- cetus_clmm/sources/pool.move
 
 ```rust
 
@@ -276,7 +276,7 @@ pub fun repay_add_liquidity<CoinTypeA, CoinTypeB>(
 
 5. Get position liquidity
 
-- clmmpool/sources/position.move
+- cetus_clmm/sources/position.move
 
 ```rust
 
@@ -295,7 +295,7 @@ pub fun liquidity(position_nft: &Position): u128 {}
 
 6. Remove liquidity
 
-- clmmpool/sources/pool.move
+- cetus_clmm/sources/pool.move
 
 ```rust
 
@@ -329,7 +329,7 @@ pub fun remove_liquidity<CoinTypeA, CoinTypeB>(
 
 7. Collect fee
 
-- clmmpool/sources/pool.move
+- cetus_clmm/sources/pool.move
 
 ```rust
 
@@ -361,7 +361,7 @@ pub fun collect_fee<CoinTypeA, CoinTypeB>(
 
 8. Collect reward
 
-- clmmpool/sources/pool.move
+- cetus_clmm/sources/pool.move
 
 ```rust
 
@@ -399,7 +399,7 @@ public fun collect_reward<CoinTypeA, CoinTypeB, CoinTypeC>(
 
 10. Close position
 
-- clmmpool/sources/pool.move
+- cetus_clmm/sources/pool.move
 
 ```rust
 
@@ -433,7 +433,7 @@ public fun close_position<CoinTypeA, CoinTypeB>(
 ### Position related operations
 
 **Notes**:
-Sui not support pass empty vector, so we do three type package about add liquidity with different coins.
+Sui does not support passing empty vector, so we provide three functions about add liquidity with different coins.
 
 - pass coin_a and coin_b (all)
 - only pass coin_a
@@ -483,9 +483,9 @@ public entry fun open_position_with_liquidity_with_all<CoinTypeA, CoinTypeB>(
 
 ```
 
-2. Open position with liquidity only a.
+2. Open position with liquidity only coin_a.
 
-   This method is similar to the previous method. The only difference is coin b is zero.
+   This method is similar to the previous method. The only difference is coin_b is zero.
 
 ```rust
 
@@ -520,9 +520,9 @@ public entry fun open_position_with_liquidity_only_a<CoinTypeA, CoinTypeB>(
 
 ```
 
-3. Open position with liquidity only b.
+3. Open position with liquidity only coin_b.
 
-   This method is similar to the previous method. The only difference is coin b is zero.
+   This method is similar to the previous method. The only difference is coin_a is zero.
 
 ```rust
 
@@ -585,7 +585,7 @@ public entry fun add_liquidity_with_all<CoinTypeA, CoinTypeB>(
 
 ```
 
-5. Add liquidity only a.
+5. Add liquidity only coin_a.
 
 ```rust
 
@@ -611,7 +611,7 @@ public entry fun add_liquidity_only_a<CoinTypeA, CoinTypeB>(
 
 ```
 
-6. Add liquidity only b.
+6. Add liquidity only coin_b.
 
 ```rust
 
@@ -767,9 +767,37 @@ public entry fun collect_reward<CoinTypeA, CoinTypeB, CoinTypeC>(
     }
 ```
 
+12. Repay add liquidity
+
+```rust
+
+fun repay_add_liquidity<CoinTypeA, CoinTypeB>(
+    config: &GlobalConfig,
+    pool: &mut Pool<CoinTypeA, CoinTypeB>,
+    receipt: AddLiquidityReceipt<CoinTypeA, CoinTypeB>,
+    coins_a: vector<Coin<CoinTypeA>>,
+    coins_b: vector<Coin<CoinTypeB>>,
+    amount_limit_a: u64,
+    amount_limit_b: u64,
+    ctx: &mut TxContext
+) {
+    let (amount_need_a, amount_need_b) = pool::add_liquidity_pay_amount(&receipt);
+
+    // let (balance_a, balance_b) = (
+    //     coin::into_balance(coin::split(&mut coin_a, amount_need_a, ctx)),
+    //     coin::into_balance(coin::split(&mut coin_b, amount_need_b, ctx)),
+    // );
+
+    pool::repay_add_liquidity(config, pool, balance_a, balance_b, receipt);
+
+    // ...
+
+}
+```
+
 ### Pool related operations
 
-this swap and swap with partner, you need to implement by yourself, here is the example.
+This swap and swap with partner, you need to implement by yourself, here is the example.
 
 ```rust
 
@@ -1012,36 +1040,7 @@ public entry fun swap_b2a_with_partner<CoinTypeA, CoinTypeB>(
 
 ```
 
-5. Repay add liquidity
-
-```rust
-
-fun repay_add_liquidity<CoinTypeA, CoinTypeB>(
-    config: &GlobalConfig,
-    pool: &mut Pool<CoinTypeA, CoinTypeB>,
-    receipt: AddLiquidityReceipt<CoinTypeA, CoinTypeB>,
-    coins_a: vector<Coin<CoinTypeA>>,
-    coins_b: vector<Coin<CoinTypeB>>,
-    amount_limit_a: u64,
-    amount_limit_b: u64,
-    ctx: &mut TxContext
-) {
-    let (amount_need_a, amount_need_b) = pool::add_liquidity_pay_amount(&receipt);
-
-    // let (balance_a, balance_b) = (
-    //     coin::into_balance(coin::split(&mut coin_a, amount_need_a, ctx)),
-    //     coin::into_balance(coin::split(&mut coin_b, amount_need_b, ctx)),
-    // );
-
-    pool::repay_add_liquidity(config, pool, balance_a, balance_b, receipt);
-
-    // ...
-
-}
-
-```
-
-6. Pre swap
+5. Pre swap
    clmmpool/sources/pool
 
 ```rust
@@ -1076,4 +1075,32 @@ public fun calculate_swap_result<CoinTypeA, CoinTypeB>(
     amount: u64,
 ): CalculatedSwapResult {}
 
+```
+
+### Pool Creation
+
+For general pool creation, use the `create_pool_v2` function in the `pool_creator` module.
+
+Note that the coin amount must be exactly what you want to deposit. For example, if `fix_amount_a` is true, the amount of coin A must match the exact amount you want to add.
+
+```rust
+
+public fun create_pool_v2<CoinTypeA, CoinTypeB>(
+        _config: &GlobalConfig,
+        _pools: &mut Pools,
+        _tick_spacing: u32,
+        _initialize_price: u128,
+        _url: String,
+        _tick_lower_idx: u32,
+        _tick_upper_idx: u32,
+        _coin_a: Coin<CoinTypeA>,
+        _coin_b: Coin<CoinTypeB>,
+        _metadata_a: &CoinMetadata<CoinTypeA>,
+        _metadata_b: &CoinMetadata<CoinTypeB>,
+        _fix_amount_a: bool,
+        _clock: &Clock,
+        _ctx: &mut TxContext
+    ):  (Position, Coin<CoinTypeA>, Coin<CoinTypeB>) {
+        abort 0
+    }
 ```
