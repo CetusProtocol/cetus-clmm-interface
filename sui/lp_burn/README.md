@@ -124,7 +124,7 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
    RewarderGlobalVault(clmm): 0xce7bceef26d3ad1f6d9b6f13a953f053e6ed3ca77907516481ce99ae8e588f2b
    ```
 
-2. Testmet
+2. Testnet
 
    ```text
    BurnManager: 0xd04529ef15b7dad6699ee905daca0698858cab49724b2b2a1fc6b1ebc5e474ef
