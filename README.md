@@ -43,7 +43,7 @@
   | Contract       | Latest published at address                                        |
   | -------------- | ------------------------------------------------------------------ |
   | cetus_clmm     | 0xf3f49b91b82441ad017addff46d6d9a5867a755a86fb2374067fec19d6cc82c2 |
-  | lp_burn        | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a |
+  | lp_burn        | 0x63f7b16b3d828d8cc34ab49bb9b7da0432b06c925701fa07360388aef2dce83b |
   | dca            | 0xacd0ab94883a8785c5258388618b6252f0c2e9384b23f91fc23f6c8ef44d445c |
   | limitorder     | 0xc65bc51d2bc2fdbce8c701f8d812da80fb37dba9cdf97ce38f60ab18c5202b17 |
   | stable_farming | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e |
