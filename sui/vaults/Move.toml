@@ -1,0 +1,12 @@
+[package]
+name = "vaults"
+version = "v1.0.0"
+published-at = "0x325b7d67276ff809df6b3fa17a2a6fbff6aaa20e467c3cf74d1a1d09b8890bbd"
+
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
+StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "testnet-v1.24.0" }
+
+[addresses]
+vaults = "0x325b7d67276ff809df6b3fa17a2a6fbff6aaa20e467c3cf74d1a1d09b8890bbd"
