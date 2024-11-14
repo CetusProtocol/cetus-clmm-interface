@@ -245,6 +245,10 @@ module cetus_clmm::factory {
         abort 0
     }
 
+    public fun is_right_order<CoinTypeA, CoinTypeB>(): bool{
+        abort 0
+    }
+
     #[test_only]
     use move_stl::linked_table;
     #[test_only]

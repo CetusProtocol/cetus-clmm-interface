@@ -99,19 +99,19 @@ public entry fun create_pool_v2<CoinTypeA, CoinTypeB>(
 
 In these two methods, you can use the fix_amount_a parameter to control which coin amount remains fixed:
 
-If fix_amount_a is true: The amount of coin_a will be fixed. You should provide the exact amount of coin_a you want to deposit, and the required amount of coin_b will be calculated automatically.
-If fix_amount_a is false: The amount of coin_b will be fixed. You should provide the exact amount of coin_b you want to deposit, and the required amount of coin_a will be calculated automatically.
+If `fix_amount_a` is true: The amount of coin_a will be fixed. You should provide the exact amount of coin_a you want to deposit, and the required amount of coin_b will be calculated automatically.
+If `fix_amount_a` is false: The amount of coin_b will be fixed. You should provide the exact amount of coin_b you want to deposit, and the required amount of coin_a will be calculated automatically.
 
-To prevent unauthorized pool creation, the protocol implements a PoolCreationCap mechanism for coin issuers. Here's how it works:
+In some situations, coin issuers may want to reclaim the capability to create pools, so the protocol implements a `PoolCreationCap` mechanism for coin issuers. Here's how it works:
 Prerequisites:
 
-- You must hold the TreasuryCap of the coin
-- The TreasuryCap must not be frozen
-- Only one PoolCreationCap can be minted per coin
+- You must hold the `TreasuryCap` of the coin
+- The `TreasuryCap` must not be frozen
+- Only one `PoolCreationCap` can be minted per coin
 
 Steps to create a restricted pool:
 
-1. Mint a PoolCreationCap using your coin's TreasuryCap
+1. Mint a `PoolCreationCap` using your coin's `TreasuryCap`
 
 2. Register a pool by specifying: **Quote coin** and **Tick spacing**.
 
