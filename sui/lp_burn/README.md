@@ -7,7 +7,7 @@ The primary functionality of this project, nominally referred to as "LP Burn," i
 | Tag of Repo     | Network | Latest published at address                                        | Package ID                                                         |
 | --------------- | ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | mainnet-v1.24.0 | mainnet | 0xb92ae17938cde6d856ee39c686d4cfb968c94155e59e24520fbf60de38ebcd21 | 0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27 |
-| testnet-v1.24.0 | testnet | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a |
+| testnet-v1.24.0 | testnet | 0x63f7b16b3d828d8cc34ab49bb9b7da0432b06c925701fa07360388aef2dce83b | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a |
 
 eg:
 
