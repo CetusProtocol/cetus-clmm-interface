@@ -158,9 +158,9 @@ The Cetus CLMM core contract will undergo a mandatory upgrade in the near future
 Previous versions of the contract will be deprecated and no longer accessible
 All dependent protocols will require updates, including:
 
-- Vaults
-- StableFarming
-- LPBurn
+- [Vaults](sui/vaults/)
+- [StableFarming](sui/stable_farming/)
+- [LPBurn](sui/lp_burn/)
 - Aggregator
 - Integrate
 
