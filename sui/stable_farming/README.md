@@ -7,8 +7,22 @@ The allocation of a single pool rewarder to staked clmm positions is determined 
 
 | Tag of Repo     | Network | Latest published at address                                        | Package ID                                                         |
 | --------------- | ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| mainnet-v1.23.1 | mainnet | 0xd817d90368dafcbf3b051e96546dea6209bffad23289d66025beef80354dcd6b | 0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526 |
-| testnet-v1.23.1 | testnet | 0xc4c250fa155fb27668650fd96aeaade6a3e7c669395f147b05747a5d9eb35795 | 0xfa0d98e99c1dbdbea1b0fe089fa93ebab40a7719ae4160c42cc78ebfe029fda0 |
+| mainnet-v1.24.0 | mainnet | 0x585381670c3d7c1f78caeb6c803f449442659743f4047a01b942da08bbfa19f6 | 0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526 |
+| testnet-v1.24.0 | testnet | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e |
+
+eg:
+
+mainnet:
+
+```
+StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.24.0", override = true }
+```
+
+testnet:
+
+```
+StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "testnet-v1.24.0", override = true }
+```
 
 ## 1. Key Structures
 
@@ -336,8 +350,4 @@ public fun deposit(
     clk: &Clock,
     ctx: &mut TxContext
 ): WrappedPositionNFT
-```
-
-```
-
 ```
