@@ -47,6 +47,10 @@ The Cetus Limit Order seamlessly integrates all core functionalities of the Limi
 
 The Cetus DCA integrates all core functionalities of the DCA interface. For more detailed information, please refer to the DCA README document. [DCA README Document](./sui/dca/README.md)
 
+### Vault
+
+The Cetus vaults integrates all core functionalities of the vaults interface. For more detailed information, please refer to the Vaults README document. [Vault README Document](./sui/vaults/README.md)
+
 ## How to migrate to the latest version?
 
 ### Why need to migrate?
