@@ -18,42 +18,42 @@ VeNFT is used for holding the xCetus.
 
 1. XCetus
 
-| Tag of Repo | Network | Latest published at address                                        |
-| ----------- | ------- | ------------------------------------------------------------------ |
-| mainnet     | mainnet | 0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606 |
-| testnet     | testnet | 0xdebaab6b851fd3414c0a62dbdf8eb752d6b0d31f5cfce5e38541bc6c6daa8966 |
+| Tag of Repo     | Network | Latest published at address                                        |
+| --------------- | ------- | ------------------------------------------------------------------ |
+| mainnet-v1.24.0 | mainnet | 0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606 |
+| testnet-v1.24.0 | testnet | 0xdebaab6b851fd3414c0a62dbdf8eb752d6b0d31f5cfce5e38541bc6c6daa8966 |
 
 eg:
 
 mainnet:
 
 ```
-xcetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "mainnet" }
+xcetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "mainnet-v1.24.0" }
 ```
 
 testnet:
 
 ```
-xcetus = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/token/xcetus", rev = "testnet" }
+xcetus = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/token/xcetus", rev = "testnet-v1.24.0" }
 ```
 
 2. Dividend
 
-| Tag of Repo | Network | Latest published at address                                        |
-| ----------- | ------- | ------------------------------------------------------------------ |
-| mainnet     | mainnet | 0xcec352932edc6663a118e8d64ed54da6b8107e8719603bf728f80717592cd9e8 |
-| testnet     | testnet | 0x20d948d640edd0c749f533d41efc5f843f212d441220324ad7959c6e1d281828 |
+| Tag of Repo     | Network | Latest published at address                                        |
+| --------------- | ------- | ------------------------------------------------------------------ |
+| mainnet-v1.24.0 | mainnet | 0xcec352932edc6663a118e8d64ed54da6b8107e8719603bf728f80717592cd9e8 |
+| testnet-v1.24.0 | testnet | 0x20d948d640edd0c749f533d41efc5f843f212d441220324ad7959c6e1d281828 |
 
 eg:
 
 mainnet:
 
 ```
-dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "mainnet" }
+dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "mainnet-v1.24.0" }
 ```
 
 testnet:
 
 ```
-dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "testnet" }
+dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "testnet-v1.24.0" }
 ```

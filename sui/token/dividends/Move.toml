@@ -1,7 +1,7 @@
 [package]
 name = "Dividends"
 version = "1.0.3"
-published-at = "0x5aa58e1623885bd93de2331d05c29bf4930e54e56beeabcab8fe5385de2d31dc"
+published-at = "0x20d948d640edd0c749f533d41efc5f843f212d441220324ad7959c6e1d281828"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
@@ -10,4 +10,4 @@ Xcetus = { local = "../xcetus" }
 
 
 [addresses]
-dividends = "0x785248249ac457dfd378bdc6d2fbbfec9d1daf65e9d728b820eb4888c8da2c10"
+dividends = "0x20d948d640edd0c749f533d41efc5f843f212d441220324ad7959c6e1d281828"

@@ -14,23 +14,23 @@ The Cetus DCA Interface is designed to facilitate developers who wish to integra
 
 ### Tags corresponding to different networks
 
-| Network | Latest published at address                                        |
-| ------- | ------------------------------------------------------------------ |
-| mainnet | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
-| testnet | 0x484d2be08b58b8dc00a08c0ff8a2a9cd0542c4249ea2d5934ef9b15a10585d88 |
+| Tag of Repo     | Network | Latest published at address                                        |
+| --------------- | ------- | ------------------------------------------------------------------ |
+| mainnet-v1.24.0 | mainnet | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
+| testnet-v1.24.0 | testnet | 0x484d2be08b58b8dc00a08c0ff8a2a9cd0542c4249ea2d5934ef9b15a10585d88 |
 
 eg:
 
 mainnet:
 
 ```
-CetusDCA = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/dca", rev = "mainnet", override = true }
+CetusDCA = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/dca", rev = "mainnet-v1.24.0", override = true }
 ```
 
 testnet:
 
 ```
-CetusDCA = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/dca", rev = "testnet", override = true }
+CetusDCA = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/dca", rev = "testnet-v1.24.0", override = true }
 ```
 
 ## Usage

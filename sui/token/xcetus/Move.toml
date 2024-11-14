@@ -1,7 +1,7 @@
 [package]
 name = "Xcetus"
 version = "1.0.0"
-published-at = "0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606"
+published-at = "0xdebaab6b851fd3414c0a62dbdf8eb752d6b0d31f5cfce5e38541bc6c6daa8966"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
@@ -9,4 +9,4 @@ MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui
 Cetus = { local = "../cetus" }
 
 [addresses]
-xcetus = "0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606"
+xcetus = "0xdebaab6b851fd3414c0a62dbdf8eb752d6b0d31f5cfce5e38541bc6c6daa8966"

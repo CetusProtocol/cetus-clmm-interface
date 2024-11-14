@@ -25,11 +25,15 @@
 
 ### CLMM Interface
 
-The Cetus CLMM Interface provider all core features function interface of CLMM, allowing users to easily connect with CLMM by contract. For more detailed information, please refer to the CLMM README document. [CLMM README Document](./sui/clmmpool/README.md)
+The Cetus CLMM Interface provider all core features function interface of CLMM, allowing users to easily connect with CLMM by contract. For more detailed information, please refer to the CLMM README document. [CLMM README Document](./sui/cetus_clmm/README.md)
+
+### LP Burn
+
+The Cetus LP Burn integrate all core lp burn interface of Stable Farming, For more detailed information, please refer to the Stable Farming README document. [Stable Farming README Document](./sui/lp_burn/README.md)
 
 ### Stable Farming
 
-The Cetus Stable Farming integrate all core features function interface of Stable Farming, For more detailed information, please refer to the Stable Farming README document. [Stable Farming README Document](./sui/stable-farming/README.md)
+The Cetus Stable Farming integrate all core features function interface of Stable Farming, For more detailed information, please refer to the Stable Farming README document. [Stable Farming README Document](./sui/stable_farming/README.md)
 
 ### Token
 
@@ -38,6 +42,10 @@ The Cetus Token Interface integrates cetus, xcetus, dividends. For more detailed
 ### Limit Order
 
 The Cetus Limit Order seamlessly integrates all core functionalities of the Limit Order interface. For more detailed information, please refer to the Limit Order README document. [Limit Order README Document](./sui/limitorder/README.md)
+
+### DCA
+
+The Cetus DCA integrates all core functionalities of the DCA interface. For more detailed information, please refer to the DCA README document. [DCA README Document](./sui/dca/README.md)
 
 # More About Cetus
 

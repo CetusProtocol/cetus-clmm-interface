@@ -11,7 +11,6 @@ module lp_burn::lp_burn {
     use cetus_clmm::position::Position;
     use cetus_clmm::rewarder::RewarderGlobalVault;
 
-
     // === Structs ===
     public  struct AdminCap has key, store {
         id: UID,
@@ -19,7 +18,7 @@ module lp_burn::lp_burn {
 
     public struct LP_BURN has drop {}
 
-
+    /// Manager for burning LP. 
     public struct BurnManager has key {
         id: UID,
         position: Table<ID, Table<ID, BurnedPositionInfo>>,
@@ -27,6 +26,7 @@ module lp_burn::lp_burn {
         package_version: u64
     }
 
+    /// Proof of burning LP.
     public struct CetusLPBurnProof has key, store {
         id: UID,
         name: String,
@@ -35,6 +35,7 @@ module lp_burn::lp_burn {
         position: Position
     }
 
+    /// Information of burned position.
     public struct BurnedPositionInfo has store {
         burned_position_id: ID,
         position_id: ID,
@@ -52,6 +53,7 @@ module lp_burn::lp_burn {
         cap_id: ID,
     }
 
+    // Burn position
     public fun burn_lp<A,B>(
         _manager: &mut BurnManager,
         _pool: &Pool<A,B>,
@@ -61,10 +63,12 @@ module lp_burn::lp_burn {
       abort 0
     }
 
+    // Burn position
     public entry fun burn<A,B>(_manager: &mut BurnManager, _pool: &Pool<A,B>, _position: Position, _ctx: &mut TxContext) {
        abort 0
     }
 
+    // Position owner collect fee
     public fun collect_fee<CoinTypeA, CoinTypeB>(
         _m: &BurnManager,
         _config: &GlobalConfig,
@@ -75,6 +79,7 @@ module lp_burn::lp_burn {
         abort 0
     }
 
+    // Position owner collect fee
     public fun collect_reward<CoinTypeA, CoinTypeB, CoinTypeC>(
         _m: &BurnManager,
         _config: &GlobalConfig,
@@ -95,4 +100,3 @@ module lp_burn::lp_burn {
         abort 0
     }
 }
-
