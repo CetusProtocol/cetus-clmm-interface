@@ -23,6 +23,34 @@
 
 ## Projects
 
+### Latest Published At Table
+
+- **Mainnet**
+
+  | Contract       | Latest published at address                                        |
+  | -------------- | ------------------------------------------------------------------ |
+  | cetus_clmm     | 0x157468379cfe5616c063ae39a889dd184ad48350d3e08f8d9b4ade22b8e3fb61 |
+  | lp_burn        | 0xb92ae17938cde6d856ee39c686d4cfb968c94155e59e24520fbf60de38ebcd21 |
+  | dca            | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
+  | limitorder     | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
+  | stable_farming | 0x585381670c3d7c1f78caeb6c803f449442659743f4047a01b942da08bbfa19f6 |
+  | xcetus         | 0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606 |
+  | dividends      | 0xcec352932edc6663a118e8d64ed54da6b8107e8719603bf728f80717592cd9e8 |
+  | vaults         | 0x1ed1fef522ccea98a4fbd954543d5019238ec89282fbdea9a753e0a17e96fc28 |
+
+- **Testnet**
+
+  | Contract       | Latest published at address                                        |
+  | -------------- | ------------------------------------------------------------------ |
+  | cetus_clmm     | 0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12 |
+  | lp_burn        | 0xb92ae17938cde6d856ee39c686d4cfb968c94155e59e24520fbf60de38ebcd21 |
+  | dca            | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
+  | limitorder     | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
+  | stable_farming | 0x585381670c3d7c1f78caeb6c803f449442659743f4047a01b942da08bbfa19f6 |
+  | xcetus         | 0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606 |
+  | dividends      | 0xcec352932edc6663a118e8d64ed54da6b8107e8719603bf728f80717592cd9e8 |
+  | vaults         | 0x1ed1fef522ccea98a4fbd954543d5019238ec89282fbdea9a753e0a17e96fc28 |
+
 ### CLMM Interface
 
 The Cetus CLMM Interface provider all core features function interface of CLMM, allowing users to easily connect with CLMM by contract. For more detailed information, please refer to the CLMM README document. [CLMM README Document](./sui/cetus_clmm/README.md)
@@ -47,15 +75,15 @@ The Cetus Limit Order seamlessly integrates all core functionalities of the Limi
 
 The Cetus DCA integrates all core functionalities of the DCA interface. For more detailed information, please refer to the DCA README document. [DCA README Document](./sui/dca/README.md)
 
-### Vault
+### Vaults
 
-The Cetus vaults integrates all core functionalities of the vaults interface. For more detailed information, please refer to the Vaults README document. [Vault README Document](./sui/vaults/README.md)
+The Cetus vaults integrates all core functionalities of the vaults interface. For more detailed information, please refer to the Vaults README document. [Vaults README Document](./sui/vaults/README.md)
 
 ## How to migrate to the latest version?
 
 ### Why need to migrate?
 
-Cetus will soon enforce an update to the new CLMM contract, which will disable the old version of the CLMM contract. The following contracts will need to be updated simultaneously:
+Cetus has already updated to the new CLMM contract and will disable the old version of the CLMM contract. The following contracts will need to be updated simultaneously:
 integrate, stable farming, vault, aggregator, lp burn.
 
 ### Clmm contract update details
