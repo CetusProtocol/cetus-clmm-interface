@@ -10,6 +10,25 @@ As tokens are added to the respective positions, LP (Liquidity Provider) tokens 
 
 These LP tokens serve as a representation of the individual's share of liquidity within Vaults.
 
+## Tags corresponding to different networks
+
+| Tag of Repo     | Network | Latest published at address                                        |
+| --------------- | ------- | ------------------------------------------------------------------ |
+| mainnet-v1.24.0 | mainnet | 0x1ed1fef522ccea98a4fbd954543d5019238ec89282fbdea9a753e0a17e96fc28 |
+| testnet-v1.24.0 | testnet | 0x325b7d67276ff809df6b3fa17a2a6fbff6aaa20e467c3cf74d1a1d09b8890bbd |
+
+mainnet:
+
+```
+vaults = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/vaults", rev = "mainnet-v1.24.0", override = true  }
+```
+
+testnet:
+
+```
+vaults = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/vaults", rev = "testnet-v1.24.0", override = true  }
+```
+
 ### How to calculate LP amount when deposit
 
 ```
@@ -47,15 +66,15 @@ the_liquidity_give_to_user = total_liqudity_in_vault_position * the_lp_amount_us
 
 1. collect clmm rewarders
 2. harvest farms rewarders
-1. remove all liquidity and collect fee, close position from farms `close_position` instruction
-2. open position and deposit into farms pool
-3. use `rebalance` to add liquidity into farms pool
-4. use `finish_rebalance` to rebalance and add liquidity to farms pool; this operation can do multiple times if need,
+3. remove all liquidity and collect fee, close position from farms `close_position` instruction
+4. open position and deposit into farms pool
+5. use `rebalance` to add liquidity into farms pool
+6. use `finish_rebalance` to rebalance and add liquidity to farms pool; this operation can do multiple times if need,
    and the last time should set `is_finish` is true to finish rebalance
 
-
 ## ChangeLog
+
 1. Fix bug
-Tue, 11 Jun 2024 18:28:08 +0800
+   Tue, 11 Jun 2024 18:28:08 +0800
 
 call collect_fee before deposit and remove.
