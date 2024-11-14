@@ -28,21 +28,13 @@ eg:
 mainnet:
 
 ```
-<<<<<<< HEAD
 xcetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "mainnet-v1.24.0" }
-=======
-Xcetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "mainnet" }
->>>>>>> origin
 ```
 
 testnet:
 
 ```
-<<<<<<< HEAD
 xcetus = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/token/xcetus", rev = "testnet-v1.24.0" }
-=======
-Xcetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "testnet" }
->>>>>>> origin
 ```
 
 2. Dividend
@@ -57,19 +49,11 @@ eg:
 mainnet:
 
 ```
-<<<<<<< HEAD
 dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "mainnet-v1.24.0" }
-=======
-Dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "mainnet" }
->>>>>>> origin
 ```
 
 testnet:
 
 ```
-<<<<<<< HEAD
 dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "testnet-v1.24.0" }
-=======
-Dividend = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/dividend", rev = "testnet" }
->>>>>>> origin
 ```
