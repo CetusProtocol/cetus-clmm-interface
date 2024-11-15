@@ -35,7 +35,7 @@ LimitOrder = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git"
 
 ## Usage
 
-Cetus limitorder interface is not complete(just have function defination), so it will fails when sui clien check the code version. However, this does not affect its actual functionality. Therefore, we need to add a `--dependencies-are-root` during the build.
+Cetus limitorder interface is not complete(just have function definition), so it will fails when sui client check the code version. However, this does not affect its actual functionality. Therefore, we need to add a `--dependencies-are-root` during the build.
 
 ```bash
 sui move build --dependencies-are-root && sui client publish --dependencies-are-root
@@ -184,11 +184,11 @@ Users can quickly find orders created by a specific owner through the order inde
 2. rate calculation formula
 
    ```
-   percision = 10 ^ 18
+   precision = 10 ^ 18
    ```
 
    ```
-   rate = (pay amount * percision) / target amount
+   rate = (pay amount * precision) / target amount
    ```
 
 3. explanation of the formula:

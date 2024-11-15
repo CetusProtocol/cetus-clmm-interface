@@ -8,7 +8,7 @@ CETUS is the main token of the Cetus Protocol, while xCETUS is the Cetus escrowe
 
 Details: https://cetus-1.gitbook.io/cetus-docs/tokenomics/cetus
 
-Dividends is the protocol to manage bonus about xcetus. User can use reedeem_v2 to collect multi bonus.
+Dividends is the protocol to manage bonus about xcetus. User can use redeem_v2 to collect multi bonus.
 
 ### VeNFT
 

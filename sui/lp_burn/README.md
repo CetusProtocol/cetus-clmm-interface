@@ -73,7 +73,7 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
    ```
 
 2. Burn.
-   The entry function to burn positon, it will auto transfer `CetusLPBurnProof` to tx sender.
+   The entry function to burn position, it will auto transfer `CetusLPBurnProof` to tx sender.
 
    ```move
    public entry fun burn<A,B>(

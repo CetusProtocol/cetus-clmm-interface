@@ -115,7 +115,7 @@ struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
     fee_growth_global_a: u128,
     fee_growth_global_b: u128,
 
-    /// The amounts of coin a,b owend to protocol
+    /// The amounts of coin a,b owned to protocol
     fee_protocol_coin_a: u64,
     fee_protocol_coin_b: u64,
 

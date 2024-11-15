@@ -2,7 +2,7 @@
 
 ## What is Cetus DCA ?
 
-Cetus DAC(Dollar Cost Averaging) can help users achieve the goal of purchasing a specific token at fixed intervals with a fixed amount, regardless of how the market price fluctuates.
+Cetus DCA(Dollar Cost Averaging) can help users achieve the goal of purchasing a specific token at fixed intervals with a fixed amount, regardless of how the market price fluctuates.
 
 ## What is Cetus DCA Interface ?
 
@@ -35,7 +35,7 @@ CetusDCA = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", 
 
 ## Usage
 
-Cetus DCA interface is not complete(just have function defination), so it will fails when sui clien check the code version. However, this does not affect its actual functionality. Therefore, we need to add a `--dependencies-are-root` during the build.
+Cetus DCA interface is not complete(just have function definition), so it will fails when sui client check the code version. However, this does not affect its actual functionality. Therefore, we need to add a `--dependencies-are-root` during the build.
 
 ```bash
 sui move build --dependencies-are-root && sui client publish --dependencies-are-root
