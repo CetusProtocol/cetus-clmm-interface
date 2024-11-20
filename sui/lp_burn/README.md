@@ -5,22 +5,22 @@ The primary functionality of this project, nominally referred to as "LP Burn," i
 ## Tags corresponding to different networks
 
 | Tag of Repo     | Network | Latest published at address                                        | Package ID                                                         |
-| --------------- | ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| mainnet-v1.24.0 | mainnet | 0xb92ae17938cde6d856ee39c686d4cfb968c94155e59e24520fbf60de38ebcd21 | 0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27 |
-| testnet-v1.24.0 | testnet | 0x63f7b16b3d828d8cc34ab49bb9b7da0432b06c925701fa07360388aef2dce83b | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a |
+|-----------------| ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| mainnet-v1.25.0 | mainnet | 0xb977b00649d3ab8950bcbbafb01fcf32e2e7718eb3133eff2e48c0cef04b1495 | 0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27 |
+| testnet-v1.25.0 | testnet | 0xaf89f8215c5b07eaac8b77c7745ce62f94cb76ef4bcb854e283f644c519ef43e | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a |
 
 eg:
 
 mainnet:
 
 ```
-LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "mainnet-v1.24.0", override = true }
+LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "mainnet-v1.25.0", override = true }
 ```
 
 testnet:
 
 ```
-LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "testnet-v1.24.0", override = true }
+LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "testnet-v1.25.0", override = true }
 ```
 
 ## 1. Key Structures
@@ -120,7 +120,7 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
 
    ```text
    BurnManager: 0x1d94aa32518d0cb00f9de6ed60d450c9a2090761f326752ffad06b2e9404f845
-   GlobalConfig(clmm): 0xce7bceef26d3ad1f6d9b6f13a953f053e6ed3ca77907516481ce99ae8e588f2b
+   GlobalConfig(clmm): 0xdaa46292632c3c4d8f31f23ea0f9b36a28ff3677e9684980e4438403a67a3d8f
    RewarderGlobalVault(clmm): 0xce7bceef26d3ad1f6d9b6f13a953f053e6ed3ca77907516481ce99ae8e588f2b
    ```
 

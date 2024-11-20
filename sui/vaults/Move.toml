@@ -1,7 +1,7 @@
 [package]
 name = "vaults"
 version = "v1.0.0"
-published-at = "0x1ed1fef522ccea98a4fbd954543d5019238ec89282fbdea9a753e0a17e96fc28"
+published-at = "0x58e5de6e425397eeaf952d55c0f94637bee91b25d6138ce222f89cda0aefec03"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }

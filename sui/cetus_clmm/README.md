@@ -20,22 +20,22 @@ This section shows how to construct and execute a trade or liquidity operation o
 ## Tags corresponding to different networks
 
 | Tag of Repo     | Network | Latest published at address                                        |
-| --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.24.0 | mainnet | 0x157468379cfe5616c063ae39a889dd184ad48350d3e08f8d9b4ade22b8e3fb61 |
-| testnet-v1.24.0 | testnet | 0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12 |
+|-----------------| ------- |--------------------------------------------------------------------|
+| mainnet-v1.25.0 | mainnet | 0xdc67d6de3f00051c505da10d8f6fbab3b3ec21ec65f0dc22a2f36c13fc102110 |
+| testnet-v1.25.0 | testnet | 0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12 |
 
 eg:
 
 mainnet:
 
 ```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.24.0" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.25.0" }
 ```
 
 testnet:
 
 ```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "testnet-v1.24.0" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "testnet-v1.25.0" }
 ```
 
 ## Usage
