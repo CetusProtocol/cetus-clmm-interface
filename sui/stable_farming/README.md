@@ -5,23 +5,23 @@ The allocation of a single pool rewarder to staked clmm positions is determined 
 
 ## Tags corresponding to different networks
 
-| Tag of Repo     | Network | Latest published at address                                        | Package ID                                                         |
-| --------------- | ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| mainnet-v1.24.0 | mainnet | 0x585381670c3d7c1f78caeb6c803f449442659743f4047a01b942da08bbfa19f6 | 0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526 |
-| testnet-v1.24.0 | testnet | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e |
+| Tag of Repo     | Network | Latest published at address                                         | Package ID                                                         |
+|-----------------| ------- |---------------------------------------------------------------------| ------------------------------------------------------------------ |
+| mainnet-v1.25.0 | mainnet | 0x7e4ca066f06a1132ab0499c8c0b87f847a0d90684afa902e52501a44dbd81992  | 0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526 |
+| testnet-v1.25.0 | testnet | 0x3c4582ee27a09f7e6c091022d0d279fdc8e54c1f782916bf135a71a8e8006aa5  | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e |
 
 eg:
 
 mainnet:
 
 ```
-StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.24.0", override = true }
+StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.25.0", override = true }
 ```
 
 testnet:
 
 ```
-StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "testnet-v1.24.0", override = true }
+StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "testnet-v1.25.0", override = true }
 ```
 
 ## 1. Key Structures
@@ -259,19 +259,19 @@ router.move: All Entry functions
 1. Testnet
 
    ```text
-   package_id: 0xfa0d98e99c1dbdbea1b0fe089fa93ebab40a7719ae4160c42cc78ebfe029fda0
-   published_at: 0xfa0d98e99c1dbdbea1b0fe089fa93ebab40a7719ae4160c42cc78ebfe029fda0
+   package_id: 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e
+   published_at: 0x3c4582ee27a09f7e6c091022d0d279fdc8e54c1f782916bf135a71a8e8006aa5
 
-   RewardManager: 0xe789e092dbd9dceadbe89350c4761a6f2e11647aab97f09746a01b151926cc0e
-   GlobalConfig: 0x5082c7a5ee9a758025d7b0a5e8aa08b56625c7cd535b8909d2b7993991e229cc
-   CLmmGlobalConfig: 0x6f4149091a5aea0e818e7243a13adcfb403842d670b9a2089de058512620687a
+   RewardManager: 0x960c7800e301fd1e47b79037927b426db57b643bd2934f7069d81c2dae092230
+   GlobalConfig: 0x499132a4baf342a0fe9528a3666a77b2aece3be129f4a3ada469fef4b9c34fb4
+   CLmmGlobalConfig: 0x9774e359588ead122af1c7e7f64e14ade261cfeecdb5d0eb4a5b3b4c8ab8bd3e
    ```
 
 2. Mainnet
 
    ```text
    package_id: 0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526
-   published_at: 0x3406db78ff4a6175ca01c443fa28a3ea5eed6f74a363020d445a8d34b797c662
+   published_at: 0x7e4ca066f06a1132ab0499c8c0b87f847a0d90684afa902e52501a44dbd81992
 
    RewardManager: 0xe0e155a88c77025056da08db5b1701a91b79edb6167462f768e387c3ed6614d5
    GlobalConfig: 0x21215f2f6de04b57dd87d9be7bb4e15499aec935e36078e2488f36436d64996e

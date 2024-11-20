@@ -12,21 +12,21 @@ These LP tokens serve as a representation of the individual's share of liquidity
 
 ## Tags corresponding to different networks
 
-| Tag of Repo     | Network | Latest published at address                                        |
-| --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.24.0 | mainnet | 0x1ed1fef522ccea98a4fbd954543d5019238ec89282fbdea9a753e0a17e96fc28 |
-| testnet-v1.24.0 | testnet | 0x325b7d67276ff809df6b3fa17a2a6fbff6aaa20e467c3cf74d1a1d09b8890bbd |
+| Tag of Repo     | Network | Latest published at address                                         |
+|-----------------| ------- |---------------------------------------------------------------------|
+| mainnet-v1.25.0 | mainnet | 0x58e5de6e425397eeaf952d55c0f94637bee91b25d6138ce222f89cda0aefec03  |
+| testnet-v1.25.0 | testnet | 0x04df17a109336491867f04df40ca8a77277bc6e382139e88ae0d0d267ac07905  |
 
 mainnet:
 
 ```
-vaults = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/vaults", rev = "mainnet-v1.24.0", override = true  }
+vaults = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/vaults", rev = "mainnet-v1.25.0", override = true  }
 ```
 
 testnet:
 
 ```
-vaults = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/vaults", rev = "testnet-v1.24.0", override = true  }
+vaults = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/vaults", rev = "testnet-v1.25.0", override = true  }
 ```
 
 ### How to calculate LP amount when deposit

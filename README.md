@@ -28,28 +28,28 @@
 - **Mainnet**
 
   | Contract       | Latest published at address                                        |
-  | -------------- | ------------------------------------------------------------------ |
-  | cetus_clmm     | 0x157468379cfe5616c063ae39a889dd184ad48350d3e08f8d9b4ade22b8e3fb61 |
-  | lp_burn        | 0xb92ae17938cde6d856ee39c686d4cfb968c94155e59e24520fbf60de38ebcd21 |
+    | -------------- |--------------------------------------------------------------------|
+  | cetus_clmm     | 0xdc67d6de3f00051c505da10d8f6fbab3b3ec21ec65f0dc22a2f36c13fc102110 |
+  | lp_burn        | 0xb977b00649d3ab8950bcbbafb01fcf32e2e7718eb3133eff2e48c0cef04b1495 |
   | dca            | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
   | limitorder     | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
-  | stable_farming | 0x585381670c3d7c1f78caeb6c803f449442659743f4047a01b942da08bbfa19f6 |
+  | stable_farming | 0x7e4ca066f06a1132ab0499c8c0b87f847a0d90684afa902e52501a44dbd81992 |
   | xcetus         | 0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606 |
   | dividends      | 0xcec352932edc6663a118e8d64ed54da6b8107e8719603bf728f80717592cd9e8 |
-  | vaults         | 0x1ed1fef522ccea98a4fbd954543d5019238ec89282fbdea9a753e0a17e96fc28 |
+  | vaults         | 0x58e5de6e425397eeaf952d55c0f94637bee91b25d6138ce222f89cda0aefec03 |
 
 - **Testnet**
 
   | Contract       | Latest published at address                                        |
-  | -------------- | ------------------------------------------------------------------ |
-  | cetus_clmm     | 0xf3f49b91b82441ad017addff46d6d9a5867a755a86fb2374067fec19d6cc82c2 |
-  | lp_burn        | 0x63f7b16b3d828d8cc34ab49bb9b7da0432b06c925701fa07360388aef2dce83b |
+    | -------------- |--------------------------------------------------------------------|
+  | cetus_clmm     | 0x85e61285a10efc6602ab00df70a0c06357c384ef4c5633ecf73016df1500c704 |
+  | lp_burn        | 0xaf89f8215c5b07eaac8b77c7745ce62f94cb76ef4bcb854e283f644c519ef43e |
   | dca            | 0xacd0ab94883a8785c5258388618b6252f0c2e9384b23f91fc23f6c8ef44d445c |
   | limitorder     | 0xc65bc51d2bc2fdbce8c701f8d812da80fb37dba9cdf97ce38f60ab18c5202b17 |
-  | stable_farming | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e |
+  | stable_farming | 0x3c4582ee27a09f7e6c091022d0d279fdc8e54c1f782916bf135a71a8e8006aa5 |
   | xcetus         | 0xdebaab6b851fd3414c0a62dbdf8eb752d6b0d31f5cfce5e38541bc6c6daa8966 |
   | dividends      | 0x20d948d640edd0c749f533d41efc5f843f212d441220324ad7959c6e1d281828 |
-  | vaults         | 0x325b7d67276ff809df6b3fa17a2a6fbff6aaa20e467c3cf74d1a1d09b8890bbd |
+  | vaults         | 0x04df17a109336491867f04df40ca8a77277bc6e382139e88ae0d0d267ac07905 |
 
 ### Cetus CLMM
 
@@ -88,45 +88,49 @@ integrate, stable farming, vault, aggregator, lp burn.
 
 ### Clmm contract update details
 
-This update introduces new methods for pool creation, with the primary change being mandatory full-range liquidity provision for new pools. To create a new pool, you can use either:
+This update introduces new methods for pool creation, with the primary change being mandatory liquidity provision for new pools. To create a new pool, you can use either:
 
 - **pool_creator.create_pool_v2** on the cetus_clmm contract
-- **pool_creator.create_pool_v2** on the integrate contract
+- **pool_creator_v2.create_pool_v2** on the integrate contract
 
-**Note**: The previous creation method factory.create_pool is permissioned, and factory.create_pool_with_liquidity is deprecated in this update.
+**Note**: The previous creation method `factory.create_pool` is permissioned, and `factory.create_pool_with_liquidity` is deprecated in this update. The `pool_creator.create_pool_v2_by_creation_cap` method is deprecated, please use  `pool_creator.create_pool_v2_with_creation_cap`.
 
 ```rust
+// cetus_clmm.pool_creator.create_pool_v2
 public fun create_pool_v2<CoinTypeA, CoinTypeB>(
-  config: &GlobalConfig,
-  pools: &mut Pools,
-  tick_spacing: u32,
-  initialize_price: u128,
-  url: String,
-  tick_lower_idx: u32,
-  tick_upper_idx: u32,
-  coin_a: Coin<CoinTypeA>,
-  coin_b: Coin<CoinTypeB>,
-  metadata_a: &CoinMetadata<CoinTypeA>,
-  metadata_b: &CoinMetadata<CoinTypeB>,
-  fix_amount_a: bool,
-  clock: &Clock,
-  ctx: &mut TxContext
-): (Position, Coin<CoinTypeA>, Coin<CoinTypeB>)
-
+        config: &GlobalConfig,
+        pools: &mut Pools,
+        tick_spacing: u32,
+        initialize_price: u128,
+        url: String,
+        tick_lower_idx: u32,
+        tick_upper_idx: u32,
+        coin_a: Coin<CoinTypeA>,
+        coin_b: Coin<CoinTypeB>,
+        metadata_a: &CoinMetadata<CoinTypeA>,
+        metadata_b: &CoinMetadata<CoinTypeB>,
+        fix_amount_a: bool,
+        clock: &Clock,
+        ctx: &mut TxContext
+    ): (Position, Coin<CoinTypeA>, Coin<CoinTypeB>)
+  
+// integrate.pool_creator_v2.create_pool_v2
 public entry fun create_pool_v2<CoinTypeA, CoinTypeB>(
-  config: &GlobalConfig,
-  pools: &mut Pools,
-  tick_spacing: u32,
-  initialize_price: u128,
-  url: String,
-  coin_a: &mut Coin<CoinTypeA>,
-  coin_b: &mut Coin<CoinTypeB>,
-  metadata_a: &CoinMetadata<CoinTypeA>,
-  metadata_b: &CoinMetadata<CoinTypeB>,
-  fix_amount_a: bool,
-  clock: &Clock,
-  ctx: &mut TxContext
-)
+        config: &GlobalConfig,
+        pools: &mut Pools,
+        tick_spacing: u32,
+        initialize_price: u128,
+        url: String,
+        tick_lower_idx: u32,
+        tick_upper_idx: u32,
+        coin_a: &mut Coin<CoinTypeA>,
+        coin_b: &mut Coin<CoinTypeB>,
+        metadata_a: &CoinMetadata<CoinTypeA>,
+        metadata_b: &CoinMetadata<CoinTypeB>,
+        fix_amount_a: bool,
+        clock: &Clock,
+        ctx: &mut TxContext
+    ) 
 ```
 
 In these two methods, you can use the fix_amount_a parameter to control which coin amount remains fixed:
@@ -161,13 +165,13 @@ let pool_creator_cap = factory::mint_pool_creation_cap<T>(
 factory::register_permission_pair<T, SUI>(
     clmm_global_config,
     clmm_pools,
-    CETUS_CLMMPOOL_TICKSPACING,
+    200,
     &pool_creator_cap,
     ctx
 );
 
 
-let (lp_position, return_coin_a, return_coin_b) = pool_creator::create_pool_v2_by_creation_cap<T, SUI>(
+let (lp_position, return_coin_a, return_coin_b) = pool_creator::create_pool_v2_with_creation_cap<T, SUI>(
   clmm_global_config,
   clmm_pools,
   pool_creator_cap,
@@ -184,10 +188,10 @@ let (lp_position, return_coin_a, return_coin_b) = pool_creator::create_pool_v2_b
 );
 ```
 
-**Important Notice**: Mandatory Contract Upgrade
-The Cetus CLMM core contract will undergo a mandatory upgrade in the near future. Upon completion:
+Additionally, a new event `CollectRewardV2Event` has been added to the pool module.
 
-Previous versions of the contract will be deprecated and no longer accessible
+**Important Notice**: Mandatory Contract Upgrade
+The Cetus CLMM core contract will undergo a mandatory upgrade in the near future. Upon completion, previous versions of the contract will be deprecated and no longer accessible
 All dependent protocols will require updates, including:
 
 - [Vaults](sui/vaults/)

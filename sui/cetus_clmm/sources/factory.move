@@ -21,9 +21,9 @@ module cetus_clmm::factory {
 
     use cetus_clmm::config::{GlobalConfig};
     use cetus_clmm::position::Position;
-    
+
     // === Structs ===
-    
+
     struct PoolSimpleInfo has store, copy, drop {
         pool_id: ID,
         pool_key: ID,
@@ -32,7 +32,7 @@ module cetus_clmm::factory {
         tick_spacing: u32,
     }
 
-    
+
     /// hold the pool list, and the pool list is organized in a linked list.
     /// index is the max index used by pools.
     struct Pools has key, store {
@@ -43,13 +43,13 @@ module cetus_clmm::factory {
 
     // === Events ===
 
-    
+
     /// Emit when init factory.
     struct InitFactoryEvent has copy, drop {
         pools_id: ID,
     }
 
-    
+
     /// Emit when create pool.
     struct CreatePoolEvent has copy, drop {
         pool_id: ID,
@@ -242,10 +242,6 @@ module cetus_clmm::factory {
 
     #[allow(unused_type_parameter)]
     public fun new_pool_key<CoinTypeA, CoinTypeB>(_tick_spacing: u32): ID {
-        abort 0
-    }
-
-    public fun is_right_order<CoinTypeA, CoinTypeB>(): bool{
         abort 0
     }
 

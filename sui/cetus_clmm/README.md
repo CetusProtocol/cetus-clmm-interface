@@ -3,15 +3,15 @@
 This is an endpoint to help everyone integrate with the Cetus CLMM contract.
 
 - [cetus\-clmm\-interface](#cetus-clmm-interface)
-  - [Cetus Swap and Liquidity operations](#cetus-swap-and-liquidity-operations)
-  - [Tags corresponding to different networks](#tags-corresponding-to-different-networks)
-  - [Usage](#usage)
-  - [Cetus protocol](#cetus-protocol)
-    - [Data Structure](#data-structure)
-    - [Function](#function)
-  - [Use Case](#use-case)
-    - [Position related operations](#position-related-operations)
-    - [Pool related operations](#pool-related-operations)
+    - [Cetus Swap and Liquidity operations](#cetus-swap-and-liquidity-operations)
+    - [Tags corresponding to different networks](#tags-corresponding-to-different-networks)
+    - [Usage](#usage)
+    - [Cetus protocol](#cetus-protocol)
+        - [Data Structure](#data-structure)
+        - [Function](#function)
+    - [Use Case](#use-case)
+        - [Position related operations](#position-related-operations)
+        - [Pool related operations](#pool-related-operations)
 
 ## Cetus Swap and Liquidity operations
 
@@ -20,22 +20,22 @@ This section shows how to construct and execute a trade or liquidity operation o
 ## Tags corresponding to different networks
 
 | Tag of Repo     | Network | Latest published at address                                        |
-| --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.24.0 | mainnet | 0x157468379cfe5616c063ae39a889dd184ad48350d3e08f8d9b4ade22b8e3fb61 |
-| testnet-v1.24.0 | testnet | 0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12 |
+|-----------------| ------- |--------------------------------------------------------------------|
+| mainnet-v1.25.0 | mainnet | 0xdc67d6de3f00051c505da10d8f6fbab3b3ec21ec65f0dc22a2f36c13fc102110 |
+| testnet-v1.25.0 | testnet | 0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12 |
 
 eg:
 
 mainnet:
 
 ```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.24.0" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.25.0" }
 ```
 
 testnet:
 
 ```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "testnet-v1.24.0" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "testnet-v1.25.0" }
 ```
 
 ## Usage
@@ -115,7 +115,7 @@ struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
     fee_growth_global_a: u128,
     fee_growth_global_b: u128,
 
-    /// The amounts of coin a,b owend to protocol
+    /// The amounts of coin a,b owned to protocol
     fee_protocol_coin_a: u64,
     fee_protocol_coin_b: u64,
 
@@ -1082,7 +1082,8 @@ public fun calculate_swap_result<CoinTypeA, CoinTypeB>(
 For general pool creation, use the `create_pool_v2` function in the `pool_creator` module.
 
 Note that the coin amount must be exactly what you want to deposit. For example, if `fix_amount_a` is true, the amount of coin A must match the exact amount you want to add.
-```rust 
+
+```rust
 
 public fun create_pool_v2<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,
