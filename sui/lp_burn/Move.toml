@@ -2,11 +2,11 @@
 name = "LpBurn"
 version = "0.0.1"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
-published-at = "0xb92ae17938cde6d856ee39c686d4cfb968c94155e59e24520fbf60de38ebcd21"
+published-at = "0xb977b00649d3ab8950bcbbafb01fcf32e2e7718eb3133eff2e48c0cef04b1495"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
 CetusClmm = { local = "../cetus_clmm/" }
 
 [addresses]
-lp_burn = "0x562867d41706170e2b9ec9584862d9da99604cf80b66f52d12571ea3069aafcc"
+lp_burn = "0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27"

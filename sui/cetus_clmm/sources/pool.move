@@ -247,6 +247,13 @@ module cetus_clmm::pool {
         amount: u64,
     }
 
+    struct CollectRewardV2Event has copy, drop, store {
+        position: ID,
+        pool: ID,
+        rewarder_type: TypeName,
+        amount: u64,
+    }
+
     // === public friend Functions ===
     fun init(_otw: POOL, _ctx: &mut TxContext) {
         abort 0
