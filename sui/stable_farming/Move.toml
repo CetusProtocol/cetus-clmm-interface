@@ -1,7 +1,7 @@
 [package]
 name = "StableFarming"
-version = "mainnet-v1.35.1"
-published-at = "0x585381670c3d7c1f78caeb6c803f449442659743f4047a01b942da08bbfa19f6"
+version = "mainnet-v1.1.0"
+published-at = "0x7e4ca066f06a1132ab0499c8c0b87f847a0d90684afa902e52501a44dbd81992"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }
