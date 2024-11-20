@@ -5,40 +5,40 @@ version = 3
 manifest_digest = "670A706C27FDA727F768D9CA15D2B48CDBF291C44F6B992424962F59CF85707D"
 deps_digest = "060AD7E57DFB13104F21BE5F5C3759D03F0553FC3229247D9A7A6B45F50D03A3"
 dependencies = [
-  { name = "IntegerMate" },
-  { name = "MoveSTL" },
-  { name = "Sui" },
+  { id = "IntegerMate", name = "IntegerMate" },
+  { id = "MoveSTL", name = "MoveSTL" },
+  { id = "Sui", name = "Sui" },
 ]
 
 [[move.package]]
-name = "IntegerMate"
+id = "IntegerMate"
 source = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "mainnet-v1.23.1", subdir = "sui" }
 
 dependencies = [
-  { name = "Sui" },
+  { id = "Sui", name = "Sui" },
 ]
 
 [[move.package]]
-name = "MoveSTL"
+id = "MoveSTL"
 source = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "mainnet-v1.23.1", subdir = "sui" }
 
 dependencies = [
-  { name = "Sui" },
+  { id = "Sui", name = "Sui" },
 ]
 
 [[move.package]]
-name = "MoveStdlib"
+id = "MoveStdlib"
 source = { git = "https://github.com/MystenLabs/sui.git", rev = "mainnet-v1.35.1", subdir = "crates/sui-framework/packages/move-stdlib" }
 
 [[move.package]]
-name = "Sui"
+id = "Sui"
 source = { git = "https://github.com/MystenLabs/sui.git", rev = "mainnet-v1.35.1", subdir = "crates/sui-framework/packages/sui-framework" }
 
 dependencies = [
-  { name = "MoveStdlib" },
+  { id = "MoveStdlib", name = "MoveStdlib" },
 ]
 
 [move.toolchain-version]
-compiler-version = "1.32.2"
+compiler-version = "1.37.3"
 edition = "2024.beta"
 flavor = "sui"
