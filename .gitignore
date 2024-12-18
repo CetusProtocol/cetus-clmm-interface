@@ -6,3 +6,4 @@ sui/.idea/
 sui/vaults/build
 .idea/*
 sui/*/Move.lock
+sui/*/*/Move.lock
