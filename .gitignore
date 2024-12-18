@@ -5,3 +5,4 @@ sui/stable_farming/build
 sui/.idea/
 sui/vaults/build
 .idea/*
+sui/*/Move.lock
