@@ -134,7 +134,7 @@ struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
     /// The pool index
     index: u64,
 
-    /// The url for pool and postion
+    /// The url for pool and position
     url: String,
 
 }
