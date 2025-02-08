@@ -3,15 +3,15 @@
 This is an endpoint to help everyone integrate with the Cetus CLMM contract.
 
 - [cetus\-clmm\-interface](#cetus-clmm-interface)
-    - [Cetus Swap and Liquidity operations](#cetus-swap-and-liquidity-operations)
-    - [Tags corresponding to different networks](#tags-corresponding-to-different-networks)
-    - [Usage](#usage)
-    - [Cetus protocol](#cetus-protocol)
-        - [Data Structure](#data-structure)
-        - [Function](#function)
-    - [Use Case](#use-case)
-        - [Position related operations](#position-related-operations)
-        - [Pool related operations](#pool-related-operations)
+  - [Cetus Swap and Liquidity operations](#cetus-swap-and-liquidity-operations)
+  - [Tags corresponding to different networks](#tags-corresponding-to-different-networks)
+  - [Usage](#usage)
+  - [Cetus protocol](#cetus-protocol)
+    - [Data Structure](#data-structure)
+    - [Function](#function)
+  - [Use Case](#use-case)
+    - [Position related operations](#position-related-operations)
+    - [Pool related operations](#pool-related-operations)
 
 ## Cetus Swap and Liquidity operations
 
@@ -20,7 +20,7 @@ This section shows how to construct and execute a trade or liquidity operation o
 ## Tags corresponding to different networks
 
 | Tag of Repo     | Network | Latest published at address                                        |
-|-----------------| ------- |--------------------------------------------------------------------|
+| --------------- | ------- | ------------------------------------------------------------------ |
 | mainnet-v1.25.0 | mainnet | 0xdc67d6de3f00051c505da10d8f6fbab3b3ec21ec65f0dc22a2f36c13fc102110 |
 | testnet-v1.25.0 | testnet | 0x0c7ae833c220aa73a3643a0d508afa4ac5d50d97312ea4584e35f9eb21b9df12 |
 
@@ -134,7 +134,7 @@ struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
     /// The pool index
     index: u64,
 
-    /// The url for pool and postion
+    /// The url for pool and position
     url: String,
 
 }

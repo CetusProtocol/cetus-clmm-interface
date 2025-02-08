@@ -11,78 +11,59 @@
 /// "Pool" is the core module of Clmm protocol, which defines the trading pairs of "clmmpool".
 /// All operations related to trading and liquidity are completed by this module.
 module cetus_clmm::pool {
-    use sui::object::{UID, ID};
-    use sui::balance::{Balance};
-    use std::string::{String};
-    use std::type_name::TypeName;
-    use sui::tx_context::TxContext;
-    use sui::clock::{Clock};
-    use sui::package::Publisher;
-
-    use integer_mate::i32::{I32};
-
     use cetus_clmm::config::GlobalConfig;
     use cetus_clmm::partner::Partner;
     use cetus_clmm::position::{Position, PositionManager, PositionInfo};
-    use cetus_clmm::tick::{Tick, TickManager};
     use cetus_clmm::rewarder::{RewarderManager, RewarderGlobalVault};
+    use cetus_clmm::tick::{Tick, TickManager};
+    use integer_mate::i32::I32;
+    use std::string::String;
+    use std::type_name::TypeName;
+    use sui::balance::Balance;
+    use sui::clock::Clock;
+    use sui::object::{UID, ID};
+    use sui::package::Publisher;
+    use sui::tx_context::TxContext;
 
     // === Struct ===
-
 
     /// One-Time-Witness for the module.
     struct POOL has drop {}
 
-
     /// The clmmpool
     struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
         id: UID,
-
         coin_a: Balance<CoinTypeA>,
         coin_b: Balance<CoinTypeB>,
-
         /// The tick spacing
         tick_spacing: u32,
-
         /// The numerator of fee rate, the denominator is 1_000_000.
         fee_rate: u64,
-
         /// The liquidity of current tick index
         liquidity: u128,
-
         /// The current sqrt price
         current_sqrt_price: u128,
-
         /// The current tick index
         current_tick_index: I32,
-
         /// The global fee growth of coin a,b as Q64.64
         fee_growth_global_a: u128,
         fee_growth_global_b: u128,
-
         /// The amounts of coin a,b owned to protocol
         fee_protocol_coin_a: u64,
         fee_protocol_coin_b: u64,
-
         /// The tick manager
         tick_manager: TickManager,
-
         /// The rewarder manager
         rewarder_manager: RewarderManager,
-
         /// The position manager
         position_manager: PositionManager,
-
         /// is the pool pause
         is_pause: bool,
-
         /// The pool index
         index: u64,
-
         /// The url for pool and position
         url: String,
     }
-
 
     /// The swap result
     struct SwapResult has copy, drop {
@@ -93,7 +74,6 @@ module cetus_clmm::pool {
         steps: u64,
     }
 
-
     /// Flash loan resource for swap.
     /// There is no way in Move to pass calldata and make dynamic calls, but a resource can be used for this purpose.
     /// To make the execution into a single transaction, the flash loan function must return a resource
@@ -103,17 +83,15 @@ module cetus_clmm::pool {
         a2b: bool,
         partner_id: ID,
         pay_amount: u64,
-        ref_fee_amount: u64
+        ref_fee_amount: u64,
     }
-
 
     /// Flash loan resource for add_liquidity
     struct AddLiquidityReceipt<phantom CoinTypeA, phantom CoinTypeB> {
         pool_id: ID,
         amount_a: u64,
-        amount_b: u64
+        amount_b: u64,
     }
-
 
     /// The calculated swap result
     struct CalculatedSwapResult has copy, drop, store {
@@ -123,9 +101,8 @@ module cetus_clmm::pool {
         fee_rate: u64,
         after_sqrt_price: u128,
         is_exceed: bool,
-        step_results: vector<SwapStepResult>
+        step_results: vector<SwapStepResult>,
     }
-
 
     /// The step swap result
     struct SwapStepResult has copy, drop, store {
@@ -135,11 +112,10 @@ module cetus_clmm::pool {
         amount_in: u64,
         amount_out: u64,
         fee_amount: u64,
-        remainder_amount: u64
+        remainder_amount: u64,
     }
 
     // === Events ===
-
 
     /// Emited when a position was opened.
     struct OpenPositionEvent has copy, drop, store {
@@ -149,13 +125,11 @@ module cetus_clmm::pool {
         position: ID,
     }
 
-
     /// Emited when a position was closed.
     struct ClosePositionEvent has copy, drop, store {
         pool: ID,
         position: ID,
     }
-
 
     /// Emited when add liquidity for a position.
     struct AddLiquidityEvent has copy, drop, store {
@@ -169,7 +143,6 @@ module cetus_clmm::pool {
         amount_b: u64,
     }
 
-
     /// Emited when remove liquidity from a position.
     struct RemoveLiquidityEvent has copy, drop, store {
         pool: ID,
@@ -181,7 +154,6 @@ module cetus_clmm::pool {
         amount_a: u64,
         amount_b: u64,
     }
-
 
     /// Emited when swap in a clmmpool.
     struct SwapEvent has copy, drop, store {
@@ -199,31 +171,27 @@ module cetus_clmm::pool {
         steps: u64,
     }
 
-
-    /// Emited when the porotocol manager collect protocol fee from clmmpool.
+    /// Emited when the protocol manager collect protocol fee from clmmpool.
     struct CollectProtocolFeeEvent has copy, drop, store {
         pool: ID,
         amount_a: u64,
-        amount_b: u64
+        amount_b: u64,
     }
-
 
     /// Emited when user collect liquidity fee from a position.
     struct CollectFeeEvent has copy, drop, store {
         position: ID,
         pool: ID,
         amount_a: u64,
-        amount_b: u64
+        amount_b: u64,
     }
-
 
     /// Emited when the clmmpool's liqudity fee rate had updated.
     struct UpdateFeeRateEvent has copy, drop, store {
         pool: ID,
         old_fee_rate: u64,
-        new_fee_rate: u64
+        new_fee_rate: u64,
     }
-
 
     /// Emited when the rewarder's emission per second had updated.
     struct UpdateEmissionEvent has copy, drop, store {
@@ -232,13 +200,11 @@ module cetus_clmm::pool {
         emissions_per_second: u128,
     }
 
-
     /// Emited when a rewarder append to clmmpool.
     struct AddRewarderEvent has copy, drop, store {
         pool: ID,
         rewarder_type: TypeName,
     }
-
 
     /// Emited when collect reward from clmmpool's rewarder.
     struct CollectRewardEvent has copy, drop, store {
@@ -278,7 +244,7 @@ module cetus_clmm::pool {
         _url: String,
         _index: u64,
         _clock: &Clock,
-        _ctx: &mut TxContext
+        _ctx: &mut TxContext,
     ): Pool<CoinTypeA, CoinTypeB> {
         abort 0
     }
@@ -293,7 +259,7 @@ module cetus_clmm::pool {
         _link: String,
         _website: String,
         _creator: String,
-        _ctx: &mut TxContext
+        _ctx: &mut TxContext,
     ) {
         abort 0
     }
@@ -320,7 +286,7 @@ module cetus_clmm::pool {
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _tick_lower: u32,
         _tick_upper: u32,
-        _ctx: &mut TxContext
+        _ctx: &mut TxContext,
     ): Position {
         abort 0
     }
@@ -364,7 +330,7 @@ module cetus_clmm::pool {
         _position_nft: &mut Position,
         _amount: u64,
         _fix_amount_a: bool,
-        _clock: &Clock
+        _clock: &Clock,
     ): AddLiquidityReceipt<CoinTypeA, CoinTypeB> {
         abort 0
     }
@@ -375,7 +341,7 @@ module cetus_clmm::pool {
     /// Returns
     ///     - `amount_a`  The amount of CoinTypeA that need paid for this receipt.
     public fun add_liquidity_pay_amount<CoinTypeA, CoinTypeB>(
-        _receipt: &AddLiquidityReceipt<CoinTypeA, CoinTypeB>
+        _receipt: &AddLiquidityReceipt<CoinTypeA, CoinTypeB>,
     ): (u64, u64) {
         abort 0
     }
@@ -394,7 +360,7 @@ module cetus_clmm::pool {
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _balance_a: Balance<CoinTypeA>,
         _balance_b: Balance<CoinTypeB>,
-        _receipt: AddLiquidityReceipt<CoinTypeA, CoinTypeB>
+        _receipt: AddLiquidityReceipt<CoinTypeA, CoinTypeB>,
     ) {
         abort 0
     }
@@ -435,7 +401,6 @@ module cetus_clmm::pool {
         abort 0
     }
 
-
     /// Collect the fee from position.
     /// Params
     ///     - `config` The global config of clmm package.
@@ -474,7 +439,7 @@ module cetus_clmm::pool {
         _position_nft: &Position,
         _vault: &mut RewarderGlobalVault,
         _recalculate: bool,
-        _clock: &Clock
+        _clock: &Clock,
     ): Balance<CoinTypeC> {
         abort 0
     }
@@ -492,7 +457,7 @@ module cetus_clmm::pool {
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _position_id: ID,
-        _clock: &Clock
+        _clock: &Clock,
     ): vector<u64> {
         abort 0
     }
@@ -510,7 +475,7 @@ module cetus_clmm::pool {
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _position_id: ID,
-        _clock: &Clock
+        _clock: &Clock,
     ): u64 {
         abort 0
     }
@@ -527,7 +492,7 @@ module cetus_clmm::pool {
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _position_id: ID,
-        _clock: &Clock
+        _clock: &Clock,
     ): u128 {
         abort 0
     }
@@ -601,7 +566,7 @@ module cetus_clmm::pool {
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _coin_a: Balance<CoinTypeA>,
         _coin_b: Balance<CoinTypeB>,
-        _receipt: FlashSwapReceipt<CoinTypeA, CoinTypeB>
+        _receipt: FlashSwapReceipt<CoinTypeA, CoinTypeB>,
     ) {
         abort 0
     }
@@ -627,11 +592,10 @@ module cetus_clmm::pool {
         _partner: &mut Partner,
         _coin_a: Balance<CoinTypeA>,
         _coin_b: Balance<CoinTypeB>,
-        _receipt: FlashSwapReceipt<CoinTypeA, CoinTypeB>
+        _receipt: FlashSwapReceipt<CoinTypeA, CoinTypeB>,
     ) {
         abort 0
     }
-
 
     /// Collect the protocol fee by the protocol_feee_claim_authority
     /// Params
@@ -660,7 +624,7 @@ module cetus_clmm::pool {
     public fun initialize_rewarder<CoinTypeA, CoinTypeB, CoinTypeC>(
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
-        _ctx: &TxContext
+        _ctx: &TxContext,
     ) {
         abort 0
     }
@@ -683,7 +647,7 @@ module cetus_clmm::pool {
         _vault: &RewarderGlobalVault,
         _emissions_per_second: u128,
         _clock: &Clock,
-        _ctx: &TxContext
+        _ctx: &TxContext,
     ) {
         abort 0
     }
@@ -700,7 +664,7 @@ module cetus_clmm::pool {
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _url: String,
-        _ctx: &TxContext
+        _ctx: &TxContext,
     ) {
         abort 0
     }
@@ -717,7 +681,7 @@ module cetus_clmm::pool {
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _fee_rate: u64,
-        _ctx: &TxContext
+        _ctx: &TxContext,
     ) {
         abort 0
     }
@@ -734,7 +698,7 @@ module cetus_clmm::pool {
     public fun pause<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
-        _ctx: &TxContext
+        _ctx: &TxContext,
     ) {
         abort 0
     }
@@ -749,7 +713,7 @@ module cetus_clmm::pool {
     public fun unpause<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
-        _ctx: &TxContext
+        _ctx: &TxContext,
     ) {
         abort 0
     }
@@ -761,7 +725,7 @@ module cetus_clmm::pool {
         _current_tick_index: I32,
         _current_sqrt_price: u128,
         _liquidity: u128,
-        _round_up: bool
+        _round_up: bool,
     ): (u64, u64) {
         abort 0
     }
@@ -773,7 +737,7 @@ module cetus_clmm::pool {
         _current_tick_index: I32,
         _current_sqrt_price: u128,
         _amount: u64,
-        _is_fixed_a: bool
+        _is_fixed_a: bool,
     ): (u128, u64, u64) {
         abort 0
     }
@@ -813,13 +777,15 @@ module cetus_clmm::pool {
     public fun fetch_ticks<CoinTypeA, CoinTypeB>(
         _pool: &Pool<CoinTypeA, CoinTypeB>,
         _start: vector<u32>,
-        _limit: u64
+        _limit: u64,
     ): vector<Tick> {
         abort 0
     }
 
     public fun fetch_positions<CoinTypeA, CoinTypeB>(
-        _pool: &Pool<CoinTypeA, CoinTypeB>, _start: vector<ID>, _limit: u64
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+        _start: vector<ID>,
+        _limit: u64,
     ): vector<PositionInfo> {
         abort 0
     }
@@ -843,7 +809,7 @@ module cetus_clmm::pool {
     }
 
     public fun balances<CoinTypeA, CoinTypeB>(
-        _pool: &Pool<CoinTypeA, CoinTypeB>
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
     ): (&Balance<CoinTypeA>, &Balance<CoinTypeB>) {
         abort 0
     }
@@ -868,7 +834,9 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    public fun fees_growth_global<CoinTypeA, CoinTypeB>(_pool: &Pool<CoinTypeA, CoinTypeB>): (u128, u128) {
+    public fun fees_growth_global<CoinTypeA, CoinTypeB>(
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+    ): (u128, u128) {
         abort 0
     }
 
@@ -876,17 +844,21 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    public fun tick_manager<CoinTypeA, CoinTypeB>(_pool: &Pool<CoinTypeA, CoinTypeB>): &TickManager {
+    public fun tick_manager<CoinTypeA, CoinTypeB>(
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+    ): &TickManager {
         abort 0
     }
 
     public fun position_manager<CoinTypeA, CoinTypeB>(
-        _pool: &Pool<CoinTypeA, CoinTypeB>
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
     ): &PositionManager {
         abort 0
     }
 
-    public fun rewarder_manager<CoinTypeA, CoinTypeB>(_pool: &Pool<CoinTypeA, CoinTypeB>): &RewarderManager {
+    public fun rewarder_manager<CoinTypeA, CoinTypeB>(
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+    ): &RewarderManager {
         abort 0
     }
 
@@ -902,31 +874,38 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    public fun borrow_tick<CoinTypeA, CoinTypeB>(_pool: &Pool<CoinTypeA, CoinTypeB>, _tick_idx: I32): &Tick {
+    public fun borrow_tick<CoinTypeA, CoinTypeB>(
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+        _tick_idx: I32,
+    ): &Tick {
         abort 0
     }
 
     public fun borrow_position_info<CoinTypeA, CoinTypeB>(
         _pool: &Pool<CoinTypeA, CoinTypeB>,
-        _position_id: ID
+        _position_id: ID,
     ): &PositionInfo {
         abort 0
     }
 
     /// Get the swap pay amount
-    public fun swap_pay_amount<CoinTypeA, CoinTypeB>(_receipt: &FlashSwapReceipt<CoinTypeA, CoinTypeB>): u64 {
+    public fun swap_pay_amount<CoinTypeA, CoinTypeB>(
+        _receipt: &FlashSwapReceipt<CoinTypeA, CoinTypeB>,
+    ): u64 {
         abort 0
     }
 
     /// Get the ref fee amount
-    public fun ref_fee_amount<CoinTypeA, CoinTypeB>(_receipt: &FlashSwapReceipt<CoinTypeA, CoinTypeB>): u64 {
+    public fun ref_fee_amount<CoinTypeA, CoinTypeB>(
+        _receipt: &FlashSwapReceipt<CoinTypeA, CoinTypeB>,
+    ): u64 {
         abort 0
     }
 
     /// Get the fee from position
     public fun get_position_fee<CoinTypeA, CoinTypeB>(
         _pool: &Pool<CoinTypeA, CoinTypeB>,
-        _position_id: ID
+        _position_id: ID,
     ): (u64, u64) {
         abort 0
     }
@@ -934,7 +913,7 @@ module cetus_clmm::pool {
     /// Get the points from position
     public fun get_position_points<CoinTypeA, CoinTypeB>(
         _pool: &Pool<CoinTypeA, CoinTypeB>,
-        _position_id: ID
+        _position_id: ID,
     ): u128 {
         abort 0
     }
@@ -942,30 +921,34 @@ module cetus_clmm::pool {
     /// Get the rewards amount owned from position
     public fun get_position_rewards<CoinTypeA, CoinTypeB>(
         _pool: &Pool<CoinTypeA, CoinTypeB>,
-        _position_id: ID
+        _position_id: ID,
     ): vector<u64> {
         abort 0
     }
 
     public fun get_position_reward<CoinTypeA, CoinTypeB, CoinTypeC>(
         _pool: &Pool<CoinTypeA, CoinTypeB>,
-        _position_id: ID
+        _position_id: ID,
     ): u64 {
         abort 0
     }
 
     public fun is_position_exist<CoinTypeA, CoinTypeB>(
         _pool: &Pool<CoinTypeA, CoinTypeB>,
-        _position_id: ID
+        _position_id: ID,
     ): bool {
         abort 0
     }
 
-    public fun calculated_swap_result_amount_out(_calculatedSwapResult: &CalculatedSwapResult): u64 {
+    public fun calculated_swap_result_amount_out(
+        _calculatedSwapResult: &CalculatedSwapResult,
+    ): u64 {
         abort 0
     }
 
-    public fun calculated_swap_result_is_exceed(_calculatedSwapResult: &CalculatedSwapResult): bool {
+    public fun calculated_swap_result_is_exceed(
+        _calculatedSwapResult: &CalculatedSwapResult,
+    ): bool {
         abort 0
     }
 
@@ -973,27 +956,33 @@ module cetus_clmm::pool {
         abort 0
     }
 
-    public fun calculated_swap_result_after_sqrt_price(_calculatedSwapResult: &CalculatedSwapResult): u128 {
+    public fun calculated_swap_result_after_sqrt_price(
+        _calculatedSwapResult: &CalculatedSwapResult,
+    ): u128 {
         abort 0
     }
 
-    public fun calculated_swap_result_fee_amount(_calculatedSwapResult: &CalculatedSwapResult): u64 {
+    public fun calculated_swap_result_fee_amount(
+        _calculatedSwapResult: &CalculatedSwapResult,
+    ): u64 {
         abort 0
     }
 
     public fun calculate_swap_result_step_results(
-        _calculatedSwapResult: &CalculatedSwapResult
+        _calculatedSwapResult: &CalculatedSwapResult,
     ): &vector<SwapStepResult> {
         abort 0
     }
 
-    public fun calculated_swap_result_steps_length(_calculatedSwapResult: &CalculatedSwapResult): u64 {
+    public fun calculated_swap_result_steps_length(
+        _calculatedSwapResult: &CalculatedSwapResult,
+    ): u64 {
         abort 0
     }
 
     public fun calculated_swap_result_step_swap_result(
         _calculatedSwapResult: &CalculatedSwapResult,
-        _index: u64
+        _index: u64,
     ): &SwapStepResult {
         abort 0
     }
@@ -1036,7 +1025,6 @@ module cetus_clmm::pool {
     #[test_only]
     struct CoinC {}
 
-
     #[test_only]
     public fun new_for_test<CoinTypeA, CoinTypeB>(
         tick_spacing: u32,
@@ -1045,7 +1033,7 @@ module cetus_clmm::pool {
         uri: String,
         index: u64,
         clock: &Clock,
-        ctx: &mut TxContext
+        ctx: &mut TxContext,
     ): Pool<CoinTypeA, CoinTypeB> {
         new<CoinTypeA, CoinTypeB>(
             tick_spacing,
@@ -1054,7 +1042,7 @@ module cetus_clmm::pool {
             uri,
             index,
             clock,
-            ctx
+            ctx,
         )
     }
 }
