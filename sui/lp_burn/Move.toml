@@ -2,7 +2,7 @@
 name = "LpBurn"
 version = "0.0.1"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
-published-at = "0xb977b00649d3ab8950bcbbafb01fcf32e2e7718eb3133eff2e48c0cef04b1495"
+published-at = "0xb6ec861eec8c550269dc29a1662008a816ac4756df723af5103075b665e32e65"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.35.1", override = true }

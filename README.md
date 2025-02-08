@@ -28,9 +28,9 @@
 - **Mainnet**
 
   | Contract       | Latest published at address                                        |
-  | -------------- |--------------------------------------------------------------------|
+  | -------------- | ------------------------------------------------------------------ |
   | cetus_clmm     | 0xdc67d6de3f00051c505da10d8f6fbab3b3ec21ec65f0dc22a2f36c13fc102110 |
-  | lp_burn        | 0xb977b00649d3ab8950bcbbafb01fcf32e2e7718eb3133eff2e48c0cef04b1495 |
+  | lp_burn        | 0xb6ec861eec8c550269dc29a1662008a816ac4756df723af5103075b665e32e65 |
   | dca            | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
   | limitorder     | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
   | stable_farming | 0x7e4ca066f06a1132ab0499c8c0b87f847a0d90684afa902e52501a44dbd81992 |
@@ -41,9 +41,9 @@
 - **Testnet**
 
   | Contract       | Latest published at address                                        |
-  | -------------- |--------------------------------------------------------------------|
+  | -------------- | ------------------------------------------------------------------ |
   | cetus_clmm     | 0x85e61285a10efc6602ab00df70a0c06357c384ef4c5633ecf73016df1500c704 |
-  | lp_burn        | 0xaf89f8215c5b07eaac8b77c7745ce62f94cb76ef4bcb854e283f644c519ef43e |
+  | lp_burn        | 0x9c751fccc633f3ebad2becbe7884e5f38b4e497127689be0d404b24f79d95d71 |
   | dca            | 0xacd0ab94883a8785c5258388618b6252f0c2e9384b23f91fc23f6c8ef44d445c |
   | limitorder     | 0xc65bc51d2bc2fdbce8c701f8d812da80fb37dba9cdf97ce38f60ab18c5202b17 |
   | stable_farming | 0x3c4582ee27a09f7e6c091022d0d279fdc8e54c1f782916bf135a71a8e8006aa5 |
@@ -93,7 +93,7 @@ This update introduces new methods for pool creation, with the primary change be
 - **pool_creator.create_pool_v2** on the cetus_clmm contract
 - **pool_creator_v2.create_pool_v2** on the integrate contract
 
-**Note**: The previous creation method `factory.create_pool` is permissioned, and `factory.create_pool_with_liquidity` is deprecated in this update. The `pool_creator.create_pool_v2_by_creation_cap` method is deprecated, please use  `pool_creator.create_pool_v2_with_creation_cap`.
+**Note**: The previous creation method `factory.create_pool` is permissioned, and `factory.create_pool_with_liquidity` is deprecated in this update. The `pool_creator.create_pool_v2_by_creation_cap` method is deprecated, please use `pool_creator.create_pool_v2_with_creation_cap`.
 
 ```rust
 // cetus_clmm.pool_creator.create_pool_v2
@@ -113,7 +113,7 @@ public fun create_pool_v2<CoinTypeA, CoinTypeB>(
         clock: &Clock,
         ctx: &mut TxContext
     ): (Position, Coin<CoinTypeA>, Coin<CoinTypeB>)
-  
+
 // integrate.pool_creator_v2.create_pool_v2
 public entry fun create_pool_v2<CoinTypeA, CoinTypeB>(
         config: &GlobalConfig,
@@ -130,7 +130,7 @@ public entry fun create_pool_v2<CoinTypeA, CoinTypeB>(
         fix_amount_a: bool,
         clock: &Clock,
         ctx: &mut TxContext
-    ) 
+    )
 ```
 
 In these two methods, you can use the fix_amount_a parameter to control which coin amount remains fixed:
