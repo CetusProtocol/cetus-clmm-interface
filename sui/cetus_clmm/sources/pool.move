@@ -200,7 +200,7 @@ module cetus_clmm::pool {
     }
 
     
-    /// Emited when the porotocol manager collect protocol fee from clmmpool.
+    /// Emited when the protocol manager collect protocol fee from clmmpool.
     struct CollectProtocolFeeEvent has copy, drop, store {
         pool: ID,
         amount_a: u64,
