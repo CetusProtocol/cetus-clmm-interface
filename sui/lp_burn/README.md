@@ -1,26 +1,26 @@
 # Cetus LP Burn Docs
 
-The primary functionality of this project, nominally referred to as "LP Burn," is essentially designed for users who wish to permanently lock their liquidity positions. Once locked, the liquidity within these positions cannot be withdrawn, yet users retain the ability to claim any transaction fees and mining rewards generated from these positions. This locking mechanism is implemented by wrapping the original position, effectively sealing the liquidity while still allowing the accrual of rewards. The Cetus LP Burn SDK is particularly tailored for projects that have established liquidity pools and wish to relinquish their liquidity rights. This feature allows these projects to commit to their community and ecosystem by locking liquidity permanently, thus providing stability and trust in the liquidity pool's longevity.
+The primary functionality of this project, nominally referred to as "LP Burn," is essentially designed for users who wish to permanently lock their liquidity positions. Once locked, the liquidity within these positions cannot be withdrawn, yet users retain the ability to claim any transaction fees and mining rewards generated from these positions. This locking mechanism is implemented by wrapping the original position, effectively sealing the liquidity while still allowing the accrual of rewards. The Cetus LP Burn contract is particularly tailored for projects that have established liquidity pools and wish to relinquish their liquidity rights. This feature allows these projects to commit to their community and ecosystem by locking liquidity permanently, thus providing stability and trust in the liquidity pool's longevity.
 
 ## Tags corresponding to different networks
 
 | Tag of Repo     | Network | Latest published at address                                        | Package ID                                                         |
-|-----------------| ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| mainnet-v1.25.0 | mainnet | 0xb977b00649d3ab8950bcbbafb01fcf32e2e7718eb3133eff2e48c0cef04b1495 | 0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27 |
-| testnet-v1.25.0 | testnet | 0xaf89f8215c5b07eaac8b77c7745ce62f94cb76ef4bcb854e283f644c519ef43e | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a |
+| --------------- | ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| mainnet-v1.25.1 | mainnet | 0xb6ec861eec8c550269dc29a1662008a816ac4756df723af5103075b665e32e65 | 0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27 |
+| testnet-v1.25.1 | testnet | 0x9c751fccc633f3ebad2becbe7884e5f38b4e497127689be0d404b24f79d95d71 | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a |
 
 eg:
 
 mainnet:
 
 ```
-LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "mainnet-v1.25.0", override = true }
+LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "mainnet-v1.25.1", override = true }
 ```
 
 testnet:
 
 ```
-LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "testnet-v1.25.0", override = true }
+LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "testnet-v1.25.1", override = true }
 ```
 
 ## 1. Key Structures
@@ -60,7 +60,32 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
 
 ## 2. User Operations
 
-1. Burn LP.
+1. Burn LP V2 (**Recommended**).
+
+   When the position is burned, a `CetusLPBurnProof` will be returned. Compared to the `burn_lp` function, this V2 version does not require the pool object as a parameter, making it more convenient to use. The function will automatically verify the position's validity through the position object itself. This design also allows users to create a pool, add liquidity, and burn the position all within one transaction.
+
+   ```move
+   public fun burn_lp_v2<A,B>(
+      manager: &mut BurnManager,
+      position: Position,
+      ctx: &mut TxContext
+   ): CetusLPBurnProof {}
+   ```
+
+2. Entry Burn LP V2 (**Recommended**).
+
+   The entry function to burn position v2, it will auto transfer `CetusLPBurnProof` to tx sender.
+
+   ```move
+   public entry fun burn_v2<A,B>(
+      manager: &mut BurnManager,
+      position: Position,
+      ctx: &mut TxContext
+   ) {}
+   ```
+
+3. Burn LP.
+
    When the position is burned, a `CetusLPBurnProof` will be returned.
 
    ```move
@@ -72,7 +97,8 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
    ): CetusLPBurnProof {}
    ```
 
-2. Burn.
+4. Entry Burn LP.
+
    The entry function to burn position, it will auto transfer `CetusLPBurnProof` to tx sender.
 
    ```move
@@ -84,10 +110,11 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
    ) {}
    ```
 
-3. Collect fee.
+5. Collect fee.
+
    `CetusLPBurnProof` holder can collect lp fee.
 
-    - `config`: This is clmm global config.
+   - `config`: This is clmm global config.
 
    ```move
    public fun collect_fee<CoinTypeA, CoinTypeB>(
@@ -99,7 +126,8 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
    ): (Coin<CoinTypeA>, Coin<CoinTypeB>) {}
    ```
 
-4. Collect reward.
+6. Collect reward.
+
    `CetusLPBurnProof` holder can collect reward.
 
    ```move
