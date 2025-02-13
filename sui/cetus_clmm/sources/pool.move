@@ -106,6 +106,15 @@ module cetus_clmm::pool {
         ref_fee_amount: u64
     }
 
+    struct FlashLoanReceipt{
+        pool_id: ID,
+        loan_a: bool,
+        partner_id: ID,
+        amount: u64,
+        fee_amount: u64,
+        ref_fee_amount: u64
+    }
+
 
     /// Flash loan resource for add_liquidity
     struct AddLiquidityReceipt<phantom CoinTypeA, phantom CoinTypeB> {
@@ -252,6 +261,18 @@ module cetus_clmm::pool {
         pool: ID,
         rewarder_type: TypeName,
         amount: u64,
+    }
+
+     /// Emited when flash loan in a clmmpool.
+    struct FlashLoanEvent has copy, drop, store {
+        pool: ID,
+        loan_a: bool,
+        partner: ID,
+        amount: u64,
+        fee_amount: u64,
+        ref_amount: u64,
+        vault_a_amount: u64,
+        vault_b_amount: u64,
     }
 
     // === public friend Functions ===
@@ -750,6 +771,92 @@ module cetus_clmm::pool {
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _ctx: &TxContext
+    ) {
+        abort 0
+    }
+
+       /// Flash loan from pool
+    /// Params
+    ///     - `config` The global config of clmm package.
+    ///     - `pool` The clmm pool object.
+    ///     - `loan_a` A flag indicating whether to loan coin A (true) or coin B (false).
+    ///     - `amount` The amount to loan.
+    /// Returns
+    ///     - `Balance<CoinTypeA>` The balance of coin A to loan.
+    ///     - `Balance<CoinTypeB>` The balance of coin B to loan.
+    ///     - `FlashLoanReceipt` The receipt for repaying the flash loan.
+    public fun flash_loan<CoinTypeA, CoinTypeB>(
+        _config: &GlobalConfig,
+        _pool: &mut Pool<CoinTypeA, CoinTypeB>,
+        _loan_a: bool,
+        _amount: u64
+    ): (Balance<CoinTypeA>, Balance<CoinTypeB>, FlashLoanReceipt) {
+        abort 0
+    }
+
+    /// Flash loan with partner, like flash loan but there has a partner object for receive ref fee.
+    /// Params
+    ///     - `config` The global config of clmm package.
+    ///     - `pool` The clmm pool object.
+    ///     - `partner` The partner object for receiving ref fee.
+    ///     - `loan_a` A flag indicating whether to loan coin A (true) or coin B (false).
+    ///     - `amount` The amount to loan.
+    ///     - `clock` The CLOCK of sui framework, used to get current timestamp.
+    /// Returns
+    ///     - `Balance<CoinTypeA>` The balance of coin A to loan.
+    ///     - `Balance<CoinTypeB>` The balance of coin B to loan.
+    ///     - `FlashLoanReceipt` The receipt for repaying the flash loan.
+    public fun flash_loan_with_partner<CoinTypeA, CoinTypeB>(
+        _config: &GlobalConfig,
+        _pool: &mut Pool<CoinTypeA, CoinTypeB>,
+        _partner: &Partner,
+        _loan_a: bool,
+        _amount: u64,
+        _clock: &Clock
+    ): (Balance<CoinTypeA>, Balance<CoinTypeB>, FlashLoanReceipt) {
+        abort 0
+    }
+
+    /// Repay for flash loan
+    /// Params
+    ///     - `config` The global config of clmm package.
+    ///     - `pool` The clmm pool object.
+    ///     - `balance_a` The balance of `CoinTypeA` will pay for flash loan,
+    /// if `loan_a` is true the value need equal `amount + fee_amount` else it need with zero value.
+    ///     - `balance_b` The balance of `CoinTypeB` will pay for flash loan,
+    /// if `loan_a` is false the value need equal `amount + fee_amount` else it need with zero value.
+    ///     - `receipt` The receipt which will be destroyed.
+    /// Returns
+    ///     Null
+    public fun repay_flash_loan<CoinTypeA, CoinTypeB>(
+        _config: &GlobalConfig,
+        _pool: &mut Pool<CoinTypeA, CoinTypeB>,
+        _balance_a: Balance<CoinTypeA>,
+        _balance_b: Balance<CoinTypeB>,
+        _receipt: FlashLoanReceipt,
+    ) {
+        abort 0
+    }
+
+    /// Repay for flash loan with partner for receive ref fee.
+    /// Params
+    ///     - `config` The global config of clmm package.
+    ///     - `pool` The clmm pool object.
+    ///     - `partner` The partner object which will receive ref fee.
+    ///     - `balance_a` The balance of `CoinTypeA` will pay for flash loan,
+    /// if `loan_a` is true the value need equal `amount + fee_amount` else it need with zero value.
+    ///     - `balance_b` The balance of `CoinTypeB` will pay for flash loan,
+    /// if `loan_a` is false the value need equal `amount + fee_amount` else it need with zero value.
+    ///     - `receipt` The receipt which will be destroyed.
+    /// Returns
+    ///     Null
+    public fun repay_flash_loan_with_partner<CoinTypeA, CoinTypeB>(
+        _config: &GlobalConfig,
+        _pool: &mut Pool<CoinTypeA, CoinTypeB>,
+        _partner: &mut Partner,
+        _balance_a: Balance<CoinTypeA>,
+        _balance_b: Balance<CoinTypeB>,
+        _receipt: FlashLoanReceipt,
     ) {
         abort 0
     }

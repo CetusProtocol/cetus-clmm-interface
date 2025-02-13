@@ -5,6 +5,8 @@ module stable_farming::config {
     use sui::table::Table;
 
     use stable_farming::acl;
+    #[test_only]
+    use sui::table;
 
 
     /// The acl roles of stable farming
@@ -32,9 +34,9 @@ module stable_farming::config {
     /// The global config of stable farming module 
     struct GlobalConfig has key, store {
         id: UID,
-        _acl: acl::ACL,
-        _acceleration_factor: Table<ID, u8>,
-        _package_version: u64
+        acl: acl::ACL,
+        acceleration_factor: Table<ID, u8>,
+        package_version: u64
     }
 
     // ========================= Events ===========================
@@ -46,9 +48,9 @@ module stable_farming::config {
 
     /// Emit when add a operator
     struct AddOperatorEvent has copy, drop {
-        _operator_cap_id: ID,
-        _recipient: address,
-        _roles: u128
+        operator_cap_id: ID,
+        recipient: address,
+        roles: u128
     }
 
     /// Emit when set roles
@@ -134,5 +136,44 @@ module stable_farming::config {
 
     public fun package_version(): u64 {
         abort 0
+    }
+
+
+    #[test_only]
+    use sui::object;
+
+    #[test_only]
+    public fun test_add_operator(
+        _: &AdminCap,
+        config: &mut GlobalConfig,
+        roles: u128,
+        ctx: &mut TxContext
+    ): OperatorCap {
+        let operator_cap = OperatorCap {
+            id: object::new(ctx)
+        };
+        let operator_cap_id = object::id(&operator_cap);
+
+        acl::set_roles(&mut config.acl, object::id_to_address(&operator_cap_id), roles);
+        operator_cap
+    }
+
+    #[test_only]
+    public fun return_operator_cap(opcap: OperatorCap, addr: address) {
+        sui::transfer::transfer(opcap, addr)
+    }
+
+    #[test_only]
+    public fun new_config(ctx: &mut TxContext): (GlobalConfig, AdminCap) {
+        let config = GlobalConfig {
+            id: object::new(ctx),
+            acl: acl::new(ctx),
+            package_version: 0,
+            acceleration_factor: table::new(ctx)
+        };
+        let cap = AdminCap {
+            id: object::new(ctx),
+        };
+        (config, cap)
     }
 }
