@@ -3,15 +3,15 @@
 This is an endpoint to help everyone integrate with the Cetus CLMM contract.
 
 - [cetus\-clmm\-interface](#cetus-clmm-interface)
-    - [Cetus Swap and Liquidity operations](#cetus-swap-and-liquidity-operations)
-    - [Tags corresponding to different networks](#tags-corresponding-to-different-networks)
-    - [Usage](#usage)
-    - [Cetus protocol](#cetus-protocol)
-        - [Data Structure](#data-structure)
-        - [Function](#function)
-    - [Use Case](#use-case)
-        - [Position related operations](#position-related-operations)
-        - [Pool related operations](#pool-related-operations)
+  - [Cetus Swap and Liquidity operations](#cetus-swap-and-liquidity-operations)
+  - [Tags corresponding to different networks](#tags-corresponding-to-different-networks)
+  - [Usage](#usage)
+  - [Cetus protocol](#cetus-protocol)
+    - [Data Structure](#data-structure)
+    - [Function](#function)
+  - [Use Case](#use-case)
+    - [Position related operations](#position-related-operations)
+    - [Pool related operations](#pool-related-operations)
 
 ## Cetus Swap and Liquidity operations
 
@@ -134,7 +134,7 @@ struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key, store {
     /// The pool index
     index: u64,
 
-    /// The url for pool and postion
+    /// The url for pool and position
     url: String,
 
 }
