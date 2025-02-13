@@ -402,8 +402,8 @@ module stable_farming::pool {
     }
 
     public fun position_rewarder_info(
-        wrapped_position_rewarder_info: &WrappedPositionInfo,
-        rewarder_type: &TypeName
+        _wrapped_position_rewarder_info: &WrappedPositionInfo,
+        _rewarder_type: &TypeName
     ): PositionRewardInfo{
         abort 1
     }
