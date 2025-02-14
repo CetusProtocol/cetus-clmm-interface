@@ -7,3 +7,4 @@ sui/vaults/build
 .idea/*
 sui/*/Move.lock
 sui/*/*/Move.lock
+sui/token/*/Move.lock
