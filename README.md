@@ -57,7 +57,7 @@ The Cetus CLMM Interface provider all core features function interface of CLMM, 
 
 ### LP Burn
 
-The Cetus LP Burn integrate all core lp burn interface of Stable Farming, For more detailed information, please refer to the Stable Farming README document. [Stable Farming README Document](./sui/lp_burn/README.md)
+The Cetus LP Burn integrate all core lp burn interface of Stable Farming, For more detailed information, please refer to the LP Burn README document. [LP Burn README Document](./sui/lp_burn/README.md)
 
 ### Stable Farming
 
