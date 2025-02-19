@@ -8,3 +8,4 @@ sui/vaults/build
 sui/*/Move.lock
 sui/*/*/Move.lock
 sui/token/*/Move.lock
+sui/lp_burn/*/Move.lock
