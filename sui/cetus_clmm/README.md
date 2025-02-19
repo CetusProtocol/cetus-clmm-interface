@@ -20,7 +20,7 @@ This section shows how to construct and execute a trade or liquidity operation o
 ## Tags corresponding to different networks
 
 | Tag of Repo     | Network | Latest published at address                                        |
-|-----------------| ------- |--------------------------------------------------------------------|
+| --------------- | ------- | ------------------------------------------------------------------ |
 | mainnet-v1.25.0 | mainnet | 0xc6faf3703b0e8ba9ed06b7851134bbbe7565eb35ff823fd78432baa4cbeaa12e |
 | testnet-v1.25.0 | testnet | 0xb2a1d27337788bda89d350703b8326952413bd94b35b9b573ac8401b9803d018 |
 
