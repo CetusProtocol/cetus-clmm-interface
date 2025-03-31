@@ -272,42 +272,6 @@ module stable_farming::pool {
         abort 0
     }
 
-    fun update_position_liquidity(
-        _rewarder_manager: &mut RewarderManager,
-        _pool: &mut Pool,
-        _wrapped_position: &WrappedPositionNFT,
-        _clk: &Clock
-    ): u128 {
-        abort 0
-    }
-
-    fun update_position_share(
-        _wrapped_pos_info: &mut WrappedPositionInfo,
-        _pool_acc_per_shares: vec_map::VecMap<TypeName, u128>,
-        _new_share: u128
-    ) {
-        abort 0
-    }
-
-    fun destory_wrapping_position_info(_info: WrappedPositionInfo) {
-        abort 0
-    }
-
-    fun add_liquidity_to_clmm<CoinA, CoinB>(
-        _clmm_config: &CLMMGlobalConfig,
-        _clmm_pool: &mut CLMMPool<CoinA, CoinB>,
-        _clmm_position_nft: &mut CLMMPosition,
-        _coin_a: Coin<CoinA>,
-        _coin_b: Coin<CoinB>,
-        _amount_limit_a: u64,
-        _amount_limit_b: u64,
-        _delta_liquidity: u128,
-        _clock: &Clock,
-        _ctx: &mut TxContext,
-    ): (Balance<CoinA>, Balance<CoinB>) {
-        abort 0
-    }
-
     public fun add_liquidity_fix_coin<CoinA, CoinB>(
         global_config: &GlobalConfig,
         clmm_global_config: &CLMMGlobalConfig,
@@ -407,4 +371,59 @@ module stable_farming::pool {
     ): PositionRewardInfo{
         abort 1
     }
+
+    public fun borrow_position_rewarder_info(
+        _wrapped_position_rewarder_info: &WrappedPositionInfo,
+        _rewarder_type: &TypeName
+    ): &PositionRewardInfo {
+        abort 1
+    }
+
+    public fun reward_debt(_info: &PositionRewardInfo): u128 {
+        abort 1
+    }
+
+    public fun reward(_info: &PositionRewardInfo): u128 {
+        abort 1
+    }
+
+    public fun reward_harvested(_info: &PositionRewardInfo): u64 {
+        abort 1
+    }
+
+    public fun borrow_pool_rewarders(_pool: &Pool): &vector<TypeName> {
+        abort 1
+    }
+
+    public fun total_share(_pool: &Pool): u128 {
+        abort 1
+    }
+
+    public fun add_liquidity<CoinA, CoinB>(
+        _global_config: &GlobalConfig,
+        _clmm_global_config: &CLMMGlobalConfig,
+        _rewarder_manager: &mut RewarderManager,
+        _pool: &mut Pool,
+        _clmm_pool: &mut CLMMPool<CoinA, CoinB>,
+        _wrapped_position: &mut WrappedPositionNFT,
+        _coin_a: Coin<CoinA>,
+        _coin_b: Coin<CoinB>,
+        _amount_limit_a: u64,
+        _amount_limit_b: u64,
+        _delta_liquidity: u128,
+        _clk: &Clock,
+        _ctx: &mut TxContext,
+    ): (Balance<CoinA>, Balance<CoinB>) {
+        abort 1
+    }
+
+    public fun accumulated_position_rewards(
+        global_config: &GlobalConfig,
+        rewarder_manager: &mut RewarderManager,
+        pool: &mut Pool,
+        wrapped_position_id: ID,
+        clk: &Clock,
+    ) {}
+    
+    
 }
