@@ -1,5 +1,5 @@
 #[allow(unused_type_parameter, unused_field)]
-// This module is used for locking coin in `LockedCoin` object which cannot be transfered.
+// This module is used for locking coin in `LockedCoin` object which cannot be transferred.
 // When the lock time ends, the user can unwrap the `Balance` from `LockedCoin`.
 module xcetus::lock_coin {
     use std::type_name::TypeName;
