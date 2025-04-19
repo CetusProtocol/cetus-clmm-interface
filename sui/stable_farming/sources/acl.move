@@ -62,7 +62,7 @@ module stable_farming::acl {
         abort 0
     }
 
-    /// Get the permission of member by addresss.
+    /// Get the permission of member by address.
     public fun get_permission(_acl: &ACL, _address: address): u128 {
         abort 0
     }
