@@ -1,5 +1,5 @@
 #[allow(unused_type_parameter, unused_field, unused_function, unused_const, unused_use)]
-module stable_farming::router {
+module farming::router {
     use sui::clock::Clock;
     use sui::tx_context::{Self, TxContext};
     use sui::coin;
@@ -15,9 +15,9 @@ module stable_farming::router {
     use cetus_clmm::rewarder::RewarderGlobalVault;
     use integer_mate::i32;
 
-    use stable_farming::rewarder::{Self, RewarderManager};
-    use stable_farming::pool::{Self, Pool, WrappedPositionNFT};
-    use stable_farming::config::{Self, AdminCap, GlobalConfig, OperatorCap};
+    use farming::rewarder::{Self, RewarderManager};
+    use farming::pool::{Self, Pool, WrappedPositionNFT};
+    use farming::config::{Self, AdminCap, GlobalConfig, OperatorCap};
 
     public entry fun set_roles(_cap: &AdminCap, _config: &mut GlobalConfig, _member: address, _roles: u128) {
         abort 0

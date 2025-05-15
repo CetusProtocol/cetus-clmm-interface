@@ -1,5 +1,5 @@
 #[allow(unused_type_parameter, unused_field, unused_function, unused_const, unused_use)]
-module stable_farming::rewarder {
+module farming::rewarder {
     use std::type_name::{Self, TypeName};
     use std::option;
     use std::vector;
@@ -15,8 +15,8 @@ module stable_farming::rewarder {
     use sui::balance::{Self, Balance};
 
     use integer_mate::full_math_u128;
-    use stable_farming::config::{Self, OperatorCap, GlobalConfig, checked_package_version, AdminCap};
-    friend stable_farming::pool;
+    use farming::config::{Self, OperatorCap, GlobalConfig, checked_package_version, AdminCap};
+    friend farming::pool;
 
     const REWARD_PRECISION: u128 = 1000000000000;
 

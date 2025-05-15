@@ -1,10 +1,10 @@
 #[allow(unused_type_parameter, unused_field, unused_const)]
-module stable_farming::config {
+module farming::config {
     use sui::object::{ID, UID};
     use sui::tx_context::TxContext;
     use sui::table::Table;
 
-    use stable_farming::acl;
+    use farming::acl;
     #[test_only]
     use sui::table;
 
