@@ -5,6 +5,6 @@ edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 
 [dependencies]
 CetusClmm = { local = "../cetus_clmm/" }
-
+cetusclmm = {}
 [addresses]
 lpburn = "0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27"

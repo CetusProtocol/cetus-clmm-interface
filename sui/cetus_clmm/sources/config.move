@@ -20,12 +20,12 @@
 /// 4. PartnerManager: The partner manager can add/remove partner, update partner fee rate.
 /// 5. RewarderManager: The rewarder manager can add/remove rewarder, update rewarder fee rate.
 /// The package version is used for upgrade the package, when upgrade the package, we need increase the package version.
-module cetus_clmm::config {
+module cetusclmm::config {
     use sui::object::{UID, ID};
     use sui::tx_context::TxContext;
     use sui::vec_map::VecMap;
 
-    use cetus_clmm::acl;
+    use cetusclmm::acl;
 
     /// Clmmpools acl roles
     #[allow(unused_const)]

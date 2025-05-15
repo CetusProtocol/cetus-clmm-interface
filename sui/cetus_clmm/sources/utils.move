@@ -1,4 +1,4 @@
-module cetus_clmm::utils {
+module cetusclmm::utils {
     use std::string::String;
 
     /// Convert u64 to String.

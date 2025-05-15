@@ -1,13 +1,13 @@
-module cetus_clmm::pool_creator {
+module cetusclmm::pool_creator {
     use std::string::String;
     use sui::coin::{Coin, CoinMetadata};
     use sui::clock::Clock;
     use sui::tx_context::TxContext;
 
-    use cetus_clmm::factory::Pools;
-    use cetus_clmm::config:: GlobalConfig;
-    use cetus_clmm::position::Position;
-    use cetus_clmm::factory::PoolCreationCap;
+    use cetusclmm::factory::Pools;
+    use cetusclmm::config:: GlobalConfig;
+    use cetusclmm::position::Position;
+    use cetusclmm::factory::PoolCreationCap;
 
     public fun create_pool_v2_by_creation_cap<CoinTypeA, CoinTypeB>(
         _config: &GlobalConfig,

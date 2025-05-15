@@ -5,7 +5,7 @@
 // The `Pools` is a singleton, and the `Pools` is initialized when the contract is deployed.
 // The pools are organized in a linked list, and the key is generate by hash([coin_type_a + coin_type_b]). The details can be found in `new_pool_key` function.
 // When create a pool, the `CoinTypeA` and `CoinTypeB` must be different, and the `CoinTypeA` must be the bigger one(string order).
-module cetus_clmm::factory {
+module cetusclmm::factory {
     use std::string::String;
     use std::type_name::TypeName;
 
@@ -19,8 +19,8 @@ module cetus_clmm::factory {
 
     use move_stl::linked_table::LinkedTable;
 
-    use cetus_clmm::config::{GlobalConfig};
-    use cetus_clmm::position::Position;
+    use cetusclmm::config::{GlobalConfig};
+    use cetusclmm::position::Position;
     
     // === Structs ===
     
