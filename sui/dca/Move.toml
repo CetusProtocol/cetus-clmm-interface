@@ -1,11 +1,9 @@
 [package]
 name = "CetusDCA"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
-published-at = "0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f"
 
 [dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.31.1", override = true }
-MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.23.1", override = true }
+MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.48.2", override = true }
 
 [addresses]
 cetus_dca = "0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f"
