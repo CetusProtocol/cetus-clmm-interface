@@ -1,5 +1,5 @@
 [package]
-name = "StableFarming"
+name = "Farming"
 version = "mainnet-v1.1.0"
 
 [dependencies]
