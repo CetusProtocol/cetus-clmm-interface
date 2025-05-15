@@ -3,7 +3,11 @@ name = "vaults"
 version = "v1.0.0"
 
 [dependencies]
-StableFarming = { local = "../stable_farming/" }
+farming = { r.mvr = "@cetuspackages/farming" }
+cetusclmm = { r.mvr = "@cetuspackages/clmm" }
 
 [addresses]
 vaults = "0xd3453d9be7e35efe222f78a810bb3af1859fd1600926afced8b4936d825c9a05"
+
+[r.mvr]
+network = "mainnet"

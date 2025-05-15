@@ -13,12 +13,12 @@ module vaults::vaults {
     use cetus_clmm::config::GlobalConfig;
     use cetus_clmm::pool::{Pool};
 
-    use stable_farming::pool::{
+    use farming::pool::{
         WrappedPositionNFT,
         Pool as SFarmingPool,
     };
-    use stable_farming::rewarder::RewarderManager;
-    use stable_farming::config::GlobalConfig as SFarmingConfig;
+    use farming::rewarder::RewarderManager;
+    use farming::config::GlobalConfig as SFarmingConfig;
 
     use vaults::acl;
 
