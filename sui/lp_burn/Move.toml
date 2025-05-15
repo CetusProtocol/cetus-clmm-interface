@@ -2,7 +2,7 @@
 name = "LpBurn"
 version = "0.0.1"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
-published-at = "0xb6ec861eec8c550269dc29a1662008a816ac4756df723af5103075b665e32e65"
+published-at = "0x83c6616f754af4b89d19f166a9d8880e225504ee9087dcbcb759c8d7d7f5a380"
 
 [dependencies]
 CetusClmm = { local = "../cetus_clmm/" }
