@@ -3,7 +3,10 @@ name = "StableFarming"
 version = "mainnet-v1.1.0"
 
 [dependencies]
-CetusClmm = { local = "../cetus_clmm/" }
+cetusclmm = { r.mvr = "@cetuspackages/clmm" }
 
 [addresses]
 stable_farming = "0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526"
+
+[r.mvr]
+network = "mainnet"
