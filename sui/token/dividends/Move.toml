@@ -4,7 +4,7 @@ version = "1.0.3"
 
 [dependencies]
 MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.48.2", override = true }
-Xcetus = { local = "../xcetus" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "mainnet-v1.48.2" }
 
 
 [addresses]
