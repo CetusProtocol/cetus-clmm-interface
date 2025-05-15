@@ -1,9 +1,9 @@
 [package]
-name = "CetusDCA"
+name = "DCA"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 
 [dependencies]
 MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.48.2", override = true }
 
 [addresses]
-cetus_dca = "0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f"
+dca = "0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f"

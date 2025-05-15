@@ -1,5 +1,4 @@
 /build
-Move.lock
 *.log
 /.vscode
 /.idea
