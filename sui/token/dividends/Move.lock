@@ -2,7 +2,7 @@
 
 [move]
 version = 3
-manifest_digest = "AAF252534443A98EECE086483B6553DAFCDE357F56DBD1997BB2C1FC8F872E0B"
+manifest_digest = "CD724DEE539C6CCBBCF9E502C2DF3B7263A817071092E1B6BB8E0E3E4831E3B9"
 deps_digest = "52B406A7A21811BEF51751CF88DA0E76DAEFFEAC888D4F4060B1A72BBE7D8D35"
 dependencies = [
   { id = "Bridge", name = "Bridge" },
@@ -25,7 +25,7 @@ dependencies = [
 
 [[move.package]]
 id = "Cetus"
-source = { local = "../cetus" }
+source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "mainnet-v1.48.2", subdir = "sui/token/xcetus/../cetus" }
 
 dependencies = [
   { id = "Bridge", name = "Bridge" },
@@ -68,7 +68,7 @@ dependencies = [
 
 [[move.package]]
 id = "Xcetus"
-source = { local = "../xcetus" }
+source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "mainnet-v1.48.2", subdir = "sui/token/xcetus/" }
 
 dependencies = [
   { id = "Bridge", name = "Bridge" },
@@ -78,16 +78,3 @@ dependencies = [
   { id = "Sui", name = "Sui" },
   { id = "SuiSystem", name = "SuiSystem" },
 ]
-
-[move.toolchain-version]
-compiler-version = "1.48.2"
-edition = "2024"
-flavor = "sui"
-
-[env]
-
-[env.mainnet]
-chain-id = "35834a8a"
-original-published-id = "0x785248249ac457dfd378bdc6d2fbbfec9d1daf65e9d728b820eb4888c8da2c10"
-latest-published-id = "0x5aa58e1623885bd93de2331d05c29bf4930e54e56beeabcab8fe5385de2d31dc"
-published-version = "4"

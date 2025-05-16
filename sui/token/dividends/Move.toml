@@ -4,8 +4,11 @@ version = "1.0.3"
 
 [dependencies]
 MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.48.2", override = true }
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "mainnet-v1.48.2" }
+xcetus = { r.mvr = "@cetuspackages/xcetus" }
 
 
 [addresses]
 dividends = "0x785248249ac457dfd378bdc6d2fbbfec9d1daf65e9d728b820eb4888c8da2c10"
+
+[r.mvr]
+network = "mainnet"

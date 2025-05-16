@@ -2,7 +2,7 @@
 
 [move]
 version = 3
-manifest_digest = "A2384D56306E90878639ABAE613CE73EA915B36D5F5B287998BCFE224BC051BC"
+manifest_digest = "D1E4C09610F24C289D2349608013D260C9765CACF9810143C845C2704B71EB0F"
 deps_digest = "52B406A7A21811BEF51751CF88DA0E76DAEFFEAC888D4F4060B1A72BBE7D8D35"
 dependencies = [
   { id = "Bridge", name = "Bridge" },
@@ -25,7 +25,7 @@ dependencies = [
 
 [[move.package]]
 id = "Cetus"
-source = { local = "../cetus" }
+source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "mainnet-v1.48.2", subdir = "sui/token/cetus" }
 
 dependencies = [
   { id = "Bridge", name = "Bridge" },
