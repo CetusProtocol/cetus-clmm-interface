@@ -25,7 +25,7 @@ dependencies = [
 
 [[move.package]]
 id = "Cetus"
-source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "mainnet-v1.48.2", subdir = "sui/token/xcetus/../cetus" }
+source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "mainnet-v1.48.2", subdir = "sui/token/cetus" }
 
 dependencies = [
   { id = "Bridge", name = "Bridge" },
@@ -78,3 +78,16 @@ dependencies = [
   { id = "Sui", name = "Sui" },
   { id = "SuiSystem", name = "SuiSystem" },
 ]
+
+[move.toolchain-version]
+compiler-version = "1.48.2"
+edition = "2024"
+flavor = "sui"
+
+[env]
+
+[env.mainnet]
+chain-id = "35834a8a"
+original-published-id = "0x785248249ac457dfd378bdc6d2fbbfec9d1daf65e9d728b820eb4888c8da2c10"
+latest-published-id = "0x5aa58e1623885bd93de2331d05c29bf4930e54e56beeabcab8fe5385de2d31dc"
+published-version = "4"
