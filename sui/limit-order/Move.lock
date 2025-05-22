@@ -2,7 +2,7 @@
 
 [move]
 version = 3
-manifest_digest = "DA711BD55B4C1B58C6023997F561FFF48FB5D2B86171042937D1F5035F99D1EB"
+manifest_digest = "CFCDB106FC4B1533F60AB2D716F1C5D68F269D3D88E2C070C4731148968FD271"
 deps_digest = "52B406A7A21811BEF51751CF88DA0E76DAEFFEAC888D4F4060B1A72BBE7D8D35"
 dependencies = [
   { id = "Bridge", name = "Bridge" },
@@ -25,13 +25,10 @@ dependencies = [
 
 [[move.package]]
 id = "IntegerMate"
-source = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "mainnet-v1.48.2", subdir = "sui" }
+source = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "sui-v1.1.2", subdir = "sui" }
 
 dependencies = [
-  { id = "Bridge", name = "Bridge" },
-  { id = "MoveStdlib", name = "MoveStdlib" },
   { id = "Sui", name = "Sui" },
-  { id = "SuiSystem", name = "SuiSystem" },
 ]
 
 [[move.package]]
