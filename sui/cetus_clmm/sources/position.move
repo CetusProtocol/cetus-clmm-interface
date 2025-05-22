@@ -13,7 +13,7 @@
 /// calculation is stored in `position_info`, which corresponds one-to-one with `position_nft` and is stored in
 /// `PositionManager`. The reason for this design is that in our other contracts, we need to read the information of
 /// multiple positions in the `Pool`.
-module cetus_clmm::position {
+module cetusclmm::position {
     use std::string::String;
     use std::type_name::TypeName;
 
@@ -25,7 +25,7 @@ module cetus_clmm::position {
 
     use move_stl::linked_table;
 
-    use cetus_clmm::config::{GlobalConfig};
+    use cetusclmm::config::{GlobalConfig};
     
     /// The Cetus clmmpool's position manager, which has only store ability.
     /// The `PositionInfo` is organized into a linked table.

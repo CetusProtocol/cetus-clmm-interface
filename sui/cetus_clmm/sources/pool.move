@@ -10,7 +10,7 @@
 ///
 /// "Pool" is the core module of Clmm protocol, which defines the trading pairs of "clmmpool".
 /// All operations related to trading and liquidity are completed by this module.
-module cetus_clmm::pool {
+module cetusclmm::pool {
     use sui::object::{UID, ID};
     use sui::balance::{Balance};
     use std::string::{String};
@@ -21,11 +21,11 @@ module cetus_clmm::pool {
 
     use integer_mate::i32::{I32};
 
-    use cetus_clmm::config::GlobalConfig;
-    use cetus_clmm::partner::Partner;
-    use cetus_clmm::position::{Position, PositionManager, PositionInfo};
-    use cetus_clmm::tick::{Tick, TickManager};
-    use cetus_clmm::rewarder::{RewarderManager, RewarderGlobalVault};
+    use cetusclmm::config::GlobalConfig;
+    use cetusclmm::partner::Partner;
+    use cetusclmm::position::{Position, PositionManager, PositionInfo};
+    use cetusclmm::tick::{Tick, TickManager};
+    use cetusclmm::rewarder::{RewarderManager, RewarderGlobalVault};
 
     // === Struct ===
 

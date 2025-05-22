@@ -1,6 +1,6 @@
 /// Module: burn_position
 #[allow(unused_type_parameter, unused_field)]
-module lp_burn::lp_burn {
+module lpburn::lp_burn {
     use cetus_clmm::config::GlobalConfig;
     use cetus_clmm::pool::Pool;
     use cetus_clmm::position::Position;

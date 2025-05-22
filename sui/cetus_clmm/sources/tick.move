@@ -3,7 +3,7 @@
 #[allow(unused_field)]
 /// The `tick` module is a module that is designed to facilitate the management of `tick` owned by `Pool`.
 /// All `tick` related operations of `Pool` are handled by this module.
-module cetus_clmm::tick {
+module cetusclmm::tick {
     use std::option::Option;
 
     use sui::tx_context::TxContext;
@@ -15,7 +15,7 @@ module cetus_clmm::tick {
     use move_stl::option_u64::OptionU64;
 
 
-    friend cetus_clmm::pool;
+    friend cetusclmm::pool;
     
     /// Manager ticks of a pool, ticks is organized into SkipList.
     struct TickManager has store {

@@ -1,4 +1,4 @@
-module cetus_clmm::tick_math {
+module cetusclmm::tick_math {
     use integer_mate::full_math_u128;
     use integer_mate::i32::{Self, I32};
     use integer_mate::i128;

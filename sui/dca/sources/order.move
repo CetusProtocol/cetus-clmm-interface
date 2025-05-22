@@ -1,14 +1,14 @@
 // Copyright (c) Cetus Technology Limited
 
 #[allow(unused_type_parameter, unused_field, unused_const)]
-module cetus_dca::order {
+module dca::order {
     use std::string::String;
     use std::type_name::TypeName;
     use sui::balance::Balance;
     use sui::clock::Clock;
     use sui::coin::Coin;
     use sui::table::Table;
-    use cetus_dca::config::GlobalConfig;
+    use dca::config::GlobalConfig;
 
     // === Constans ===
     const ED25519: u8 = 0;

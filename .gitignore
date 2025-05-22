@@ -4,4 +4,3 @@ sui/lp_burn/build
 sui/stable_farming/build
 sui/.idea/
 .idea/
-sui/*/Move.lock

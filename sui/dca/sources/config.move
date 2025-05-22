@@ -1,7 +1,7 @@
 // Copyright (c) Cetus Technology Limited
 
 #[allow(unused_type_parameter, unused_field, unused_const, unused_use)]
-module cetus_dca::config {
+module dca::config {
     use std::type_name;
     use std::type_name::TypeName;
     use sui::bag;
@@ -11,7 +11,7 @@ module cetus_dca::config {
     use sui::event::emit;
     use sui::table::{Self, Table};
     use sui::transfer::{transfer, share_object, public_transfer};
-    use cetus_dca::acl;
+    use dca::acl;
 
     // Constructs
     const VERSION: u64 = 1;

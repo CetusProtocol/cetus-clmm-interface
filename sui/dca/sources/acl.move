@@ -5,7 +5,7 @@
 ///
 /// `acl` is a simple access control module, where `member` represents a member and `role` represents a type
 /// of permission. A member can have multiple permissions.
-module cetus_dca::acl {
+module dca::acl {
 
     use move_stl::linked_table::LinkedTable;
 

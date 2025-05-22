@@ -13,7 +13,7 @@
 /// Conversely, if the price range of a position does not include the current price of the pool during a certain period
 /// of time, then this position will not receive any rewards during this period of time. This is similar to the
 /// calculation of transaction fees.
-module cetus_clmm::rewarder {
+module cetusclmm::rewarder {
     use std::option::Option;
     use std::type_name::TypeName;
     use sui::bag::Bag;
@@ -21,9 +21,9 @@ module cetus_clmm::rewarder {
     use sui::object::{UID, ID};
     use sui::tx_context::TxContext;
 
-    use cetus_clmm::config::{GlobalConfig, AdminCap};
+    use cetusclmm::config::{GlobalConfig, AdminCap};
 
-    friend cetus_clmm::pool;
+    friend cetusclmm::pool;
     
     /// Manager the Rewards and Points.
     struct RewarderManager has store {

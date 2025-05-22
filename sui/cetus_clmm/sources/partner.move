@@ -3,7 +3,7 @@
 #[allow(unused_type_parameter, unused_field)]
 /// "Partner" is a module of "clmmpool" that defines a "Partner" object. When a partner participates in a swap
 /// transaction, they pass this object and will receive a share of the swap fee that belongs to them.
-module cetus_clmm::partner {
+module cetusclmm::partner {
     use sui::object::{UID, ID};
     use sui::vec_map::VecMap;
     use std::string::String;
@@ -12,7 +12,7 @@ module cetus_clmm::partner {
     use sui::tx_context::TxContext;
     use sui::clock::Clock;
 
-    use cetus_clmm::config::GlobalConfig;
+    use cetusclmm::config::GlobalConfig;
 
     // =============== Structs =================
 

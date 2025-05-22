@@ -1,5 +1,5 @@
 #[allow(unused_type_parameter, unused_field, unused_function, unused_use, unused_const, unused_variable)]
-module stable_farming::pool {
+module farming::pool {
     use std::option::{Self, Option};
     use std::type_name::{Self, TypeName};
     use std::string::{String, utf8};
@@ -23,8 +23,8 @@ module stable_farming::pool {
     use cetus_clmm::tick_math;
     use sui::event::emit;
 
-    use stable_farming::rewarder::{Self, RewarderManager};
-    use stable_farming::config::{GlobalConfig, OperatorCap, checked_package_version, check_pool_manager_role };
+    use farming::rewarder::{Self, RewarderManager};
+    use farming::config::{GlobalConfig, OperatorCap, checked_package_version, check_pool_manager_role };
 
     const REWARD_PRECISION: u128 = 1000000000000;
 

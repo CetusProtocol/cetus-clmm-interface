@@ -8,9 +8,9 @@ module vaults::router {
     use cetus_clmm::config::GlobalConfig;
     use cetus_clmm::pool::Pool;
 
-    use stable_farming::rewarder::RewarderManager;
-    use stable_farming::pool::Pool as SFarmingPool;
-    use stable_farming::config::GlobalConfig as SFarmingConfig;
+    use farming::rewarder::RewarderManager;
+    use farming::pool::Pool as SFarmingPool;
+    use farming::config::GlobalConfig as SFarmingConfig;
 
     use vaults::vaults::{
         VaultsManager,
