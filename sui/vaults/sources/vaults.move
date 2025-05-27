@@ -10,8 +10,8 @@ module vaults::vaults {
     use sui::tx_context::{TxContext};
     use sui::object::{UID, ID};
 
-    use cetus_clmm::config::GlobalConfig;
-    use cetus_clmm::pool::{Pool};
+    use cetusclmm::config::GlobalConfig;
+    use cetusclmm::pool::{Pool};
 
     use farming::pool::{
         WrappedPositionNFT,

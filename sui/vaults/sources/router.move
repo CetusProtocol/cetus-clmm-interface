@@ -5,8 +5,8 @@ module vaults::router {
     use sui::coin::{Coin};
     use sui::tx_context::{TxContext};
 
-    use cetus_clmm::config::GlobalConfig;
-    use cetus_clmm::pool::Pool;
+    use cetusclmm::config::GlobalConfig;
+    use cetusclmm::pool::Pool;
 
     use farming::rewarder::RewarderManager;
     use farming::pool::Pool as SFarmingPool;

@@ -4,7 +4,8 @@ version = "0.0.1"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 
 [dependencies]
-cetusclmm = { r.mvr = "@cetuspackages/clmm" }
+# cetusclmm = { r.mvr = "@cetuspackages/clmm" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.48.3" }
 
 [addresses]
 lpburn = "0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27"

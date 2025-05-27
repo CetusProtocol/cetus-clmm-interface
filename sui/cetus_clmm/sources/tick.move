@@ -158,7 +158,7 @@ module cetusclmm::tick {
     
 
     #[test_only]
-    use cetus_clmm::tick_math;
+    use cetusclmm::tick_math;
     #[test_only]
     use move_stl::skip_list;
     #[test_only]
