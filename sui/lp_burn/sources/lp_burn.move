@@ -1,10 +1,10 @@
 /// Module: burn_position
 #[allow(unused_type_parameter, unused_field)]
 module lpburn::lp_burn {
-    use cetus_clmm::config::GlobalConfig;
-    use cetus_clmm::pool::Pool;
-    use cetus_clmm::position::Position;
-    use cetus_clmm::rewarder::RewarderGlobalVault;
+    use cetusclmm::config::GlobalConfig;
+    use cetusclmm::pool::Pool;
+    use cetusclmm::position::Position;
+    use cetusclmm::rewarder::RewarderGlobalVault;
     use integer_mate::i32::I32;
     use std::string::String;
     use sui::clock::Clock;

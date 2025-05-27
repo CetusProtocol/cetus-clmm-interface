@@ -3,7 +3,7 @@ module vaults::fetcher {
 
     use sui::object::ID;
 
-    use cetus_clmm::pool::Pool;
+    use cetusclmm::pool::Pool;
 
     use vaults::vaults::Vault;
 

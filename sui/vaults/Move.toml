@@ -3,8 +3,10 @@ name = "vaults"
 version = "v1.0.0"
 
 [dependencies]
-farming = { r.mvr = "@cetuspackages/farming" }
-cetusclmm = { r.mvr = "@cetuspackages/clmm" }
+# farming = { r.mvr = "@cetuspackages/farming" }
+# cetusclmm = { r.mvr = "@cetuspackages/clmm" }
+Farming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.48.3" }
+# CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.48.3" }
 
 [addresses]
 vaults = "0xd3453d9be7e35efe222f78a810bb3af1859fd1600926afced8b4936d825c9a05"

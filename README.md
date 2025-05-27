@@ -29,7 +29,7 @@
 
   | Contract       | Latest published at address                                        |
   | -------------- | ------------------------------------------------------------------ |
-  | cetus_clmm     | 0xc6faf3703b0e8ba9ed06b7851134bbbe7565eb35ff823fd78432baa4cbeaa12e |
+  | cetusclmm     | 0xc6faf3703b0e8ba9ed06b7851134bbbe7565eb35ff823fd78432baa4cbeaa12e |
   | lp_burn        | 0xb6ec861eec8c550269dc29a1662008a816ac4756df723af5103075b665e32e65 |
   | dca            | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
   | limitorder     | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
@@ -42,7 +42,7 @@
 
   | Contract       | Latest published at address                                        |
   | -------------- | ------------------------------------------------------------------ |
-  | cetus_clmm     | 0xb2a1d27337788bda89d350703b8326952413bd94b35b9b573ac8401b9803d018 |
+  | cetusclmm     | 0xb2a1d27337788bda89d350703b8326952413bd94b35b9b573ac8401b9803d018 |
   | lp_burn        | 0x9c751fccc633f3ebad2becbe7884e5f38b4e497127689be0d404b24f79d95d71 |
   | dca            | 0xacd0ab94883a8785c5258388618b6252f0c2e9384b23f91fc23f6c8ef44d445c |
   | limitorder     | 0xc65bc51d2bc2fdbce8c701f8d812da80fb37dba9cdf97ce38f60ab18c5202b17 |

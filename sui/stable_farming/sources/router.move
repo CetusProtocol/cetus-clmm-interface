@@ -9,10 +9,10 @@ module farming::router {
     use std::vector;
     use sui::pay;
 
-    use cetus_clmm::position::{Position as CLMMPosition};
-    use cetus_clmm::pool::{Pool as CLMMPool};
-    use cetus_clmm::config::{GlobalConfig as CLMMGlobalConfig};
-    use cetus_clmm::rewarder::RewarderGlobalVault;
+    use cetusclmm::position::{Position as CLMMPosition};
+    use cetusclmm::pool::{Pool as CLMMPool};
+    use cetusclmm::config::{GlobalConfig as CLMMGlobalConfig};
+    use cetusclmm::rewarder::RewarderGlobalVault;
     use integer_mate::i32;
 
     use farming::rewarder::{Self, RewarderManager};

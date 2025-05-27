@@ -15,12 +15,12 @@ module farming::pool {
     use integer_mate::i32::{Self, I32};
     use integer_mate::full_math_u128;
 
-    use cetus_clmm::clmm_math::get_amount_by_liquidity;
-    use cetus_clmm::position::{Self as clmm_position, Position as CLMMPosition};
-    use cetus_clmm::pool::{Self as clmm_pool, Pool as CLMMPool};
-    use cetus_clmm::config::{GlobalConfig as CLMMGlobalConfig};
-    use cetus_clmm::rewarder::RewarderGlobalVault;
-    use cetus_clmm::tick_math;
+    use cetusclmm::clmm_math::get_amount_by_liquidity;
+    use cetusclmm::position::{Self as clmm_position, Position as CLMMPosition};
+    use cetusclmm::pool::{Self as clmm_pool, Pool as CLMMPool};
+    use cetusclmm::config::{GlobalConfig as CLMMGlobalConfig};
+    use cetusclmm::rewarder::RewarderGlobalVault;
+    use cetusclmm::tick_math;
     use sui::event::emit;
 
     use farming::rewarder::{Self, RewarderManager};
