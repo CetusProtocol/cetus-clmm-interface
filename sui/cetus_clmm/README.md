@@ -196,7 +196,7 @@ struct FlashSwapReceipt<phantom CoinTypeA, phantom CoinTypeB> {
 ///
 /// # Returns
 ///
-/// \* `Positon` - The new `Position` object that was opened, also means position nft.
+/// \* `Position` - The new `Position` object that was opened, also means position nft.
 public fun open_position<CoinTypeA, CoinTypeB>(
     config: &GlobalConfig,
     pool: &mut Pool<CoinTypeA, CoinTypeB>,
@@ -768,7 +768,7 @@ let (balance_a, balance_b) = pool::remove_liquidity<CoinTypeA, CoinTypeB>(
         false
     );
 
-    // you can implentment these methods by yourself methods.
+    // you can implement these methods by yourself methods.
     // balance::join(&mut balance_a, fee_a);
     // balance::join(&mut balance_b, fee_b);
     // send_coin(coin::from_balance(balance_a, ctx), tx_context::sender(ctx));
