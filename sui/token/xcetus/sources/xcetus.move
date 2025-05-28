@@ -2,7 +2,7 @@
 // This module is about:
 // create the xcetus coin,
 // provide the management of `VeNFT`,
-// store the informations about VeNFTs, and the update of these states of venfts.
+// store the information about VeNFTs, and the update of these states of venfts.
 // The VenftInfo list info is used for supporting the activities of higher level contracts.
 // This module work with `locking` module.
 // A `AdminCap` exists in this module, which can mint, burn xcetus in some situations.
