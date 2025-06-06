@@ -1,10 +1,10 @@
 [package]
 name = "Farming"
-version = "mainnet-v1.1.0"
+version = "1.2.0"
 
 [dependencies]
 # cetusclmm = { r.mvr = "@cetuspackages/clmm/10" }
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.48.3" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.49.0" }
 
 [addresses]
 farming = "0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526"
