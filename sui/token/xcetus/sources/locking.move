@@ -132,7 +132,7 @@ module xcetus::locking {
 
 
     /// Cancel the redeem lock.
-    /// The CETUS will be send back to LockManger, LockedCoin will be destoryed. the state related to xCETUS will be updated.
+    /// The CETUS will be send back to LockManger, LockedCoin will be destroyed. the state related to xCETUS will be updated.
     public fun cancel_redeem_lock(
         _: &mut LockUpManager,
         _: &mut XcetusManager,
