@@ -29,14 +29,14 @@
 
   | Contract       | Latest published at address                                        |
   | -------------- | ------------------------------------------------------------------ |
-  | cetusclmm     | 0xc6faf3703b0e8ba9ed06b7851134bbbe7565eb35ff823fd78432baa4cbeaa12e |
-  | lp_burn        | 0xb6ec861eec8c550269dc29a1662008a816ac4756df723af5103075b665e32e65 |
+  | cetusclmm      | 0x75b2e9ecad34944b8d0c874e568c90db0cf9437f0d7392abfd4cb902972f3e40 |
+  | lp_burn        |0xf80a6bb02d98cebf90a6476e8c106a4ddf1865ef79d6067a66933eb57b9f0f7b  |
   | dca            | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
   | limitorder     | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
-  | stable_farming | 0x7e4ca066f06a1132ab0499c8c0b87f847a0d90684afa902e52501a44dbd81992 |
+  | stable_farming | 0x7dba8e74b5d512a3c3bd8a1f7ef111fe9f624ddeb935635385645ca5db1f7850 |
   | xcetus         | 0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606 |
-  | dividends      | 0xcec352932edc6663a118e8d64ed54da6b8107e8719603bf728f80717592cd9e8 |
-  | vaults         | 0x58e5de6e425397eeaf952d55c0f94637bee91b25d6138ce222f89cda0aefec03 |
+  | dividends      | 0x5aa58e1623885bd93de2331d05c29bf4930e54e56beeabcab8fe5385de2d31dc |
+  | vaults         | 0x9890eca0da01697ddfdc2cd4b34def4733f755cc3de662f689ab6f0763ca6f52 |
 
 - **Testnet**
 

@@ -21,7 +21,7 @@ This section shows how to construct and execute a trade or liquidity operation o
 
 | Tag of Repo     | Network | Latest published at address                                        |
 | --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.25.0 | mainnet | 0xc6faf3703b0e8ba9ed06b7851134bbbe7565eb35ff823fd78432baa4cbeaa12e |
+| mainnet-v1.49.0 | mainnet | 0x75b2e9ecad34944b8d0c874e568c90db0cf9437f0d7392abfd4cb902972f3e40 |
 | testnet-v1.25.0 | testnet | 0xb2a1d27337788bda89d350703b8326952413bd94b35b9b573ac8401b9803d018 |
 
 eg:
@@ -29,7 +29,7 @@ eg:
 mainnet:
 
 ```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.25.0" }
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.49.0" }
 ```
 
 testnet:

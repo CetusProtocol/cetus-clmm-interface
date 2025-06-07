@@ -7,7 +7,7 @@ The allocation of a single pool rewarder to staked clmm positions is determined 
 
 | Tag of Repo     | Network | Latest published at address                                         | Package ID                                                         |
 |-----------------| ------- |---------------------------------------------------------------------| ------------------------------------------------------------------ |
-| mainnet-v1.25.0 | mainnet | 0x7e4ca066f06a1132ab0499c8c0b87f847a0d90684afa902e52501a44dbd81992  | 0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526 |
+| mainnet-v1.49.0 | mainnet | 0x7dba8e74b5d512a3c3bd8a1f7ef111fe9f624ddeb935635385645ca5db1f7850  | 0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526 |
 | testnet-v1.25.0 | testnet | 0x3c4582ee27a09f7e6c091022d0d279fdc8e54c1f782916bf135a71a8e8006aa5  | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e |
 
 eg:
@@ -15,7 +15,7 @@ eg:
 mainnet:
 
 ```
-StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.25.0", override = true }
+StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.49.0", override = true }
 ```
 
 testnet:
@@ -235,6 +235,7 @@ router.move: All Entry functions
    )
    ```
 
+
 9. Close clmm position
    Before calling this instruction to close the clmm position, the possible existing multiple clmm rewarders should be collected, and possible multiple Farms rewarders should be harvested.
    So the `collect_clmm_reward` and `harvest` move calls should be organized with `close_position` into a single transaction.
@@ -253,7 +254,35 @@ router.move: All Entry functions
        ctx: &mut TxContext
    )
    ```
-
+10. pool::deposit_v2
+    pool::deposit and router::deposit are deprecated
+    ```
+    public fun deposit_v2<CoinA, CoinB>(
+            global_config: &GlobalConfig,
+            rewarder_manager: &mut RewarderManager,
+            pool: &mut Pool,
+            clmm_pool: &CLMMPool<CoinA, CoinB>,
+            clmm_position: CLMMPosition,
+            clk: &Clock,
+            ctx: &mut TxContext
+        ): WrappedPositionNFT
+    ```
+11. pool::close_v2
+pool::close_position and router::close_position are deprecated
+```
+public fun close_position_v2<CoinA, CoinB>(
+        global_config: &GlobalConfig,
+        rewarder_manager: &mut RewarderManager,
+        pool: &mut Pool,
+        clmm_global_config: &CLMMGlobalConfig,
+        clmm_pool: &mut CLMMPool<CoinA, CoinB>,
+        wrapped_position: WrappedPositionNFT,
+        min_amount_a: u64,
+        min_amount_b: u64,
+        clk: &Clock,
+        ctx: &TxContext,
+    ): (Balance<CoinA>, Balance<CoinB>) {}
+```
 ## 4. OnChain Contracts and Objects
 
 1. Testnet
