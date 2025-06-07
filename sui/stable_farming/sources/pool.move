@@ -247,6 +247,19 @@ module farming::pool {
         abort 1
     }
 
+    public fun deposit_v2<CoinA, CoinB>(
+      _global_config: &GlobalConfig,
+      _rewarder_manager: &mut RewarderManager,
+      _pool: &mut Pool,
+      _clmm_pool: &CLMMPool<CoinA, CoinB>,
+      _clmm_position: CLMMPosition,
+      _clk: &Clock,
+      _ctx: &mut TxContext
+  ): WrappedPositionNFT{
+      abort 1
+  }
+
+
     public fun withdraw(
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
@@ -313,6 +326,22 @@ module farming::pool {
     ): (Balance<CoinA>, Balance<CoinB>){
         abort 1
     }
+    
+    public fun close_position_v2<CoinA, CoinB>(
+      _global_config: &GlobalConfig,
+      _rewarder_manager: &mut RewarderManager,
+      _pool: &mut Pool,
+      _clmm_global_config: &CLMMGlobalConfig,
+      _clmm_pool: &mut CLMMPool<CoinA, CoinB>,
+      _wrapped_position: WrappedPositionNFT,
+      _min_amount_a: u64,
+      _min_amount_b: u64,
+      _clk: &Clock,
+      _ctx: &TxContext,
+    ): (Balance<CoinA>, Balance<CoinB>){
+        abort 1
+    }
+
 
     public fun remove_liquidity<CoinA, CoinB>(
         _global_config: &GlobalConfig,

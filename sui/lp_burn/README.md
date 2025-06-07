@@ -6,7 +6,7 @@ The primary functionality of this project, nominally referred to as "LP Burn," i
 
 | Tag of Repo     | Network | Latest published at address                                        | Package ID                                                         |
 | --------------- | ------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| mainnet-v1.26.0 | mainnet | 0xb6ec861eec8c550269dc29a1662008a816ac4756df723af5103075b665e32e65 | 0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27 |
+| mainnet-v1.49.0 | mainnet | 0xf80a6bb02d98cebf90a6476e8c106a4ddf1865ef79d6067a66933eb57b9f0f7b | 0x12d73de9a6bc3cb658ec9dc0fe7de2662be1cea5c76c092fcc3606048cdbac27 |
 | testnet-v1.26.0 | testnet | 0x9c751fccc633f3ebad2becbe7884e5f38b4e497127689be0d404b24f79d95d71 | 0x3b494006831b046481c8046910106e2dfbe0d1fa9bc01e41783fb3ff6534ed3a |
 
 eg:
@@ -14,7 +14,7 @@ eg:
 mainnet:
 
 ```
-LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "mainnet-v1.26.0", override = true }
+LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/lp_burn", rev = "mainnet-v1.49.0", override = true }
 ```
 
 testnet:
@@ -141,6 +141,21 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
       ctx: &mut TxContext,
    ): Coin<CoinTypeC> {}
    ```
+
+7. Redeem compensation
+  
+   `CetusLPBurnProof` holder can collect reward.
+    ```
+    public fun redeem<CoinTypeA, CoinTypeB>(
+        versioned: &Versioned,
+        clmm_vester: &mut ClmmVester,
+        pool: &Pool<CoinTypeA, CoinTypeB>,
+        position_proof: &mut CetusLPBurnProof,
+        period: u16,
+        clock: &Clock,
+        ctx: &mut TxContext,
+    ): Coin<CETUS> {}
+    ```
 
 ## 4. OnChain Objects ID
 

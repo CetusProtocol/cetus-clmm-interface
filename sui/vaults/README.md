@@ -14,13 +14,13 @@ These LP tokens serve as a representation of the individual's share of liquidity
 
 | Tag of Repo     | Network | Latest published at address                                         |
 |-----------------| ------- |---------------------------------------------------------------------|
-| mainnet-v1.25.0 | mainnet | 0x58e5de6e425397eeaf952d55c0f94637bee91b25d6138ce222f89cda0aefec03  |
+| mainnet-v1.49.0 | mainnet | 0x9890eca0da01697ddfdc2cd4b34def4733f755cc3de662f689ab6f0763ca6f52  |
 | testnet-v1.25.0 | testnet | 0x04df17a109336491867f04df40ca8a77277bc6e382139e88ae0d0d267ac07905  |
 
 mainnet:
 
 ```
-vaults = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/vaults", rev = "mainnet-v1.25.0", override = true  }
+vaults = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/vaults", rev = "mainnet-v1.49.0", override = true  }
 ```
 
 testnet:
