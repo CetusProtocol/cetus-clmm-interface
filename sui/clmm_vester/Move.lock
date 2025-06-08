@@ -2,12 +2,13 @@
 
 [move]
 version = 3
-manifest_digest = "45E43CC52D2AEFD9099A8A677A10E838620833E63A57663FBACA36A9B82DD345"
-deps_digest = "52B406A7A21811BEF51751CF88DA0E76DAEFFEAC888D4F4060B1A72BBE7D8D35"
+manifest_digest = "3343C8F9B44CEACE7EC0A5BF8954378CE838D92F78D0AB4796AB6A2B9EE02BD8"
+deps_digest = "CAFAD8A7CF51067FB4358215BECB86BD100DD64E57C2AC8A7AE7D74B688F5965"
 dependencies = [
   { id = "Bridge", name = "Bridge" },
+  { id = "Cetus", name = "Cetus" },
+  { id = "CetusClmm", name = "CetusClmm" },
   { id = "IntegerMate", name = "IntegerMate" },
-  { id = "MoveSTL", name = "MoveSTL" },
   { id = "MoveStdlib", name = "MoveStdlib" },
   { id = "Sui", name = "Sui" },
   { id = "SuiSystem", name = "SuiSystem" },
@@ -18,6 +19,30 @@ id = "Bridge"
 source = { git = "https://github.com/MystenLabs/sui.git", rev = "b5633abb4177", subdir = "crates/sui-framework/packages/bridge" }
 
 dependencies = [
+  { id = "MoveStdlib", name = "MoveStdlib" },
+  { id = "Sui", name = "Sui" },
+  { id = "SuiSystem", name = "SuiSystem" },
+]
+
+[[move.package]]
+id = "Cetus"
+source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "mainnet-v1.48.2", subdir = "sui/token/cetus" }
+
+dependencies = [
+  { id = "Bridge", name = "Bridge" },
+  { id = "MoveStdlib", name = "MoveStdlib" },
+  { id = "Sui", name = "Sui" },
+  { id = "SuiSystem", name = "SuiSystem" },
+]
+
+[[move.package]]
+id = "CetusClmm"
+source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", rev = "mainnet-v1.49.0", subdir = "sui/cetus_clmm" }
+
+dependencies = [
+  { id = "Bridge", name = "Bridge" },
+  { id = "IntegerMate", name = "IntegerMate" },
+  { id = "MoveSTL", name = "MoveSTL" },
   { id = "MoveStdlib", name = "MoveStdlib" },
   { id = "Sui", name = "Sui" },
   { id = "SuiSystem", name = "SuiSystem" },
@@ -64,14 +89,6 @@ dependencies = [
 ]
 
 [move.toolchain-version]
-compiler-version = "1.48.4"
-edition = "2024"
+compiler-version = "1.49.1"
+edition = "2024.beta"
 flavor = "sui"
-
-[env]
-
-[env.mainnet]
-chain-id = "35834a8a"
-original-published-id = "0x1eabed72c53feb3805120a081dc15963c204dc8d091542592abaf7a35689b2fb"
-latest-published-id = "0x75b2e9ecad34944b8d0c874e568c90db0cf9437f0d7392abfd4cb902972f3e40"
-published-version = "12"
