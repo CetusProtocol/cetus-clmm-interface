@@ -144,7 +144,7 @@ LpBurn = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", su
 
 7. Redeem compensation
   
-   `CetusLPBurnProof` holder can collect reward.
+   The holder of a `CetusLPBurnProof` can redeem the compensation.
     ```
     public fun redeem<CoinTypeA, CoinTypeB>(
         versioned: &Versioned,
