@@ -10,6 +10,9 @@ module lpburn::lp_burn {
     use sui::clock::Clock;
     use sui::coin::Coin;
     use sui::table::Table;
+    use clmm_vester::versioned::Versioned;
+    use clmm_vester::clmm_vester::{ClmmVester};
+    use cetus::cetus::CETUS;
 
     // === Structs ===
     public struct AdminCap has key, store {
@@ -104,6 +107,18 @@ module lpburn::lp_burn {
         _ctx: &mut TxContext,
     ): Coin<CoinTypeC> {
         abort 0
+    }
+
+    public fun redeem<CoinTypeA, CoinTypeB>(
+        _versioned: &Versioned,
+        _clmm_vester: &mut ClmmVester,
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+        _position_proof: &mut CetusLPBurnProof,
+        _period: u16,
+        _clock: &Clock,
+        _ctx: &mut TxContext,
+    ): Coin<CETUS>{
+        abort 1
     }
 
     public fun package_version(): u64 {
