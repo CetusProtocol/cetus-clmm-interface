@@ -26,6 +26,7 @@ module cetusclmm::pool {
     use cetusclmm::position::{Position, PositionManager, PositionInfo};
     use cetusclmm::tick::{Tick, TickManager};
     use cetusclmm::rewarder::{RewarderManager, RewarderGlobalVault};
+    use cetusclmm::position_snapshot::{PositionLiquiditySnapshot, PositionSnapshot};
 
     // === Struct ===
 
@@ -1130,6 +1131,26 @@ module cetusclmm::pool {
     }
 
     public fun step_swap_result_remainder_amount(_stepSwapResult: &SwapStepResult): u64 {
+        abort 0
+    }
+
+    public fun position_liquidity_snapshot<CoinTypeA, CoinTypeB>(
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+    ): &PositionLiquiditySnapshot {
+        abort 0
+    }
+
+    public fun is_attacked_position<CoinTypeA, CoinTypeB>(
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+        _position_id: ID,
+    ): bool {
+        abort 1
+    }
+
+     public fun get_position_snapshot_by_position_id<CoinTypeA, CoinTypeB>(
+        _pool: &Pool<CoinTypeA, CoinTypeB>,
+        _position_id: ID,
+    ): PositionSnapshot {
         abort 0
     }
 
