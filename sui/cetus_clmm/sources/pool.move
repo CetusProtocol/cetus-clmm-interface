@@ -84,6 +84,12 @@ module cetusclmm::pool {
         url: String,
     }
 
+    /// The protocol fee collect cap
+    struct ProtocolFeeCollectCap has key, store {
+        id: UID,
+    }
+
+
     
     /// The swap result
     struct SwapResult has copy, drop {
@@ -667,6 +673,22 @@ module cetusclmm::pool {
         _config: &GlobalConfig,
         _pool: &mut Pool<CoinTypeA, CoinTypeB>,
         _ctx: &TxContext,
+    ): (Balance<CoinTypeA>, Balance<CoinTypeB>) {
+        abort 0
+    }
+
+    /// Collect the protocol fee by the protocol_fee_collect_cap
+    /// Params
+    ///     - `pool` The clmm pool object.
+    ///     - `config` The global config of clmm package.
+    ///     - `cap` The protocol fee collect cap object.
+    /// Returns
+    ///     - `protocol_fee_a` The protocol fee balance object of `CoinTypeA`
+    ///     - `protocol_fee_b` The protocol fee balance object of `CoinTypeB`
+    public fun collect_protocol_fee_with_cap<CoinTypeA, CoinTypeB>(
+        _pool: &mut Pool<CoinTypeA, CoinTypeB>,
+        _config: &GlobalConfig,
+        _cap: &ProtocolFeeCollectCap,
     ): (Balance<CoinTypeA>, Balance<CoinTypeB>) {
         abort 0
     }
