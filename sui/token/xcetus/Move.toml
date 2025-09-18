@@ -3,8 +3,8 @@ name = "Xcetus"
 version = "1.0.0"
 
 [dependencies]
-MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.48.2", override = true }
-Cetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/cetus", rev = "mainnet-v1.48.2" }
+MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "mainnet-v1.3.0", override = true }
+Cetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/cetus", rev = "mainnet-v1.50.0" }
 
 [addresses]
 xcetus = "0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606"

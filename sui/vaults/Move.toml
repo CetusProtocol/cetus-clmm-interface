@@ -5,7 +5,7 @@ version = "1.2.0"
 [dependencies]
 # farming = { r.mvr = "@cetuspackages/farming" }
 # cetusclmm = { r.mvr = "@cetuspackages/clmm" }
-Farming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.49.0" }
+Farming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.50.0" }
 # CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.48.3" }
 
 [addresses]
