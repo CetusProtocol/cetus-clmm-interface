@@ -1,7 +1,6 @@
 [package]
 name = "ClmmVester"
 edition = "2024.beta"
-published-at = "0x9d2f067d3b9d19ac0f8d2e5c2c393b1760232083e42005b2e5df39c06064d522"
 
 [dependencies]
 CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.50.0", override = true }
@@ -11,4 +10,3 @@ Cetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", sub
 
 [addresses]
 clmm_vester = "0x9d2f067d3b9d19ac0f8d2e5c2c393b1760232083e42005b2e5df39c06064d522"
-cetus = "0x6864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b"

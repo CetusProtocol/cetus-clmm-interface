@@ -62,6 +62,7 @@ module lpburn::lp_burn {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun burn<A, B>(
         _manager: &mut BurnManager,
         _pool: &Pool<A, B>,
@@ -79,6 +80,7 @@ module lpburn::lp_burn {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun burn_v2(
         _manager: &mut BurnManager,
         _position: Position,

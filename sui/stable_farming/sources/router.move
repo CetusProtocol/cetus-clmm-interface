@@ -1,4 +1,4 @@
-#[allow(unused_type_parameter, unused_field, unused_function, unused_const, unused_use)]
+#[allow(unused_type_parameter, unused_field, unused_function, unused_const, unused_use, lint(public_entry))]
 module farming::router {
     use sui::clock::Clock;
     use sui::tx_context::{Self, TxContext};

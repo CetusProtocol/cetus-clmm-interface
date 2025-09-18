@@ -202,6 +202,7 @@ module limit_order::limit_order {
     /// - `_rate_orders_indexers`: Reference to the rate orders indexers.
     /// - `_clock`: Reference to the clock.
     /// - `_ctx`: Reference to the transaction context.
+    #[allow(lint(public_entry))]
     public entry fun create_rate_orders_indexer<PayCoin, TargetCoin>(
         _config: &GlobalConfig,
         _rate_orders_indexers: &mut RateOrdersIndexers,
@@ -221,6 +222,7 @@ module limit_order::limit_order {
     /// - `_expire_ts`: The expiration timestamp of the order.
     /// - `_clock`: Reference to the clock.
     /// - `_ctx`: Reference to the transaction context.
+    #[allow(lint(public_entry))]
     public entry fun place_limit_order<PayCoin, TargetCoin>(
         _config: &GlobalConfig,
         _rate_orders_indexer: &mut RateOrdersIndexer<PayCoin, TargetCoin>,
@@ -244,6 +246,7 @@ module limit_order::limit_order {
     /// - `_expire_ts`: The expiration timestamp of the order.
     /// - `_clock`: Reference to the clock.
     /// - `_ctx`: Reference to the transaction context.
+    #[allow(lint(public_entry))]
     public entry fun create_indexer_and_place_limit_order<PayCoin, TargetCoin>(
         _config: &GlobalConfig,
         _rate_orders_indexers: &mut RateOrdersIndexers,
@@ -327,6 +330,7 @@ module limit_order::limit_order {
     /// Parameters:
     /// - `_owner`: The owner address.
     /// - `_user_orders_indexer`: Reference to the user orders indexer.
+    #[allow(lint(public_entry))]
     public entry fun get_orders_indexer_by_owner(
         _owner: address,
         _user_orders_indexer: &UserOrdersIndexer
@@ -338,6 +342,7 @@ module limit_order::limit_order {
     /// Parameters:
     /// - `_rate`: The rate at which the order is placed.
     /// - `_rate_orders_indexer`: Reference to the rate orders indexer.
+    #[allow(lint(public_entry))]
     public entry fun get_orders_indexer_by_rate<PayCoin, TargetCoin>(
         _rate: u128,
         _rate_orders_indexer: &RateOrdersIndexer<PayCoin, TargetCoin>
