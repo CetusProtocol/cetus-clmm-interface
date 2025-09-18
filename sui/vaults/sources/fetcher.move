@@ -18,6 +18,7 @@ module vaults::fetcher {
     }
 
     /// Get the Coin amounts by Lp Token amount.
+    #[allow(lint(public_entry))]
     public entry fun get_position_amounts<CoinTypeA, CoinTypeB, T>(
         _: &Vault<T>,
         _: &Pool<CoinTypeA, CoinTypeB>,

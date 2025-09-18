@@ -45,6 +45,7 @@ module cetusclmm::tick_math {
         in_range && (i32::mod(index, i32::from(tick_spacing)) == i32::from(0))
     }
 
+    #[allow(dead_code)]
     public fun get_tick_at_sqrt_price(sqrt_price: u128): i32::I32 {
         assert!(sqrt_price >= MIN_SQRT_PRICE_X64 && sqrt_price <= MAX_SQRT_PRICE_X64, EINVALID_SQRT_PRICE);
         let r = sqrt_price;

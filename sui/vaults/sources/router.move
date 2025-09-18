@@ -19,6 +19,7 @@ module vaults::router {
 
 
     /// User deposit Asset into `Vault`
+    #[allow(lint(public_entry))]
     public entry fun deposit<CoinTypeA, CoinTypeB, T>(
         _: &VaultsManager,
         _: &mut Vault<T>,
@@ -40,6 +41,7 @@ module vaults::router {
     }
 
     /// User Remove Asset from `Vault` by Lp Token
+    #[allow(lint(public_entry))]
     public entry fun remove<CoinTypeA, CoinTypeB, T>(
         _: &VaultsManager,
         _: &mut Vault<T>,

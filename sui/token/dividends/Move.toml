@@ -3,7 +3,7 @@ name = "Dividends"
 version = "1.0.3"
 
 [dependencies]
-MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.48.2", override = true }
+MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "mainnet-v1.3.0", override = true }
 xcetus = { r.mvr = "@cetuspackages/xcetus" }
 
 
