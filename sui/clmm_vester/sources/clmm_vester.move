@@ -1,8 +1,8 @@
 #[allow(unused_type_parameter, unused_field, unused_const)]
 module clmm_vester::clmm_vester;
 
-use cetusclmm::pool::{Pool};
-use cetusclmm::position::{Position};
+use cetus_clmm::pool::{Pool};
+use cetus_clmm::position::{Position};
 use clmm_vester::versioned::Versioned;
 use std::type_name::{TypeName};
 use sui::balance::{Balance};
