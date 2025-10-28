@@ -3,8 +3,8 @@ name = "LimitOrder"
 version = "0.1.1"
 
 [dependencies]
-MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.48.2", override = true }
-IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", subdir = "sui", rev = "sui-v1.1.2", override = true }
+MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "mainnet-v1.3.0", override = true }
+IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "mainnet-v1.3.0", override = true }
 
 
 [addresses]

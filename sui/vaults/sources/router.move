@@ -5,8 +5,8 @@ module vaults::router {
     use sui::coin::{Coin};
     use sui::tx_context::{TxContext};
 
-    use cetusclmm::config::GlobalConfig;
-    use cetusclmm::pool::Pool;
+    use cetus_clmm::config::GlobalConfig;
+    use cetus_clmm::pool::Pool;
 
     use farming::rewarder::RewarderManager;
     use farming::pool::Pool as SFarmingPool;
@@ -19,6 +19,7 @@ module vaults::router {
 
 
     /// User deposit Asset into `Vault`
+    #[allow(lint(public_entry))]
     public entry fun deposit<CoinTypeA, CoinTypeB, T>(
         _: &VaultsManager,
         _: &mut Vault<T>,
@@ -40,6 +41,7 @@ module vaults::router {
     }
 
     /// User Remove Asset from `Vault` by Lp Token
+    #[allow(lint(public_entry))]
     public entry fun remove<CoinTypeA, CoinTypeB, T>(
         _: &VaultsManager,
         _: &mut Vault<T>,
