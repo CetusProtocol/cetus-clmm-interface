@@ -1,10 +1,10 @@
 /// Module: burn_position
 #[allow(unused_type_parameter, unused_field)]
 module lpburn::lp_burn {
-    use cetusclmm::config::GlobalConfig;
-    use cetusclmm::pool::Pool;
-    use cetusclmm::position::Position;
-    use cetusclmm::rewarder::RewarderGlobalVault;
+    use cetus_clmm::config::GlobalConfig;
+    use cetus_clmm::pool::Pool;
+    use cetus_clmm::position::Position;
+    use cetus_clmm::rewarder::RewarderGlobalVault;
     use integer_mate::i32::I32;
     use std::string::String;
     use sui::clock::Clock;
@@ -62,6 +62,7 @@ module lpburn::lp_burn {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun burn<A, B>(
         _manager: &mut BurnManager,
         _pool: &Pool<A, B>,
@@ -79,6 +80,7 @@ module lpburn::lp_burn {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun burn_v2(
         _manager: &mut BurnManager,
         _position: Position,

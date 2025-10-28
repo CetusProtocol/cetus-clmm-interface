@@ -9,28 +9,32 @@ module farming::router {
     use std::vector;
     use sui::pay;
 
-    use cetusclmm::position::{Position as CLMMPosition};
-    use cetusclmm::pool::{Pool as CLMMPool};
-    use cetusclmm::config::{GlobalConfig as CLMMGlobalConfig};
-    use cetusclmm::rewarder::RewarderGlobalVault;
+    use cetus_clmm::position::{Position as CLMMPosition};
+    use cetus_clmm::pool::{Pool as CLMMPool};
+    use cetus_clmm::config::{GlobalConfig as CLMMGlobalConfig};
+    use cetus_clmm::rewarder::RewarderGlobalVault;
     use integer_mate::i32;
 
     use farming::rewarder::{Self, RewarderManager};
     use farming::pool::{Self, Pool, WrappedPositionNFT};
     use farming::config::{Self, AdminCap, GlobalConfig, OperatorCap};
 
+    #[allow(lint(public_entry))]
     public entry fun set_roles(_cap: &AdminCap, _config: &mut GlobalConfig, _member: address, _roles: u128) {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun add_role(_cap: &AdminCap, _config: &mut GlobalConfig, _member: address, _role: u8) {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun remove_role(_cap: &AdminCap, _config: &mut GlobalConfig, _member: address, _role: u8) {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun add_operator(
         _cap: &AdminCap,
         _config: &mut GlobalConfig,
@@ -41,7 +45,7 @@ module farming::router {
         abort 0
     }
 
-    #[lint_allow(self_transfer)]
+    #[allow(lint(public_entry))]
     public entry fun deposit_rewarder<RewardCoin>(
         _config: &GlobalConfig,
         _manager: &mut RewarderManager,
@@ -52,7 +56,7 @@ module farming::router {
         abort 0
     }
 
-    #[lint_allow(self_transfer)]
+    #[allow(lint(public_entry))]
     public entry fun emergent_withdraw<RewardCoin>(
         _cap: &AdminCap,
         _config: &GlobalConfig,
@@ -63,6 +67,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun create_rewarder<RewardCoin>(
         _cap: &OperatorCap,
         _config: &GlobalConfig,
@@ -74,6 +79,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun update_rewarder<RewardCoin>(
         _cap: &OperatorCap,
         _config: &GlobalConfig,
@@ -84,6 +90,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun create_pool<CoinA, CoinB>(
         _cap: &OperatorCap,
         _global_config: &GlobalConfig,
@@ -97,6 +104,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun update_effective_tick_range<CoinA, CoinB>(
         _cap: &OperatorCap,
         _global_config: &GlobalConfig,
@@ -113,6 +121,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun add_rewarder<RewarderCoin>(
         _cap: &OperatorCap,
         _global_config: &GlobalConfig,
@@ -124,6 +133,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun update_pool_allocate_point<RewardCoin>(
         _cap: &OperatorCap,
         _global_config: &GlobalConfig,
@@ -136,6 +146,7 @@ module farming::router {
     }
 
     #[lint_allow(self_transfer)]
+    #[allow(lint(public_entry))]
     public entry fun deposit(
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
@@ -148,6 +159,7 @@ module farming::router {
     }
 
     #[lint_allow(self_transfer)]
+    #[allow(lint(public_entry))]
     public entry fun withdraw(
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
@@ -160,6 +172,7 @@ module farming::router {
     }
 
     #[lint_allow(self_transfer)]
+    #[allow(lint(public_entry))]
     public entry fun harvest<RewardCoin>(
         _global_config: &GlobalConfig,
         _rewarder_manager: &mut RewarderManager,
@@ -181,6 +194,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun add_liquidity<CoinA, CoinB>(
         _global_config: &GlobalConfig,
         _clmm_global_config: &CLMMGlobalConfig,
@@ -199,6 +213,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun add_liquidity_fix_coin<CoinA, CoinB>(
         _global_config: &GlobalConfig,
         _clmm_global_config: &CLMMGlobalConfig,
@@ -217,6 +232,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun remove_liquidity<CoinA, CoinB>(
         _global_config: &GlobalConfig,
         _clmm_global_config: &CLMMGlobalConfig,
@@ -233,6 +249,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun collect_fee<CoinA, CoinB>(
         _global_config: &GlobalConfig,
         _clmm_global_config: &CLMMGlobalConfig,
@@ -243,6 +260,7 @@ module farming::router {
         abort 0
     }
 
+    #[allow(lint(public_entry))]
     public entry fun collect_clmm_reward<RewardCoin, CoinA, CoinB>(
         _global_config: &GlobalConfig,
         _clmm_global_config: &CLMMGlobalConfig,
