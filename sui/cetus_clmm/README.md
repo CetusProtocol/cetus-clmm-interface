@@ -38,6 +38,12 @@ testnet:
 CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "testnet-v1.25.0" }
 ```
 
+For future integration, it’s recommended to use the Move Registry command instead:
+
+```bash
+mvr add @cetuspackages/clmm
+```
+
 ## Usage
 
 Cetus clmm interface is not complete(just have function definition), so it will fails when sui client check the code version. However, this does not affect its actual functionality. Therefore, we need to add a `--dependencies-are-root` during the build.

@@ -24,6 +24,7 @@
 ## Projects
 
 ### Latest Published At Table
+> To always access the most up-to-date package versions, please visit [**Move Registry**](https://www.moveregistry.com/) and search for **“Cetus”**. You’ll find the latest deployed packages and their corresponding contract addresses there.
 
 - **Mainnet**
 
@@ -79,128 +80,17 @@ The Cetus DCA integrates all core functionalities of the DCA interface. For more
 
 The Cetus vaults integrates all core functionalities of the vaults interface. For more detailed information, please refer to the Vaults README document. [Vaults README Document](./sui/vaults/README.md)
 
-## How to migrate to the latest version?
-
-### Why need to migrate?
-
-Cetus has already updated to the new CLMM contract and will disable the old version of the CLMM contract. The following contracts will need to be updated simultaneously:
-integrate, stable farming, vault, aggregator, lp burn.
-
-### Clmm contract update details
-
-This update introduces new methods for pool creation, with the primary change being mandatory liquidity provision for new pools. To create a new pool, you can use either:
-
-- **pool_creator.create_pool_v2** on the cetus_clmm contract
-- **pool_creator_v2.create_pool_v2** on the integrate contract
-
-**Note**: The previous creation method `factory.create_pool` is permissioned, and `factory.create_pool_with_liquidity` is deprecated in this update. The `pool_creator.create_pool_v2_by_creation_cap` method is deprecated, please use `pool_creator.create_pool_v2_with_creation_cap`.
-
-```rust
-// cetus_clmm.pool_creator.create_pool_v2
-public fun create_pool_v2<CoinTypeA, CoinTypeB>(
-        config: &GlobalConfig,
-        pools: &mut Pools,
-        tick_spacing: u32,
-        initialize_price: u128,
-        url: String,
-        tick_lower_idx: u32,
-        tick_upper_idx: u32,
-        coin_a: Coin<CoinTypeA>,
-        coin_b: Coin<CoinTypeB>,
-        metadata_a: &CoinMetadata<CoinTypeA>,
-        metadata_b: &CoinMetadata<CoinTypeB>,
-        fix_amount_a: bool,
-        clock: &Clock,
-        ctx: &mut TxContext
-    ): (Position, Coin<CoinTypeA>, Coin<CoinTypeB>)
-
-// integrate.pool_creator_v2.create_pool_v2
-public entry fun create_pool_v2<CoinTypeA, CoinTypeB>(
-        config: &GlobalConfig,
-        pools: &mut Pools,
-        tick_spacing: u32,
-        initialize_price: u128,
-        url: String,
-        tick_lower_idx: u32,
-        tick_upper_idx: u32,
-        coin_a: &mut Coin<CoinTypeA>,
-        coin_b: &mut Coin<CoinTypeB>,
-        metadata_a: &CoinMetadata<CoinTypeA>,
-        metadata_b: &CoinMetadata<CoinTypeB>,
-        fix_amount_a: bool,
-        clock: &Clock,
-        ctx: &mut TxContext
-    )
-```
-
-In these two methods, you can use the fix_amount_a parameter to control which coin amount remains fixed:
-
-If `fix_amount_a` is true: The amount of coin_a will be fixed. You should provide the exact amount of coin_a you want to deposit, and the required amount of coin_b will be calculated automatically.
-If `fix_amount_a` is false: The amount of coin_b will be fixed. You should provide the exact amount of coin_b you want to deposit, and the required amount of coin_a will be calculated automatically.
-
-In some situations, coin issuers may want to reclaim the capability to create pools, so the protocol implements a `PoolCreationCap` mechanism for coin issuers. Here's how it works:
-Prerequisites:
-
-- You must hold the `TreasuryCap` of the coin
-- The `TreasuryCap` must not be frozen
-- Only one `PoolCreationCap` can be minted per coin
-
-Steps to create a restricted pool:
-
-1. Mint a `PoolCreationCap` using your coin's `TreasuryCap`
-
-2. Register a pool by specifying: **Quote coin** and **Tick spacing**.
-
-The protocol controls which quote coins and tick_spacing values are permitted for pool registration.
-Currently, only pools with the SUI-200 can be registered.
-
-```rust
-let pool_creator_cap = factory::mint_pool_creation_cap<T>(
-    clmm_global_config,
-    clmm_pools,
-    &mut treasury_cap,
-    ctx
-);
-
-factory::register_permission_pair<T, SUI>(
-    clmm_global_config,
-    clmm_pools,
-    200,
-    &pool_creator_cap,
-    ctx
-);
-
-
-let (lp_position, return_coin_a, return_coin_b) = pool_creator::create_pool_v2_with_creation_cap<T, SUI>(
-  clmm_global_config,
-  clmm_pools,
-  pool_creator_cap,
-  200,
-  current_sqrt_price,
-  string::utf8(b""),
-  coin_a,
-  coin_b,
-  metadata_a,
-  metadata_b,
-  is_fix_a,
-  clk,
-  ctx
-);
-```
-
-Additionally, a new event `CollectRewardV2Event` has been added to the pool module.
-
-**Important Notice**: Mandatory Contract Upgrade
-The Cetus CLMM core contract will undergo a mandatory upgrade in the near future. Upon completion, previous versions of the contract will be deprecated and no longer accessible
-All dependent protocols will require updates, including:
-
-- [Vaults](sui/vaults/)
-- [StableFarming](sui/stable_farming/)
-- [LPBurn](sui/lp_burn/)
-- Aggregator
-- Integrate
-
 Please ensure all necessary preparations are made before the upgrade takes effect.
+
+## Tags corresponding to different networks
+
+> **Note:**  
+> To ensure compatibility and access to the latest features, please always use the **latest tag** when integrating.  
+> - **Mainnet** tags start with `mainnet-` (e.g., `mainnet-v1.49.0`)  
+> - **Testnet** tags start with `testnet-` (e.g., `testnet-v1.25.0`)  
+>
+> Using the latest tag helps ensure your integration remains consistent with the most recent contract updates.
+
 
 # More About Cetus
 
