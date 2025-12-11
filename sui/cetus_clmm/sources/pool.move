@@ -357,7 +357,7 @@ module cetusclmm::pool {
     ///
     /// params
     ///     - `config` The global config object of clmm package.
-    ///     - `pool'  The clmpool object.
+    ///     - `pool`  The clmpool object.
     ///     - `position_nft`  "clmm" uses NFTs to hold positions, which we call "position_nft".
     /// It serves as the unique authority representing the position. If you transfer it to another address,
     /// it means that you have also transferred the position to that address.
@@ -379,7 +379,7 @@ module cetusclmm::pool {
     ///
     /// params
     ///     - `config` The global config object of clmm package.
-    ///     - `pool'` The clmmpool object.
+    ///     - `pool` The clmmpool object.
     ///     - `position_nft` The positon nft object.
     ///     - `amount` The coin amount which you wan's add to position. the coin type specify by `fix_amount_a`.
     ///     - `fix_amount_a` Which coin type you want fix amount to add into this position specify by this flag.
