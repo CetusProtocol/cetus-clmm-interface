@@ -1,7 +1,7 @@
 # Cetus clmm interface
 
 <a name="readme-top"></a>
-![GitHub Repo stars](https://img.shields.io/github/stars/CetusProtocol/cetus-clmm-interface?logo=github)
+[![GitHub Repo stars](https://img.shields.io/github/stars/CetusProtocol/cetus-clmm-interface?logo=github)](https://github.com/CetusProtocol/cetus-clmm-interface/stargazers)
 
 <!-- PROJECT LOGO -->
 <br />
