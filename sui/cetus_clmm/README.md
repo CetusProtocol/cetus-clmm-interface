@@ -17,32 +17,39 @@ This is an endpoint to help everyone integrate with the Cetus CLMM contract.
 
 This section shows how to construct and execute a trade or liquidity operation on the Cetus protocol.
 
-## Tags corresponding to different networks
+## Integration
 
-| Tag of Repo     | Network | Latest published at address                                        |
-| --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.49.0 | mainnet | 0x75b2e9ecad34944b8d0c874e568c90db0cf9437f0d7392abfd4cb902972f3e40 |
-| testnet-v1.25.0 | testnet | 0xb2a1d27337788bda89d350703b8326952413bd94b35b9b573ac8401b9803d018 |
+### Move Registry (Recommended)
 
-eg:
+**Package**: `@cetuspackages/clmm`
 
-mainnet:
-
-```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "mainnet-v1.49.0" }
+```toml
+# In your Move.toml
+CetusClmm = { registry = "@cetuspackages/clmm" }
 ```
 
-testnet:
-
-```
-CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "testnet-v1.25.0" }
-```
-
-For future integration, it’s recommended to use the Move Registry command instead:
-
+Or using CLI:
 ```bash
 mvr add @cetuspackages/clmm
 ```
+
+**Benefits**:
+- ✓ Always gets the latest published version automatically
+- ✓ No manual updates needed
+- ✓ Single source of truth for package versions
+
+### Git Tags (Alternative)
+
+If you prefer to use git tags, you can find all available versions in the [GitHub releases](https://github.com/CetusProtocol/cetus-clmm-interface/tags) or use:
+
+```toml
+# Check GitHub for the latest version tag
+CetusClmm = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/cetus_clmm", rev = "[LATEST_TAG]", override = true }
+```
+
+Replace `[LATEST_TAG]` with the latest tag from the releases page.
+
+> **Note**: Git tags may not always reflect the latest published versions. For the most up-to-date integration, Move Registry is recommended.
 
 ## Usage
 

@@ -12,26 +12,39 @@ The Cetus DCA Interface is designed to facilitate developers who wish to integra
 
 ## How to Use the Cetus DCA Interface ?
 
-### Tags corresponding to different networks
+## Integration
 
-| Tag of Repo     | Network | Latest published at address                                        |
-| --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.24.0 | mainnet | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
-| testnet-v1.24.0 | testnet | 0x484d2be08b58b8dc00a08c0ff8a2a9cd0542c4249ea2d5934ef9b15a10585d88 |
+### Move Registry (Recommended)
 
-eg:
+**Package**: `@cetuspackages/dca`
 
-mainnet:
-
-```
-CetusDCA = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/dca", rev = "mainnet-v1.24.0", override = true }
+```toml
+# In your Move.toml
+CetusDCA = { registry = "@cetuspackages/dca" }
 ```
 
-testnet:
+Or using CLI:
+```bash
+mvr add @cetuspackages/dca
+```
 
+**Benefits**:
+- ✓ Always gets the latest published version automatically
+- ✓ No manual updates needed
+- ✓ Single source of truth for package versions
+
+### Git Tags (Alternative)
+
+If you prefer to use git tags, you can find all available versions in the [GitHub releases](https://github.com/CetusProtocol/cetus-clmm-interface/tags) or use:
+
+```toml
+# Check GitHub for the latest version tag
+CetusDCA = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/dca", rev = "[LATEST_TAG]", override = true }
 ```
-CetusDCA = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/dca", rev = "testnet-v1.24.0", override = true }
-```
+
+Replace `[LATEST_TAG]` with the latest tag from the releases page.
+
+> **Note**: Git tags may not always reflect the latest published versions. For the most up-to-date integration, Move Registry is recommended.
 
 ## Usage
 

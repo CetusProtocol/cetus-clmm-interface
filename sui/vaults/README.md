@@ -10,24 +10,34 @@ As tokens are added to the respective positions, LP (Liquidity Provider) tokens 
 
 These LP tokens serve as a representation of the individual's share of liquidity within Vaults.
 
-## Tags corresponding to different networks
+## Integration
 
-| Tag of Repo     | Network | Latest published at address                                         |
-|-----------------| ------- |---------------------------------------------------------------------|
-| mainnet-v1.49.0 | mainnet | 0x9890eca0da01697ddfdc2cd4b34def4733f755cc3de662f689ab6f0763ca6f52  |
-| testnet-v1.25.0 | testnet | 0x04df17a109336491867f04df40ca8a77277bc6e382139e88ae0d0d267ac07905  |
+### Move Registry (Recommended)
 
-mainnet:
+**Package**: `@cetuspackages/vaults`
 
-```
-vaults = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/vaults", rev = "mainnet-v1.49.0", override = true  }
+```toml
+# In your Move.toml
+vaults = { registry = "@cetuspackages/vaults" }
 ```
 
-testnet:
+Or using CLI:
+```bash
+mvr add @cetuspackages/vaults
+```
 
+### Git Tags (Alternative)
+
+If you prefer to use git tags, you can find all available versions in the [GitHub releases](https://github.com/CetusProtocol/cetus-clmm-interface/tags) or use:
+
+```toml
+# Check GitHub for the latest version tag
+vaults = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/vaults", rev = "[LATEST_TAG]", override = true }
 ```
-vaults = { git = "https://github.com/CetusProtocol/cetus-token-interface.git", subdir = "sui/vaults", rev = "testnet-v1.25.0", override = true  }
-```
+
+Replace `[LATEST_TAG]` with the latest tag from the releases page.
+
+> **Note**: Git tags may not always reflect the latest published versions. For the most up-to-date integration, Move Registry is recommended.
 
 ### How to calculate LP amount when deposit
 

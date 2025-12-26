@@ -12,26 +12,39 @@ The Cetus LimitOrder Interface is designed to facilitate developers who wish to 
 
 ## How to Use the Cetus LimitOrder Interface ?
 
-### Tags corresponding to different networks
+## Integration
 
-| Tag of Repo     | Network | Latest published at address                                        |
-| --------------- | ------- | ------------------------------------------------------------------ |
-| mainnet-v1.24.0 | mainnet | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
-| testnet-v1.24.0 | testnet | 0xc65bc51d2bc2fdbce8c701f8d812da80fb37dba9cdf97ce38f60ab18c5202b17 |
+### Move Registry (Recommended)
 
-eg:
+**Package**: `@cetuspackages/limit-order`
 
-mainnet:
-
-```
-LimitOrder = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/limitorder", rev = "mainnet-v1.24.0", override = true }
+```toml
+# In your Move.toml
+LimitOrder = { registry = "@cetuspackages/limit-order" }
 ```
 
-testnet:
+Or using CLI:
+```bash
+mvr add @cetuspackages/limit-order
+```
 
+**Benefits**:
+- ✓ Always gets the latest published version automatically
+- ✓ No manual updates needed
+- ✓ Single source of truth for package versions
+
+### Git Tags (Alternative)
+
+If you prefer to use git tags, you can find all available versions in the [GitHub releases](https://github.com/CetusProtocol/cetus-clmm-interface/tags) or use:
+
+```toml
+# Check GitHub for the latest version tag
+LimitOrder = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/limitorder", rev = "[LATEST_TAG]", override = true }
 ```
-LimitOrder = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/limitorder", rev = "testnet-v1.24.0", override = true }
-```
+
+Replace `[LATEST_TAG]` with the latest tag from the releases page.
+
+> **Note**: Git tags may not always reflect the latest published versions. For the most up-to-date integration, Move Registry is recommended.
 
 ## Usage
 

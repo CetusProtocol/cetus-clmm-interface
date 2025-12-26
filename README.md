@@ -23,34 +23,42 @@
 
 ## Projects
 
-### Latest Published At Table
-> To always access the most up-to-date package versions, please visit [**Move Registry**](https://www.moveregistry.com/) and search for **“Cetus”**. You’ll find the latest deployed packages and their corresponding contract addresses there.
+### Available Contracts
 
-- **Mainnet**
+> **📦 Get the latest version from Move Registry**
+>
+> All Cetus contracts are published on Move Registry. This is the recommended way to get the latest package versions and published addresses.
 
-  | Contract       | Latest published at address                                        |
-  | -------------- | ------------------------------------------------------------------ |
-  | cetusclmm      | 0x75b2e9ecad34944b8d0c874e568c90db0cf9437f0d7392abfd4cb902972f3e40 |
-  | lp_burn        |0xf80a6bb02d98cebf90a6476e8c106a4ddf1865ef79d6067a66933eb57b9f0f7b  |
-  | dca            | 0x587614620d0d30aed66d86ffd3ba385a661a86aa573a4d579017068f561c6d8f |
-  | limitorder     | 0x533fab9a116080e2cb1c87f1832c1bf4231ab4c32318ced041e75cc28604bba9 |
-  | stable_farming | 0x7dba8e74b5d512a3c3bd8a1f7ef111fe9f624ddeb935635385645ca5db1f7850 |
-  | xcetus         | 0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606 |
-  | dividends      | 0x5aa58e1623885bd93de2331d05c29bf4930e54e56beeabcab8fe5385de2d31dc |
-  | vaults         | 0x9890eca0da01697ddfdc2cd4b34def4733f755cc3de662f689ab6f0763ca6f52 |
+| Contract | Move Registry Package | Integration |
+|----------|---------------------|-------------|
+| Cetus CLMM | [@cetuspackages/clmm](https://www.moveregistry.com/package/@cetuspackages/clmm) | `mvr add @cetuspackages/clmm` |
+| Cetus DCA | [@cetuspackages/dca](https://www.moveregistry.com/package/@cetuspackages/dca) | `mvr add @cetuspackages/dca` |
+| Cetus Farming | [@cetuspackages/farming](https://www.moveregistry.com/package/@cetuspackages/farming) | `mvr add @cetuspackages/farming` |
+| Cetus Limit Order | [@cetuspackages/limit-order](https://www.moveregistry.com/package/@cetuspackages/limit-order) | `mvr add @cetuspackages/limit-order` |
+| Cetus Vaults | [@cetuspackages/vaults](https://www.moveregistry.com/package/@cetuspackages/vaults) | `mvr add @cetuspackages/vaults` |
+| Cetus LP Burn | [@cetuspackages/lpburn](https://www.moveregistry.com/package/@cetuspackages/lpburn) | `mvr add @cetuspackages/lpburn` |
+| Cetus Dividends | [@cetuspackages/dividends](https://www.moveregistry.com/package/@cetuspackages/dividends) | `mvr add @cetuspackages/dividends` |
+| xCETUS | [@cetuspackages/xcetus](https://www.moveregistry.com/package/@cetuspackages/xcetus) | `mvr add @cetuspackages/xcetus` |
 
-- **Testnet**
+**Using Move Registry CLI:**
 
-  | Contract       | Latest published at address                                        |
-  | -------------- | ------------------------------------------------------------------ |
-  | cetusclmm     | 0xb2a1d27337788bda89d350703b8326952413bd94b35b9b573ac8401b9803d018 |
-  | lp_burn        | 0x9c751fccc633f3ebad2becbe7884e5f38b4e497127689be0d404b24f79d95d71 |
-  | dca            | 0xacd0ab94883a8785c5258388618b6252f0c2e9384b23f91fc23f6c8ef44d445c |
-  | limitorder     | 0xc65bc51d2bc2fdbce8c701f8d812da80fb37dba9cdf97ce38f60ab18c5202b17 |
-  | stable_farming | 0x3c4582ee27a09f7e6c091022d0d279fdc8e54c1f782916bf135a71a8e8006aa5 |
-  | xcetus         | 0xdebaab6b851fd3414c0a62dbdf8eb752d6b0d31f5cfce5e38541bc6c6daa8966 |
-  | dividends      | 0x20d948d640edd0c749f533d41efc5f843f212d441220324ad7959c6e1d281828 |
-  | vaults         | 0x04df17a109336491867f04df40ca8a77277bc6e382139e88ae0d0d267ac07905 |
+```bash
+# Install mvr CLI
+npm install -g @mvr/mvr
+
+# Add package (e.g., Cetus CLMM)
+mvr add @cetuspackages/clmm
+
+# Use in your Move.toml
+CetusClmm = { registry = "@cetuspackages/clmm" }
+```
+
+**Benefits:**
+- ✅ Automatically gets the latest published version
+- ✅ No manual updates needed
+- ✅ Single source of truth for addresses and versions
+
+> **Need the published address?** Visit the Move Registry link for each contract to find the latest published addresses and versions.
 
 ### Cetus CLMM
 
@@ -82,15 +90,7 @@ The Cetus vaults integrates all core functionalities of the vaults interface. Fo
 
 Please ensure all necessary preparations are made before the upgrade takes effect.
 
-## Tags corresponding to different networks
-
-> **Note:**  
-> To ensure compatibility and access to the latest features, please always use the **latest tag** when integrating.  
-> - **Mainnet** tags start with `mainnet-` (e.g., `mainnet-v1.49.0`)  
-> - **Testnet** tags start with `testnet-` (e.g., `testnet-v1.25.0`)  
->
-> Using the latest tag helps ensure your integration remains consistent with the most recent contract updates.
-
+---
 
 # More About Cetus
 

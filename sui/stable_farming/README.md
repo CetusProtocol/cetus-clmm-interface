@@ -3,26 +3,34 @@
 Farms supports the release of multiple rewarders; each rewarder has an emission speed represented by `emission_per_second` and distributes rewards among multiple clmmpools based on the pool's `pool_allocate_point`.
 The allocation of a single pool rewarder to staked clmm positions is determined by the position share, which is calculated at the time of staking into the pool.
 
-## Tags corresponding to different networks
+## Integration
 
-| Tag of Repo     | Network | Latest published at address                                         | Package ID                                                         |
-|-----------------| ------- |---------------------------------------------------------------------| ------------------------------------------------------------------ |
-| mainnet-v1.49.0 | mainnet | 0x7dba8e74b5d512a3c3bd8a1f7ef111fe9f624ddeb935635385645ca5db1f7850  | 0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526 |
-| testnet-v1.25.0 | testnet | 0x3c4582ee27a09f7e6c091022d0d279fdc8e54c1f782916bf135a71a8e8006aa5  | 0xcc38686ca84d1dca949b6966dcdb66b698b58a4bba247d8db4d6a3a1dbeca26e |
+### Move Registry (Recommended)
 
-eg:
+**Package**: `@cetuspackages/farming`
 
-mainnet:
 
-```
-StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.49.0", override = true }
+Or using CLI:
+```bash
+mvr add @cetuspackages/farming
 ```
 
-testnet:
+### Git Tags (Alternative)
+
+If you prefer to use git tags, you can find all available versions in the [GitHub releases](https://github.com/CetusProtocol/cetus-clmm-interface/tags) or use:
+
+```toml
+# Check GitHub for the latest version tag
+StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "[LATEST_TAG]", override = true }
+```
+
+Replace `[LATEST_TAG]` with the latest tag from the releases page.
+
+> **Note**: Git tags may not always reflect the latest published versions. For the most up-to-date integration, Move Registry is recommended.
 
 ```
-StableFarming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "testnet-v1.25.0", override = true }
-```
+
+> **Note**: For the latest published addresses, visit [Move Registry](https://www.moveregistry.com/package/@cetuspackages/farming)
 
 ## 1. Key Structures
 
