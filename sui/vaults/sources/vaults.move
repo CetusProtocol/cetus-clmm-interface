@@ -5,10 +5,14 @@ module vaults::vaults {
 
     use sui::bag::{Bag};
     use sui::clock::Clock;
-    use sui::coin::{TreasuryCap, Coin};
+    use sui::coin::{TreasuryCap, Coin, CoinMetadata};
+    use sui::coin_registry::Currency;
     use sui::table::{Table};
     use sui::tx_context::{TxContext};
     use sui::object::{UID, ID};
+
+    use pyth::price_info::PriceInfoObject;
+    use pyth::state::State;
 
     use cetus_clmm::config::GlobalConfig;
     use cetus_clmm::pool::{Pool};
@@ -21,10 +25,11 @@ module vaults::vaults {
     use farming::config::GlobalConfig as SFarmingConfig;
 
     use vaults::acl;
+    use vaults::oracle_registry::OracleRegistry;
 
 
     /// Package verison which is need update when upgrade package
-    const VERSION: u64 = 15;
+    const VERSION: u64 = 16;
 
     /// the denominator of `Vault` protocol_fee.
     const PROTOCOL_FEE_DENOMINATOR: u64 = 10000;
@@ -167,6 +172,15 @@ module vaults::vaults {
         vault_id: ID,
     }
 
+    struct PositionKey has copy, drop, store {
+        dummy_field: bool,
+    }
+
+    struct PositionMigratedEvent has copy, drop {
+        vault_id: ID,
+        position_id: ID,
+    }
+
     /// Deposit Token to `Vault` and return Lp Token to user.
     /// Params
     ///     - manager: `VaultManger`
@@ -248,6 +262,72 @@ module vaults::vaults {
         _: &mut Vault<T>,
         _: Coin<CoinType>,
         _: &mut TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Restore the package version after an emergency pause.
+    public fun emergency_unpause(
+        _: &mut VaultsManager,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Migrate the wrapped position from the legacy vector into a dynamic field.
+    public fun migrate_position_to_df<T>(
+        _: &VaultsManager,
+        _: &mut Vault<T>,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Add Pyth v2 oracle metadata for a coin.
+    public fun add_coin_info_pyth2<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &State,
+        _: &CoinMetadata<CoinType>,
+        _: vector<u8>,
+        _: u64,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Add Pyth v2 oracle metadata using a Currency object.
+    public fun add_coin_info_use_currency_pyth2<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &State,
+        _: &Currency<CoinType>,
+        _: vector<u8>,
+        _: u64,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Remove Pyth v2 oracle metadata for a coin.
+    public fun remove_coin_info_pyth2<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Update a coin price from a Pyth v2 price info object.
+    public fun update_price_pyth2<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &PriceInfoObject,
+        _: &Clock,
+        _: &TxContext,
     ) {
         abort 0
     }
