@@ -24,7 +24,7 @@ module vaults::vaults {
 
 
     /// Package verison which is need update when upgrade package
-    const VERSION: u64 = 5;
+    const VERSION: u64 = 15;
 
     /// the denominator of `Vault` protocol_fee.
     const PROTOCOL_FEE_DENOMINATOR: u64 = 10000;
@@ -160,6 +160,13 @@ module vaults::vaults {
         protocol_fee_b_amount: u64
     }
 
+    /// Emit when manually recharging assets into `Vault.harvest_assets`.
+    struct RechargeHarvestAssetEvent has copy, drop {
+        amount: u64,
+        coin_type: TypeName,
+        vault_id: ID,
+    }
+
     /// Deposit Token to `Vault` and return Lp Token to user.
     /// Params
     ///     - manager: `VaultManger`
@@ -191,6 +198,57 @@ module vaults::vaults {
         _: &Clock,
         _: &mut TxContext
     ): Coin<T> {
+        abort 0
+    }
+
+    /// Deposit tokens and return the unused input coins.
+    public fun deposit_v2<CoinTypeA, CoinTypeB, T>(
+        _: &VaultsManager,
+        _: &mut Vault<T>,
+        _: &mut RewarderManager,
+        _: &SFarmingConfig,
+        _: &mut SFarmingPool,
+        _: &GlobalConfig,
+        _: &mut Pool<CoinTypeA, CoinTypeB>,
+        _: Coin<CoinTypeA>,
+        _: Coin<CoinTypeB>,
+        _: u64,
+        _: u64,
+        _: bool,
+        _: &Clock,
+        _: &mut TxContext
+    ): (Coin<T>, Coin<CoinTypeA>, Coin<CoinTypeB>) {
+        abort 0
+    }
+
+    /// Deposit tokens with a minimum LP-token amount and return unused input coins.
+    public fun deposit_with_slippage_v2<CoinTypeA, CoinTypeB, T>(
+        _: &VaultsManager,
+        _: &mut Vault<T>,
+        _: &mut RewarderManager,
+        _: &SFarmingConfig,
+        _: &mut SFarmingPool,
+        _: &GlobalConfig,
+        _: &mut Pool<CoinTypeA, CoinTypeB>,
+        _: Coin<CoinTypeA>,
+        _: Coin<CoinTypeB>,
+        _: u64,
+        _: u64,
+        _: bool,
+        _: u64,
+        _: &Clock,
+        _: &mut TxContext
+    ): (Coin<T>, Coin<CoinTypeA>, Coin<CoinTypeB>) {
+        abort 0
+    }
+
+    /// Recharge an external asset into `Vault.harvest_assets`.
+    public fun recharge_harvest_asset<CoinType, T>(
+        _: &VaultsManager,
+        _: &mut Vault<T>,
+        _: Coin<CoinType>,
+        _: &mut TxContext,
+    ) {
         abort 0
     }
 

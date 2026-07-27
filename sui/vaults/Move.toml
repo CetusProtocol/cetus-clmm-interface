@@ -1,9 +1,11 @@
 [package]
 name = "vaults"
 version = "1.2.0"
+published-at = "0xd346b90f1b123837b384eb4b888cc7400e4336aa71ac045ccffa34d77b5a663d"
 
 [dependencies]
-Farming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.52.3" }
+Farming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.53.0" }
+Pyth = { git = "https://github.com/pyth-network/pyth-crosschain.git", subdir = "target_chains/sui/contracts", rev = "sui-contract-mainnet" }
 
 [addresses]
 vaults = "0xd3453d9be7e35efe222f78a810bb3af1859fd1600926afced8b4936d825c9a05"
