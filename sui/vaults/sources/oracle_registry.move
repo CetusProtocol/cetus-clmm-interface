@@ -7,19 +7,19 @@ module vaults::oracle_registry {
     use sui::table::Table;
 
 
-    struct OracleRegistry has key {
+    public struct OracleRegistry has key {
         id: UID,
         prices: Table<TypeName, Price>,
         coin_infos: Table<TypeName, CoinInfo>,
     }
 
-    struct Price has copy, drop, store {
+    public struct Price has copy, drop, store {
         price: u64,
         decimal: u8,
         last_update_time: u64,
     }
 
-    struct CoinInfo has drop, store {
+    public struct CoinInfo has drop, store {
         price_feed_id: vector<u8>,
         price_info_object_id: ID,
         max_age: u64,
@@ -27,7 +27,7 @@ module vaults::oracle_registry {
         slippage: u64,
     }
 
-    struct CoinInfoPyth2Key has copy, drop, store {
+    public struct CoinInfoPyth2Key has copy, drop, store {
         coin_type: TypeName,
     }
 
