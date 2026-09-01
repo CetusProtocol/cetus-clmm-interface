@@ -39,17 +39,11 @@
 | Cetus Dividends   | [@cetuspackages/dividends](https://www.moveregistry.com/package/@cetuspackages/dividends)     | `mvr add @cetuspackages/dividends`   |
 | xCETUS            | [@cetuspackages/xcetus](https://www.moveregistry.com/package/@cetuspackages/xcetus)           | `mvr add @cetuspackages/xcetus`      |
 
-**Using Move Registry CLI:**
+**Install mvr CLI and using Move Registry CLI:**
 
 ```bash
-# Install mvr CLI
-npm install -g @mvr/mvr
-
-# Add package (e.g., Cetus CLMM)
-mvr add @cetuspackages/clmm
-
-# Use in your Move.toml
-CetusClmm = { registry = "@cetuspackages/clmm" }
+# Add package in mainnet(e.g., Cetus CLMM)
+mvr add @cetuspackages/clmm --network mainnet
 ```
 
 **Benefits:**

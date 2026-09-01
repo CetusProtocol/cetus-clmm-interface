@@ -1,6 +1,7 @@
 [package]
 name = "farming"
 version = "1.2.0"
+published-at = "0xb5d821af5d3d4d40f1f1890502d73e3d7f61edb75e664ff8e827fa01a006f39f"
 
 [dependencies]
 cetus_clmm = { r.mvr = "@cetuspackages/clmm" }
