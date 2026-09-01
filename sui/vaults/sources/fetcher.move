@@ -9,7 +9,7 @@ module vaults::fetcher {
 
 
     /// Events
-    struct LpTokenValueEvent has copy, drop {
+    public struct LpTokenValueEvent has copy, drop {
         lp_amount: u64,
         amount_a: u64,
         amount_b: u64,

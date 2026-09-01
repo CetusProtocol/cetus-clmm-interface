@@ -5,10 +5,14 @@ module vaults::vaults {
 
     use sui::bag::{Bag};
     use sui::clock::Clock;
-    use sui::coin::{TreasuryCap, Coin};
+    use sui::coin::{TreasuryCap, Coin, CoinMetadata};
+    use sui::coin_registry::Currency;
     use sui::table::{Table};
     use sui::tx_context::{TxContext};
     use sui::object::{UID, ID};
+
+    use pyth_pro_compatible::price_info::PriceInfoObject;
+    use pyth_pro_compatible::state::State;
 
     use cetus_clmm::config::GlobalConfig;
     use cetus_clmm::pool::{Pool};
@@ -21,10 +25,11 @@ module vaults::vaults {
     use farming::config::GlobalConfig as SFarmingConfig;
 
     use vaults::acl;
+    use vaults::oracle_registry::OracleRegistry;
 
 
     /// Package verison which is need update when upgrade package
-    const VERSION: u64 = 5;
+    const VERSION: u64 = 16;
 
     /// the denominator of `Vault` protocol_fee.
     const PROTOCOL_FEE_DENOMINATOR: u64 = 10000;
@@ -37,18 +42,28 @@ module vaults::vaults {
     /// Range is (0 - 255 / 2000 = 12.75%)
     const SLIPPAGE_DENOMINATOR: u64 = 2000;
 
+    const BASIC_POINT: u64 = 10000;
+
+    const EMERGENCY_RESTORE_NEED_VERSION: u64 = 18446744073709551000;
+    const EMERGENCY_PAUSE_VERSION: u64 = 9223372036854775808;
+    const EMERGENCY_PAUSE_BEFORE_VERSION: vector<u8> = b"emergency_pause_before";
 
     /// Vaults Acl Roles
     const ACL_CLAIM_PROTOCOL_FEE: u8 = 0;
     const ACL_REINVEST_MANAGER: u8 = 1;
     const ACL_REBALANCE_MANAGER: u8 = 2;
     const ACL_POOL_MANAGER: u8 = 3;
+    const ACL_EMERGENCY_PAUSE: u8 = 4;
+    const ACL_ORACLE_MANAGER: u8 = 5;
 
     /// Vault Status
     const STATUS_RUNNING: u8 = 1;
     const STATUS_REBALANCING: u8 = 2;
 
+    const EXIT_STATE_KEY: vector<u8> = b"exit_state";
+
     /// Errors
+    const EMethodDeprecated: u64 = 0;
     const EAmountOutBelowMinLimit: u64 = 1;
     const EPositionSizeError: u64 = 2;
     const EPackageVersionDeprecate: u64 = 3;
@@ -79,14 +94,35 @@ module vaults::vaults {
     const EFinishRebalanceThresholdNotMatch: u64 = 28;
     const EHarvestAssetNotEnough: u64 = 29;
     const EInvalidVaultOperation: u64 = 30;
+    const EConfigVersionNotEqualEmergencyRestoreVersion: u64 = 31;
+    const ENoEmergencyPausePermission: u64 = 32;
+    const EPoolIsNotPause: u64 = 33;
+    const ERepayAmountOverflow: u64 = 34;
+    const EInvalidCoinPair: u64 = 36;
+    const EVaultStatusNotInitialized: u64 = 37;
+    const EVaultNotExit: u64 = 38;
+    const EVaultNotAllowDeposit: u64 = 39;
+    const EVaultNotAllowRemove: u64 = 40;
+    const EPoolNotMatch: u64 = 41;
+    const EPositionNotEmpty: u64 = 42;
+    const EVaultAlreadyExited: u64 = 43;
+    const EFinalizeExitFailed: u64 = 44;
+    const EVaultStatusAlreadyExists: u64 = 45;
+    const EIncorrectRepayAmount: u64 = 46;
+    const EAmountInAboveMaxLimit: u64 = 47;
+    const ENotEnoughLpAmount: u64 = 48;
+    const EOracleRegistryAlreadyExists: u64 = 49;
+    const EAlreadyMigrated: u64 = 50;
+    const EProtocolNotEmergencyPause: u64 = 51;
+    const EProtocolAlreadyEmergencyPause: u64 = 52;
 
     /// The Admin Cap of the protocol, manager the ACL.
-    struct AdminCap has key, store {
+    public struct AdminCap has key, store {
         id: UID
     }
 
     /// The Vaults manager
-    struct VaultsManager has key, store {
+    public struct VaultsManager has key, store {
         id: UID,
         // Vault index created.
         index: u64,
@@ -100,13 +136,13 @@ module vaults::vaults {
         acl: acl::ACL
     }
 
-    struct OracleInfo has store, drop {
+    public struct OracleInfo has store, drop {
         clmm_pool: ID,
         slippage: u8,
     }
 
     /// The Vault.
-    struct Vault<phantom T> has key, store {
+    public struct Vault<phantom T> has key, store {
         id: UID,
         /// Clmm pool ID
         pool: ID,
@@ -141,7 +177,7 @@ module vaults::vaults {
     }
 
     /// Emit when deposit
-    struct DepositEvent has copy, drop {
+    public struct DepositEvent has copy, drop {
         vault_id: ID,
         before_liquidity: u128,
         delta_liquidity: u128,
@@ -150,7 +186,7 @@ module vaults::vaults {
     }
 
     /// Emit when remove
-    struct RemoveEvent has copy, drop {
+    public struct RemoveEvent has copy, drop {
         vault_id: ID,
         lp_amount: u64,
         liquidity: u128,
@@ -158,6 +194,20 @@ module vaults::vaults {
         amount_b: u64,
         protocol_fee_a_amount: u64,
         protocol_fee_b_amount: u64
+    }
+
+    /// Emit when manually recharging assets into `Vault.harvest_assets`.
+    public struct RechargeHarvestAssetEvent has copy, drop {
+        amount: u64,
+        coin_type: TypeName,
+        vault_id: ID,
+    }
+
+    public struct PositionKey has copy, drop, store {}
+
+    public struct PositionMigratedEvent has copy, drop {
+        vault_id: ID,
+        position_id: ID,
     }
 
     /// Deposit Token to `Vault` and return Lp Token to user.
@@ -191,6 +241,199 @@ module vaults::vaults {
         _: &Clock,
         _: &mut TxContext
     ): Coin<T> {
+        abort 0
+    }
+
+    /// Deposit tokens and return the unused input coins.
+    public fun deposit_v2<CoinTypeA, CoinTypeB, T>(
+        _: &VaultsManager,
+        _: &mut Vault<T>,
+        _: &mut RewarderManager,
+        _: &SFarmingConfig,
+        _: &mut SFarmingPool,
+        _: &GlobalConfig,
+        _: &mut Pool<CoinTypeA, CoinTypeB>,
+        _: Coin<CoinTypeA>,
+        _: Coin<CoinTypeB>,
+        _: u64,
+        _: u64,
+        _: bool,
+        _: &Clock,
+        _: &mut TxContext
+    ): (Coin<T>, Coin<CoinTypeA>, Coin<CoinTypeB>) {
+        abort 0
+    }
+
+    /// Deposit tokens with a minimum LP-token amount and return unused input coins.
+    public fun deposit_with_slippage_v2<CoinTypeA, CoinTypeB, T>(
+        _: &VaultsManager,
+        _: &mut Vault<T>,
+        _: &mut RewarderManager,
+        _: &SFarmingConfig,
+        _: &mut SFarmingPool,
+        _: &GlobalConfig,
+        _: &mut Pool<CoinTypeA, CoinTypeB>,
+        _: Coin<CoinTypeA>,
+        _: Coin<CoinTypeB>,
+        _: u64,
+        _: u64,
+        _: bool,
+        _: u64,
+        _: &Clock,
+        _: &mut TxContext
+    ): (Coin<T>, Coin<CoinTypeA>, Coin<CoinTypeB>) {
+        abort 0
+    }
+
+    /// Recharge an external asset into `Vault.harvest_assets`.
+    public fun recharge_harvest_asset<CoinType, T>(
+        _: &VaultsManager,
+        _: &mut Vault<T>,
+        _: Coin<CoinType>,
+        _: &mut TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Restore the package version after an emergency pause.
+    public fun emergency_unpause(
+        _: &mut VaultsManager,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Migrate the wrapped position from the legacy vector into a dynamic field.
+    public fun migrate_position_to_df<T>(
+        _: &VaultsManager,
+        _: &mut Vault<T>,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Initialize the shared oracle registry.
+    public fun init_oracle_registry(
+        _: &mut VaultsManager,
+        _: &mut TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Legacy Pyth registration signature retained for upgrade compatibility.
+    public fun add_coin_info<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &pyth::state::State,
+        _: &CoinMetadata<CoinType>,
+        _: vector<u8>,
+        _: u64,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Add Pyth v2 oracle metadata for a coin.
+    public fun add_coin_info_pyth2<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &State,
+        _: &CoinMetadata<CoinType>,
+        _: vector<u8>,
+        _: u64,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Legacy Pyth Currency registration signature retained for upgrade compatibility.
+    public fun add_coin_info_use_currency<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &pyth::state::State,
+        _: &Currency<CoinType>,
+        _: vector<u8>,
+        _: u64,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Add Pyth v2 oracle metadata using a Currency object.
+    public fun add_coin_info_use_currency_pyth2<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &State,
+        _: &Currency<CoinType>,
+        _: vector<u8>,
+        _: u64,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Remove legacy Pyth oracle metadata for a coin.
+    public fun remove_coin_info<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Remove Pyth v2 oracle metadata for a coin.
+    public fun remove_coin_info_pyth2<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Update the maximum accepted age for a coin price.
+    public fun update_price_age<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: u64,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Legacy Pyth update signature retained for upgrade compatibility.
+    public fun update_price<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &pyth::price_info::PriceInfoObject,
+        _: &Clock,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Update a coin price from a Pyth v2 price info object.
+    public fun update_price_pyth2<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: &PriceInfoObject,
+        _: &Clock,
+        _: &TxContext,
+    ) {
+        abort 0
+    }
+
+    /// Update the per-coin oracle slippage.
+    public fun update_coin_slippage<CoinType>(
+        _: &VaultsManager,
+        _: &mut OracleRegistry,
+        _: u64,
+        _: &TxContext,
+    ) {
         abort 0
     }
 

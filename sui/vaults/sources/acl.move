@@ -16,11 +16,11 @@ module vaults::acl {
     const EMemberNotExists: u64 = 1;
 
     /// @dev Maps addresses to `u128`s with each bit representing the presence of (or lack of) each role.
-    struct ACL has store {
+    public struct ACL has store {
         permissions: LinkedTable<address, u128>
     }
 
-    struct Member has store, drop, copy {
+    public struct Member has store, drop, copy {
         address: address,
         permission: u128
     }
