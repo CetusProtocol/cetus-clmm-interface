@@ -5,7 +5,7 @@
 version = 4
 
 [pinned.mainnet.CetusClmm]
-source = { git = "https://github.com/CetusProtocol/cetus-contracts.git", subdir = "packages/cetus_clmm", rev = "a31283dd9e29d2b367f76d670ba704a2501de364" }
+source = { git = "https://github.com/CetusProtocol/cetus-contracts.git", subdir = "packages/cetus_clmm", rev = "e2af5950cd1819cb58772b0739ba7ece3c1619f9" }
 use_environment = "mainnet"
 manifest_digest = "1E932E9C4C15B3E671C5AACEE3107A26421CD5F431977EB48BE64EF5BE1AD9CA"
 deps = { IntegerMate = "IntegerMate", MoveSTL = "MoveSTL", std = "MoveStdlib", sui = "Sui" }
@@ -29,7 +29,7 @@ manifest_digest = "E41BBD67BE8940D26C79D78B028477EF5B33BA217A1282C78ACB344CF8A5E
 deps = { std = "MoveStdlib", sui = "Sui" }
 
 [pinned.mainnet.MoveStdlib]
-source = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/move-stdlib", rev = "b9149cbf0b2cb9ae5ed830407a9b48c7ae3fd36c" }
+source = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/move-stdlib", rev = "2a0becb2fcc6989e492981104af67f62f2c9511a" }
 use_environment = "mainnet"
 manifest_digest = "C4FE4C91DE74CBF223B2E380AE40F592177D21870DC2D7EB6227D2D694E05363"
 deps = {}
@@ -53,7 +53,7 @@ manifest_digest = "3D2B5BBF2058F3C9DCA3527CC2486C518124687B60479CA9875E5475652B7
 deps = { Sui = "Sui_1", WormholeSimpleMajority = "WormholeSimpleMajority" }
 
 [pinned.mainnet.Sui]
-source = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "b9149cbf0b2cb9ae5ed830407a9b48c7ae3fd36c" }
+source = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "2a0becb2fcc6989e492981104af67f62f2c9511a" }
 use_environment = "mainnet"
 manifest_digest = "CD547CB1ACCE0880C835DAED2D8FFCB91D56C833AE5240D3AA5B918398263195"
 deps = { MoveStdlib = "MoveStdlib" }
@@ -79,5 +79,5 @@ deps = { Sui = "Sui_1" }
 [pinned.mainnet.vaults]
 source = { root = true }
 use_environment = "mainnet"
-manifest_digest = "279D49BE893CDF895CCF2C1EB6D604B7813A4DB1565880216B486543A9C8C61A"
+manifest_digest = "1FE5406E47ED653CC87016C2DA2840B327E429A60480FBB5018A94DEE990990E"
 deps = { cetus_clmm = "CetusClmm", farming = "Farming", integer_mate = "IntegerMate", move_stl = "MoveSTL", pyth = "Pyth", pyth_pro_compatible = "PythProCompatible", std = "MoveStdlib", sui = "Sui" }

@@ -18,5 +18,5 @@ rename-from = "pyth"
 [dependencies]
 farming = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/stable_farming", rev = "mainnet-v1.52.3" }
 cetus_clmm = { r.mvr = "@cetuspackages/clmm" }
-integer_mate = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "mainnet-v1.3.0", override = true }
-move_stl = { git = "https://github.com/CetusProtocol/move-stl.git", rev = "mainnet-v1.3.0", override = true }
+move_stl = { r.mvr = "@cetuspackages/move-stl" }
+integer_mate = { r.mvr = "@cetuspackages/inter-mate" }
