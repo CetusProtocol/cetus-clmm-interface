@@ -1,12 +1,8 @@
 [package]
-name = "Farming"
+name = "farming"
 version = "1.2.0"
 
 [dependencies]
-cetusclmm = { r.mvr = "@cetuspackages/clmm" }
-
-[addresses]
-farming = "0x11ea791d82b5742cc8cab0bf7946035c97d9001d7c3803a93f119753da66f526"
-
-[r.mvr]
-network = "mainnet"
+cetus_clmm = { r.mvr = "@cetuspackages/clmm" }
+move_stl = { r.mvr = "@cetuspackages/move-stl" }
+integer_mate = { r.mvr = "@cetuspackages/inter-mate" }

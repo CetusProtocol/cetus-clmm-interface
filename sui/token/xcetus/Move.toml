@@ -1,10 +1,7 @@
 [package]
-name = "Xcetus"
+name = "xcetus"
 version = "1.0.0"
 
 [dependencies]
-MoveSTL = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "mainnet-v1.48.2", override = true }
-Cetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/cetus", rev = "mainnet-v1.48.2" }
-
-[addresses]
-xcetus = "0x9e69acc50ca03bc943c4f7c5304c2a6002d507b51c11913b247159c60422c606"
+move_stl = { r.mvr = "@cetuspackages/move-stl" }
+cetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/cetus", rev = "mainnet-v1.48.2" }

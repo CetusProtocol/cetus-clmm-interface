@@ -1,14 +1,8 @@
 [package]
-name = "ClmmVester"
+name = "clmm_vester"
 edition = "2024.beta"
 
 [dependencies]
-IntegerMate = { git = "https://github.com/CetusProtocol/integer-mate.git", rev = "mainnet-v1.3.0", override = true }
-Cetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/cetus", rev = "mainnet-v1.48.2", override = true }
-cetusclmm = { r.mvr = "@cetuspackages/clmm" }
-
-[addresses]
-clmm_vester = "0x9d2f067d3b9d19ac0f8d2e5c2c393b1760232083e42005b2e5df39c06064d522"
-
-[r.mvr]
-network = "mainnet"
+integer_mate = { r.mvr = "@cetuspackages/inter-mate" }
+cetus = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/cetus", rev = "mainnet-v1.48.2", override = true }
+cetus_clmm = { r.mvr = "@cetuspackages/clmm" }
