@@ -6,6 +6,7 @@ module dividends::router {
     use sui::tx_context::TxContext;
     use xcetus::xcetus::{XcetusManager, VeNFT};
     use sui::clock::Clock;
+    use sui::coin::Coin;
     use sui::object::ID;
 
     /// Redeem
@@ -44,6 +45,17 @@ module dividends::router {
     )
     {
         abort 1
+    }
+
+    public fun redeem_v3_return_coin<CoinA>(
+        _: &mut DividendManager,
+        _: &mut VeNFTDividends,
+        _: vector<u64>,
+        _: &mut VeNFT,
+        _: &Clock,
+        _: &mut TxContext
+    ): Coin<CoinA> {
+        abort 0
     }
 
     public entry fun fetch_dividend_info(_: &DividendManager, _: ID) {

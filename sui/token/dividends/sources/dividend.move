@@ -5,6 +5,7 @@ module dividends::dividend {
     use move_stl::linked_table;
     use sui::object::{UID, ID};
     use sui::clock::Clock;
+    use sui::coin::Coin;
     use sui::tx_context::TxContext;
     use sui::bag::Bag;
     use sui::vec_map::VecMap;
@@ -144,6 +145,17 @@ module dividends::dividend {
         _: &Clock,
         _: &mut TxContext
     ) {
+        abort 0
+    }
+
+    public fun redeem_v3_return_coin<CoinA>(
+        _: &mut DividendManager,
+        _: &mut VeNFTDividends,
+        _: vector<u64>,
+        _: &mut VeNFT,
+        _: &Clock,
+        _: &mut TxContext
+    ): Coin<CoinA> {
         abort 0
     }
 

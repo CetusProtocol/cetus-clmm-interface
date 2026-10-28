@@ -11,19 +11,25 @@ manifest_digest = "E41BBD67BE8940D26C79D78B028477EF5B33BA217A1282C78ACB344CF8A5E
 deps = { std = "MoveStdlib", sui = "Sui" }
 
 [pinned.mainnet.MoveSTL]
+source = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = ".", rev = "0681fec63a310ae753d03a06f7c05d3e2925bb09" }
+use_environment = "mainnet"
+manifest_digest = "E41BBD67BE8940D26C79D78B028477EF5B33BA217A1282C78ACB344CF8A5ECF6"
+deps = { std = "MoveStdlib", sui = "Sui" }
+
+[pinned.mainnet.MoveSTL_1]
 source = { git = "https://github.com/CetusProtocol/move-stl.git", subdir = "sui", rev = "df421c89bfa814a8d5c004b1998ca2347a225c49" }
 use_environment = "mainnet"
 manifest_digest = "E41BBD67BE8940D26C79D78B028477EF5B33BA217A1282C78ACB344CF8A5ECF6"
 deps = { std = "MoveStdlib", sui = "Sui" }
 
 [pinned.mainnet.MoveStdlib]
-source = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/move-stdlib", rev = "2a0becb2fcc6989e492981104af67f62f2c9511a" }
+source = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/move-stdlib", rev = "719fb2960ccfbf9f4d33041f8ea5146d30671696" }
 use_environment = "mainnet"
 manifest_digest = "C4FE4C91DE74CBF223B2E380AE40F592177D21870DC2D7EB6227D2D694E05363"
 deps = {}
 
 [pinned.mainnet.Sui]
-source = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "2a0becb2fcc6989e492981104af67f62f2c9511a" }
+source = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "719fb2960ccfbf9f4d33041f8ea5146d30671696" }
 use_environment = "mainnet"
 manifest_digest = "CD547CB1ACCE0880C835DAED2D8FFCB91D56C833AE5240D3AA5B918398263195"
 deps = { MoveStdlib = "MoveStdlib" }
@@ -32,10 +38,10 @@ deps = { MoveStdlib = "MoveStdlib" }
 source = { git = "https://github.com/CetusProtocol/cetus-clmm-interface.git", subdir = "sui/token/xcetus", rev = "b0668f5b4b828909d510526536dbb52f57074766" }
 use_environment = "mainnet"
 manifest_digest = "A727B95B75B49755000C6EEA9CDBA70317AF6236B11A0077E38EAFDD23A1BCBA"
-deps = { Cetus = "Cetus", MoveSTL = "MoveSTL", std = "MoveStdlib", sui = "Sui" }
+deps = { Cetus = "Cetus", MoveSTL = "MoveSTL_1", std = "MoveStdlib", sui = "Sui" }
 
 [pinned.mainnet.dividends]
 source = { root = true }
 use_environment = "mainnet"
-manifest_digest = "597AB9CB987B96376950B70A9B8766EA4A58EFA8CBCA22D4E7E35400DA99FF5D"
+manifest_digest = "75E887715458F4A9DFD62D4F7260923D1136356FA5C245C65FB483697FC9B249"
 deps = { move_stl = "MoveSTL", std = "MoveStdlib", sui = "Sui", xcetus = "Xcetus" }
